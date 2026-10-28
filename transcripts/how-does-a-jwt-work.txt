@@ -1,0 +1,19 @@
+How a JWT Proves Who You Are
+
+Maya logs into your app at nine in the morning. An hour later she asks for her order history. How does your API know that request is really from Maya, without looking her up in the database every time?
+
+Here is the plan: the slow way first, then a token that carries its own proof, then what an attacker can and cannot do with it.
+
+The slow way is a session table. When Maya logs in, you generate a random session id, store it next to her user id, and hand it back in a cookie. Every later request costs a lookup. At ten thousand requests per second that table is the hottest thing you own, and every API server has to reach the same store.
+
+Think about a wristband at a music festival. You show your ticket once at the entrance, staff snap on a wristband with a hard-to-copy pattern, and after that every gate just checks the wristband. Nobody phones the box office. A JSON Web Token, JWT for short, is that wristband, and the signature is the pattern the gates check.
+
+When Maya logs in, your server builds a small JSON object called the payload. It holds claims: her user id as the subject, her role, and an expiry, say one hour out. A tiny header names the signing algorithm. The server base64url encodes both, joins them with a dot, and signs that string. With HMAC, a hash-based message authentication code, signing means hashing the string together with a secret only your servers hold. With RSA, it means signing with a private key, so anyone holding the public key can verify. The signature is appended after a second dot. Three parts, two dots, one string, sent in the authorization header on every request.
+
+On the way back in, the API server splits on the dots, recomputes the signature over the first two parts, and compares it to the third. Then it checks the expiry. If both pass, it reads the user id straight out of the payload. No database, no shared session store. That is what stateless means here.
+
+Now the part that burns people. Base64url is encoding, not encryption. Anyone can decode the payload and read Maya's role, so never put secrets in it. Suppose an attacker, Eve, decodes Maya's token, changes the role to admin, and re-encodes it. The signature no longer matches, so the server rejects it. Integrity is protected, privacy is not.
+
+The real tradeoff is revocation. If Maya logs out or you disable her account, her token still verifies until it expires. The usual fix is short-lived access tokens, around fifteen minutes, paired with a refresh token that you do store and can revoke.
+
+Rule of thumb: a JWT is a signed, readable claim that lets any server trust who you are without asking the database, and the price is that you cannot take it back until it expires.

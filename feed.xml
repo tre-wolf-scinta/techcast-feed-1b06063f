@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Wed, 28 Oct 2026 21:09:43 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Oct 2026 21:43:00 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,20 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>How a JWT Proves Who You Are</title>
+      <description>How a JSON Web Token is built, signed, and verified so any API server can trust a request without a database lookup, and the revocation tradeoff that comes with it.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/how-does-a-jwt-work.mp3" length="2703134" type="audio/mpeg"/>
+      <guid isPermaLink="false">how-does-a-jwt-work</guid>
+      <pubDate>Wed, 28 Oct 2026 21:42:59 +0000</pubDate>
+      <itunes:title>How a JWT Proves Who You Are</itunes:title>
+      <itunes:summary>How a JSON Web Token is built, signed, and verified so any API server can trust a request without a database lookup, and the revocation tradeoff that comes with it.</itunes:summary>
+      <itunes:duration>0:02:49</itunes:duration>
+      <itunes:episode>2</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/how-does-a-jwt-work.txt" type="text/plain"/>
+    </item>
     <item>
       <title>Property Hooks in PHP 8.4</title>
       <description>How PHP 8.4 property hooks let you put validation and computed values behind a plain property, without rewriting every call site into a getter and setter.</description>
