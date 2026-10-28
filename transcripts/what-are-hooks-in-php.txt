@@ -1,0 +1,17 @@
+Property Hooks in PHP 8.4
+
+Why did PHP 8.4 give properties their own get and set blocks? And what do they fix that a plain getter and setter never could? Here is the plan: a public property that goes wrong, the old fix, then hooks, then one gotcha.
+
+Meet Sam. Sam has a User class with a public email property, and about two hundred places in the codebase read or assign user dot email directly. Then the bug reports arrive. Some emails were saved with capital letters, some with trailing spaces, and a few are not emails at all. Sam needs every write trimmed, lowercased, and validated.
+
+The classic fix is to make the property private and add two methods, getEmail and setEmail, with the checks inside setEmail. It works, but now all two hundred call sites have to change from an assignment to a method call. That is why so many PHP classes are half getters and setters written just in case.
+
+Think of a surge protector. From the front it looks like a normal wall socket, and you plug in exactly as before. Inside, every bit of current is checked before it passes through. A property hook is that surge protector: the property keeps its name and its assignment syntax, and the checking code sits behind the face plate.
+
+So the email property stays public. After the property name, instead of a semicolon, Sam opens a block with two hooks. The set hook receives the incoming value in a variable called value. Sam trims it, lowercases it, throws if it fails the email check, and then assigns the result to this arrow email. That last assignment writes straight to the backing storage without firing the hook again, so there is no infinite loop. The get hook runs on every read, and the short form is a single arrow expression. None of the two hundred call sites change. This is a property hook, new in PHP 8.4, and if you have written properties in C sharp or Apex, it is the same idea arriving in PHP.
+
+Now the deeper trick. Sam adds a fullName property with only a get hook that joins first name and last name. Because no hook ever touches this arrow fullName, PHP allocates no storage for it at all. This is called a virtual property. Writing to it throws an error, because there is no set hook to receive the value.
+
+Two things to know before you ship. First, a hooked property cannot be marked readonly, so pick one or the other. Second, interfaces can now declare a property with get and set hooks, which means an interface can require a property, not just a method. And a child class that overrides a hook can call the parent version by naming parent, then the property, then the hook.
+
+Rule of thumb: keep the plain property syntax, put the rules in a set hook, and reach for a get-only hook when the value should be computed instead of stored.
