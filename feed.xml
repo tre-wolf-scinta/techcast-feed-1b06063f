@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Wed, 28 Oct 2026 21:43:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 16:56:34 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,20 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>Why Salesforce Shares the Building</title>
+      <description>How Salesforce multi-tenancy works under the hood, why governor limits are the price of a shared database, how metadata replaces schema changes, and how API versioning keeps old code running through three releases a year.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/salesforce-multi-tenant-architecture-for-the-platform-develo.mp3" length="3524420" type="audio/mpeg"/>
+      <guid isPermaLink="false">salesforce-multi-tenant-architecture-for-the-platform-develo</guid>
+      <pubDate>Wed, 04 Nov 2026 16:56:34 +0000</pubDate>
+      <itunes:title>Why Salesforce Shares the Building</itunes:title>
+      <itunes:summary>How Salesforce multi-tenancy works under the hood, why governor limits are the price of a shared database, how metadata replaces schema changes, and how API versioning keeps old code running through three releases a year.</itunes:summary>
+      <itunes:duration>0:03:40</itunes:duration>
+      <itunes:episode>3</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/salesforce-multi-tenant-architecture-for-the-platform-develo.txt" type="text/plain"/>
+    </item>
     <item>
       <title>How a JWT Proves Who You Are</title>
       <description>How a JSON Web Token is built, signed, and verified so any API server can trust a request without a database lookup, and the revocation tradeoff that comes with it.</description>

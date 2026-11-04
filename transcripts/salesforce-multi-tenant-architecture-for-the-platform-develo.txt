@@ -1,0 +1,19 @@
+Why Salesforce Shares the Building
+
+Why does Salesforce kill your Apex at 100 queries, when a database on your own server would happily run a thousand? The answer is the same reason a new custom field appears seconds after you save it, and the same reason a trigger written in 2015 still runs today. All three come from one design decision, and it is the one the Platform Developer I exam keeps circling back to.
+
+Here is the plan. First the shared building, then the limits, then how your customizations are stored, then how old code survives upgrades.
+
+Think of an apartment building with one water main. Every tenant gets water, but if one tenant runs forty washing machines at once, everyone else's shower goes cold. So the landlord meters each unit. The building is a Salesforce instance, the tenants are orgs like yours, and the water is CPU time, database connections, and memory.
+
+Now the scenario. Priya's company has an org that lives on an instance alongside thousands of other orgs. Same application servers, same database, same physical tables. Her Account rows and a rival company's Account rows sit in the same table, separated only by an organization ID column on every row. That is multi-tenant architecture, one copy of the software serving every customer.
+
+Priya writes a trigger that runs a query inside a loop. 200 records come in, 200 queries go out. On her own server that is just slow. On a shared database, those 200 queries steal time from thousands of neighbors. So the platform counts. Per synchronous transaction, 100 SOQL queries, 150 DML statements, 6 megabytes of heap, 10 seconds of CPU. Cross a line and the whole transaction rolls back with an exception you cannot catch. These are governor limits, and they are not a punishment. They are the fair share contract that makes sharing possible.
+
+Next, customization. When Priya adds a custom field, no table gets altered. Salesforce writes a row describing the field into metadata tables, and the values land in a wide generic table with flexible columns. At runtime the engine reads the metadata and builds the real SQL on the fly. That is why the field appears instantly, and why every tenant can have a different shape inside the same physical tables. Objects, fields, validation rules, layouts, even compiled Apex, are all metadata. This is the metadata driven architecture.
+
+But Salesforce upgrades every org three times a year, rolling out instance by instance, with no opting out. So how does Priya's 2015 trigger survive? Every Apex class, trigger, and API integration carries an API version number, say 34. When the platform changes behavior in version 60, the runtime checks that stamp and keeps the old behavior for anything compiled against 34. Moving to a newer version is Priya's choice, one class at a time. REST and SOAP endpoints work the same way, with the version right in the URL. That is backward compatibility through versioning.
+
+One twist for the exam. The limits we just covered are per transaction, not per org, although a few, like the daily cap on asynchronous jobs and API calls, are counted across the whole org. Priya fixes her trigger by running one query for all 200 records and looping in memory, which is called bulkification. Heavy work can also move to asynchronous Apex, which gets a bigger budget: 200 queries and 12 megabytes of heap.
+
+Shared building, metered utilities, blueprints instead of walls, and a version stamp on every door. That is multi-tenancy, and governor limits are just the rent.
