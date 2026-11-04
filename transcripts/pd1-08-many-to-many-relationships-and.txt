@@ -1,0 +1,19 @@
+Junction Objects: Many-to-Many in Salesforce
+
+Priya is building a training app in Salesforce. She has a Course object and a Student object. A student takes many courses, and a course holds many students. So which object gets the relationship field?
+
+Neither one works. Put a lookup to Student on Course and each course can hold exactly one student. Put a lookup to Course on Student and each student can take exactly one course. A relationship field stores a single ID, so neither side can hold a list.
+
+Think about a concert ticket. A ticket names exactly one person and exactly one show. Fans hold many tickets, shows sell many tickets, and nobody writes a list of fans on the show itself. The ticket is the thing that does the linking. In Salesforce, the ticket is a third object.
+
+So Priya creates a custom object called Enrollment. She adds a master-detail field pointing to Course, then a second master-detail field pointing to Student. One Enrollment record now means one student in one course. Enrolling Maya in three courses is three Enrollment records, and the Course page and the Student page each get an Enrollments related list. Because both fields are master-detail, an Enrollment cannot exist without both parents, it has no owner field of its own, and both Course and Student can carry roll-up summary fields, such as a count of enrollments or a sum of fees. This third object is called a junction object, and the result is a many-to-many relationship.
+
+Now, the order Priya created those fields matters. The first master-detail field, the one to Course, becomes the primary relationship. Enrollment's detail and edit pages take the color and icon of Course, and each Enrollment inherits its owner from its Course record. If she later deletes that first field or converts it to a lookup, Student becomes primary.
+
+Sharing is where people slip. To see an Enrollment, a user needs read access to both the Course and the Student. To create, edit, or delete one, the sharing setting on each master-detail field decides whether read or read and write access on that master is enough. So a junction record is only as visible as the less visible of its two parents.
+
+Deletion follows the same logic. Delete a Course and all of its Enrollments go to the recycle bin with it. Delete a Student and the same thing happens. Undelete the Course and the Enrollments come back. But if both parents get deleted, the Enrollment records are gone for good and cannot be restored.
+
+On the exam, when a scenario describes two objects where each record on one side relates to many records on the other, the answer is a custom junction object with two master-detail relationships.
+
+Many-to-many in Salesforce is a third object with two master-detail fields, the first field makes its parent primary, and the junction records live and die with their parents.

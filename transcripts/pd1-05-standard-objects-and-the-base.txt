@@ -1,0 +1,17 @@
+The Standard Object Data Model
+
+A web form on your company's site just submitted Maria Lopez from Acme Logistics asking for pricing on 50 seats. Which standard object does that land in, and what happens to it when the deal turns real? The exam loves this shape of question: a business need, and you pick the object Salesforce already ships.
+
+It lands in Lead. A lead is one flat record holding a person and their company together, with no account behind it yet. Your rep Priya owns it, so its owner field points to a User record. Priya qualifies it, and that is where the flat record stops being enough, because you need the company and the person as separate things you can report on.
+
+Think of a store. The catalog lists every item the store sells. Each location prints its own price list, and a price tag is one line on one list saying what one item costs there. A receipt line never copies the item; it points at a price tag. Hold that picture, because it is exactly how products and prices are wired in Salesforce.
+
+Priya clicks Convert. Salesforce creates an Account for Acme, a Contact for Maria, and optionally an Opportunity, or lets Priya pick existing records to avoid duplicates. The lead is not deleted. It is flagged converted, its converted account, contact, and opportunity fields are filled in, and it drops out of the default lead views. Any campaign membership on the lead moves to the new contact. This is lead conversion, the hinge between the funnel and the pipeline.
+
+Now the records relate the way the exam expects. Contact looks up to Account. Opportunity looks up to Account. When Maria later emails support, that is a Case, which looks up to both the account and the contact. So Account is the hub. Campaign reaches people through a junction object called CampaignMember, which joins one campaign to either a lead or a contact.
+
+Priya adds the 50 seats. Product2 is the catalog item. Pricebook2 is a price list, and every org has one standard price book. PricebookEntry is the price tag: one product in one price book at one price, and a product needs a standard price book entry before it can join a custom one. The opportunity picks a single price book, then each OpportunityLineItem points at a PricebookEntry, never directly at the product, and carries quantity and sales price. Fifty seats at 1,200 dollars gives 60,000 dollars of line items, and the opportunity amount becomes a read-only roll-up of them.
+
+One trap. Once an opportunity has line items, you cannot change its price book without removing them first, because every line would point at tags from the wrong list.
+
+A lead converts into account, contact, and opportunity, account is the hub for contacts, opportunities, and cases, and every opportunity line points at a price book entry, which is one product priced in one price book.

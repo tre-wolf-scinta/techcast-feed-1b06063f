@@ -1,0 +1,17 @@
+Hierarchical, External, and Indirect Lookups
+
+Which relationship type can only ever live on one object? And when a Salesforce record points at a row in an outside database, which side holds the key? Those two questions cover nearly everything the exam asks about hierarchical, external lookup, and indirect lookup relationships.
+
+Priya needs a field that says who approves each user's expense reports, so it points from one User record to another. A plain lookup would let Priya approve her own reports, or let Priya report to Sam while Sam reports to Priya. The User object has a special lookup that refuses both. A user can never refer to themselves, directly or through a chain. This is called a hierarchical relationship. It exists only on the User object, and the standard Manager field is one. Any answer that puts a hierarchical relationship on Account or a custom object is wrong.
+
+Now the harder job. Invoices live in an external billing system. Priya uses Salesforce Connect to map that system's invoice table to an external object, so invoices show up as records while the data stays outside. The catch: the billing system has never heard of an eighteen character Salesforce ID. Its invoices carry their own key, like invoice number four seven one two, and its customer column holds the billing system's account number.
+
+Think of two friends who don't know each other's phone numbers but both know the same email address. They can still reach each other because they agree on one shared identifier. In Salesforce Connect, that shared identifier is the external ID.
+
+Priya wants each invoice to show its Salesforce Account. The child is the external invoice, and the parent is Account. She adds a custom field on Account called Billing Account Number and marks it both External ID and Unique. Then she creates the relationship on the invoice external object and matches the invoice's customer column against that field. No Salesforce ID is stored anywhere. The join happens on the shared value. This is called an indirect lookup: external child, Salesforce parent, matched on a unique external ID field on the parent.
+
+Flip the arrow. Now a Case in Salesforce needs to point at an invoice in the billing system, so the parent is the external object. Priya adds an external lookup to Case, and the field stores the invoice's External ID, the same key the billing system uses. This is called an external lookup: external parent, and the child can be standard, custom, or another external object.
+
+Can an external object use a plain lookup instead? Only if the external table already stores real eighteen character Salesforce IDs, which is rare, and that is exactly why the indirect lookup exists.
+
+The rule of thumb: hierarchical is User to User and nowhere else, external lookup points at an external parent by its external ID, and indirect lookup points from an external child to a Salesforce parent through a unique external ID field, never a Salesforce ID.

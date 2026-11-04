@@ -1,0 +1,15 @@
+Clicks or Code: Picking the Right Salesforce Tool
+
+A business user asks for a new field on a custom object. Do you open the developer console and write Apex? On the Platform Developer One exam the answer is almost always no, not yet. So how do you know when it becomes yes?
+
+Think of a spreadsheet. Some requests are a formula in one cell. Some are a sum across a column. Some need a recorded macro, and a few need a real script. Salesforce has the same ladder, formula fields, roll-up summaries, Flow, then Apex, and you climb only as high as the job demands. Maya runs sales ops, and she hands you four requests on a custom Project object. Each one lands on a different rung.
+
+Request one: show the margin percent on each Project, computed from cost and price. That's a formula field. It reads fields on the same record, or walks up to parent records through lookups, up to ten relationships away. Nothing is stored, so nothing drifts out of sync. Request two: block the save when margin drops below ten percent unless a manager override box is checked. That's a validation rule, a formula that returns true when the record is bad. Same reach as a formula field: this record and its parents, never its children.
+
+Request three: total the hours on each Project from its child Timesheet records. Now the relationship type decides. If Timesheet is master-detail to Project, that's a roll-up summary field, a count, sum, min, or max the platform maintains for you. The limit is the relationship itself. Roll-ups don't work across a lookup, and you get 25 per object by default.
+
+Request four is where the ladder bends. Maya wants total hours on the Account, and Project to Account is a lookup. No roll-up. So you reach for Flow: a record-triggered flow on Timesheet, after save, that gets the related records, loops to add them up, and updates the Account. Still declarative, and the exam wants you to choose it over Apex. But flows run under the same governor limits as triggers, 100 queries and 150 data manipulation statements per transaction. Put an Update Records element inside that loop, and a nightly load of 200 Timesheets can exhaust the limit before the batch finishes.
+
+Those are the tipping points. Apex earns its place when the calculation needs a map or a sort Flow can't express, when an account has thousands of children and you need an aggregate query that sums in the database instead of looping, when you call an outside service and need retries and real error handling, or when a data load must handle 200 records per transaction with one query and one update. Flow does have an HTTP callout action, but the retry logic and the response parsing still push you to code.
+
+Default to clicks, climb only when the lower rung provably can't reach, and when the requirement says callouts, aggregates, or bulk-safe loops, the answer is Apex.

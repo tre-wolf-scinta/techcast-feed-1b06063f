@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Wed, 04 Nov 2026 16:56:34 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 23:15:47 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,146 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>Roll-Up Summary Fields and the Lookup Trap</title>
+      <description>PD1 exam topic 11. Why roll-up summary fields need a master-detail relationship, which four functions they support, what they refuse to summarize, and how to work around average and lookup requirements on the Platform Developer I exam.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-11-roll-up-summary-fields.mp3" length="3301443" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-11-roll-up-summary-fields</guid>
+      <pubDate>Wed, 04 Nov 2026 23:15:47 +0000</pubDate>
+      <itunes:title>Roll-Up Summary Fields and the Lookup Trap</itunes:title>
+      <itunes:summary>PD1 exam topic 11. Why roll-up summary fields need a master-detail relationship, which four functions they support, what they refuse to summarize, and how to work around average and lookup requirements on the Platform Developer I exam.</itunes:summary>
+      <itunes:duration>0:03:26</itunes:duration>
+      <itunes:episode>13</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-11-roll-up-summary-fields.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Formula Fields: Computed on Read, Never Stored</title>
+      <description>PD1 exam topic 10. How Salesforce formula fields work, what they can reach through relationships, where their limits bite, and when a formula beats a trigger.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-10-formula-fields.mp3" length="3174683" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-10-formula-fields</guid>
+      <pubDate>Wed, 04 Nov 2026 23:14:58 +0000</pubDate>
+      <itunes:title>Formula Fields: Computed on Read, Never Stored</itunes:title>
+      <itunes:summary>PD1 exam topic 10. How Salesforce formula fields work, what they can reach through relationships, where their limits bite, and when a formula beats a trigger.</itunes:summary>
+      <itunes:duration>0:03:18</itunes:duration>
+      <itunes:episode>12</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-10-formula-fields.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Hierarchical, External, and Indirect Lookups</title>
+      <description>PD1 exam topic 9. Which relationship type lives only on User, and when Salesforce records point at external data, which side holds the key and why the match uses an external ID instead of a Salesforce ID.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-09-hierarchical-external-lookup-and.mp3" length="2896876" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-09-hierarchical-external-lookup-and</guid>
+      <pubDate>Wed, 04 Nov 2026 23:14:11 +0000</pubDate>
+      <itunes:title>Hierarchical, External, and Indirect Lookups</itunes:title>
+      <itunes:summary>PD1 exam topic 9. Which relationship type lives only on User, and when Salesforce records point at external data, which side holds the key and why the match uses an external ID instead of a Salesforce ID.</itunes:summary>
+      <itunes:duration>0:03:01</itunes:duration>
+      <itunes:episode>11</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-09-hierarchical-external-lookup-and.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Junction Objects: Many-to-Many in Salesforce</title>
+      <description>PD1 exam topic 8. How a junction object with two master-detail fields builds a many-to-many relationship in Salesforce, which parent is primary, how sharing works, and what happens when a parent is deleted.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-08-many-to-many-relationships-and.mp3" length="2768435" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-08-many-to-many-relationships-and</guid>
+      <pubDate>Wed, 04 Nov 2026 23:13:31 +0000</pubDate>
+      <itunes:title>Junction Objects: Many-to-Many in Salesforce</itunes:title>
+      <itunes:summary>PD1 exam topic 8. How a junction object with two master-detail fields builds a many-to-many relationship in Salesforce, which parent is primary, how sharing works, and what happens when a parent is deleted.</itunes:summary>
+      <itunes:duration>0:02:53</itunes:duration>
+      <itunes:episode>10</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-08-many-to-many-relationships-and.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Lookup vs Master-Detail</title>
+      <description>PD1 exam topic 7. How master-detail and lookup relationships differ in Salesforce, and how the Platform Developer I exam decides which one a scenario calls for.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-07-lookup-versus-master-detail.mp3" length="2540375" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-07-lookup-versus-master-detail</guid>
+      <pubDate>Wed, 04 Nov 2026 23:12:53 +0000</pubDate>
+      <itunes:title>Lookup vs Master-Detail</itunes:title>
+      <itunes:summary>PD1 exam topic 7. How master-detail and lookup relationships differ in Salesforce, and how the Platform Developer I exam decides which one a scenario calls for.</itunes:summary>
+      <itunes:duration>0:02:38</itunes:duration>
+      <itunes:episode>9</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-07-lookup-versus-master-detail.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Custom Fields and Record Types for PD1</title>
+      <description>PD1 exam topic 6. Pick the right Salesforce field type for each requirement, from auto numbers and restricted picklists to long text and checkbox defaults, then use record types to serve two teams from one custom object.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-06-custom-objects-fields-and-record.mp3" length="2959619" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-06-custom-objects-fields-and-record</guid>
+      <pubDate>Wed, 04 Nov 2026 23:12:13 +0000</pubDate>
+      <itunes:title>Custom Fields and Record Types for PD1</itunes:title>
+      <itunes:summary>PD1 exam topic 6. Pick the right Salesforce field type for each requirement, from auto numbers and restricted picklists to long text and checkbox defaults, then use record types to serve two teams from one custom object.</itunes:summary>
+      <itunes:duration>0:03:05</itunes:duration>
+      <itunes:episode>8</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-06-custom-objects-fields-and-record.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>The Standard Object Data Model</title>
+      <description>PD1 exam topic 5. How Salesforce&#x27;s core CRM objects relate, from lead conversion into account, contact, and opportunity, through the opportunity line item to price book entry chain that the Platform Developer I exam keeps asking about.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-05-standard-objects-and-the-base.mp3" length="2778864" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-05-standard-objects-and-the-base</guid>
+      <pubDate>Wed, 04 Nov 2026 23:11:30 +0000</pubDate>
+      <itunes:title>The Standard Object Data Model</itunes:title>
+      <itunes:summary>PD1 exam topic 5. How Salesforce&#x27;s core CRM objects relate, from lead conversion into account, contact, and opportunity, through the opportunity line item to price book entry chain that the Platform Developer I exam keeps asking about.</itunes:summary>
+      <itunes:duration>0:02:53</itunes:duration>
+      <itunes:episode>7</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-05-standard-objects-and-the-base.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Clicks or Code: Picking the Right Salesforce Tool</title>
+      <description>PD1 exam topic 4. How to decide between a formula, validation rule, roll-up summary, Flow, or Apex for a Salesforce requirement, and the tipping points the Platform Developer I exam tests.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-04-declarative-versus-programmatic.mp3" length="2768443" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-04-declarative-versus-programmatic</guid>
+      <pubDate>Wed, 04 Nov 2026 23:10:51 +0000</pubDate>
+      <itunes:title>Clicks or Code: Picking the Right Salesforce Tool</itunes:title>
+      <itunes:summary>PD1 exam topic 4. How to decide between a formula, validation rule, roll-up summary, Flow, or Apex for a Salesforce requirement, and the tipping points the Platform Developer I exam tests.</itunes:summary>
+      <itunes:duration>0:02:53</itunes:duration>
+      <itunes:episode>6</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-04-declarative-versus-programmatic.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Salesforce MVC: Which Layer Is It?</title>
+      <description>PD1 exam topic 3. Map Salesforce objects, layouts, Visualforce, Apex, Flow, and Lightning components onto Model, View, and Controller, and learn why the Lightning Component Framework is not strict MVC.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-03-mvc-and-platform-design.mp3" length="2700635" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-03-mvc-and-platform-design</guid>
+      <pubDate>Wed, 04 Nov 2026 23:10:11 +0000</pubDate>
+      <itunes:title>Salesforce MVC: Which Layer Is It?</itunes:title>
+      <itunes:summary>PD1 exam topic 3. Map Salesforce objects, layouts, Visualforce, Apex, Flow, and Lightning components onto Model, View, and Controller, and learn why the Lightning Component Framework is not strict MVC.</itunes:summary>
+      <itunes:duration>0:02:48</itunes:duration>
+      <itunes:episode>5</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-03-mvc-and-platform-design.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Governor Limits: One Budget Per Transaction</title>
+      <description>PD1 exam topic 2. Why Salesforce caps every transaction, the headline numbers for synchronous and asynchronous Apex, and how to spot the line of code that will trip a limit.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-02-governor-limits-as-a-concept.mp3" length="3096439" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-02-governor-limits-as-a-concept</guid>
+      <pubDate>Wed, 04 Nov 2026 23:09:33 +0000</pubDate>
+      <itunes:title>Governor Limits: One Budget Per Transaction</itunes:title>
+      <itunes:summary>PD1 exam topic 2. Why Salesforce caps every transaction, the headline numbers for synchronous and asynchronous Apex, and how to spot the line of code that will trip a limit.</itunes:summary>
+      <itunes:duration>0:03:13</itunes:duration>
+      <itunes:episode>4</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-02-governor-limits-as-a-concept.txt" type="text/plain"/>
+    </item>
     <item>
       <title>Why Salesforce Shares the Building</title>
       <description>How Salesforce multi-tenancy works under the hood, why governor limits are the price of a shared database, how metadata replaces schema changes, and how API versioning keeps old code running through three releases a year.</description>
