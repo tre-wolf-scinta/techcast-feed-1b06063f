@@ -1,0 +1,17 @@
+Save Order of Execution: What Runs When You Click Save
+
+Priya changes the amount on an opportunity from forty thousand to sixty thousand and clicks Save. Between that click and the confirmation message, how many things run, and in what order? Salesforce calls that fixed sequence the save order of execution, and the exam tests it hard.
+
+Think of a ticket in a restaurant kitchen. It moves through fixed stations, prep, then grill, then plating, and the plate never leaves the kitchen until the expediter checks it and calls it out. A Salesforce save works the same way: a fixed line of stations, and nothing is final until the commit at the very end.
+
+First comes system validation. Salesforce loads the old record, overlays Priya's new values, and checks required fields, field formats, and lookups. Next, record-triggered flows set to run before save, and then Apex before triggers. That order is a favorite question: before-save flows fire before your before triggers, not after. Both can change the record in memory with no DML, because nothing has been written yet. Say Priya's before trigger sets a Large Deal checkbox because the amount passed fifty thousand.
+
+Then custom validation rules run on those final values, and duplicate rules fire. Now the record is saved to the database but not committed. An inserted record gets its ID at this point, which is why an after trigger can read the ID and a before insert trigger cannot.
+
+After triggers run next, then assignment rules and auto-response rules, which only apply to leads and cases. Then workflow rules. If a workflow field update changes the record, Salesforce saves it again and runs before and after triggers one more time, and only one more time. Validation rules and duplicate rules do not rerun. That re-fire is why one click can show two trigger executions in your logs.
+
+Then escalation rules, then record-triggered flows set to run after save, then entitlement rules. If Priya's account has a roll-up summary over opportunity amount, the account now goes through its own full save procedure, so account triggers fire too, and a grandparent with a roll-up follows. Criteria-based sharing recalculates. Only then does the commit happen, and only after the commit do emails, outbound messages, and queued asynchronous Apex go out.
+
+Now the trap. Suppose Priya's after trigger updates the same opportunity with its own DML statement. That is not the one-time workflow re-fire. It restarts the entire sequence from the top, and it keeps restarting until the trigger depth limit throws. Guard it with a static variable or by checking that the field actually changed. And if any station throws an error, the uncommitted save and every cascaded parent save roll back together, and no email is sent.
+
+Validate, before triggers, validate again, save without committing, after triggers, rules and flows, roll-ups up the parent chain, sharing, commit, and only then the email.

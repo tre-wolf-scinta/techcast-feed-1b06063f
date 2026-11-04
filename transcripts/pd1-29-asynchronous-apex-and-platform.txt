@@ -1,0 +1,17 @@
+Asynchronous Apex and Platform Events
+
+Why does a trigger that works perfectly fail the moment you add a callout to it? Priya writes an after insert trigger on Case that posts each new case to an external ticketing system. The first save throws an error saying callouts from triggers are not supported. The platform refuses a synchronous HTTP callout from inside a trigger, because a slow callout would hold the open database transaction and its record locks while it waits.
+
+Think of a waiter in a busy restaurant. The waiter does not cook your meal at the table. They write a ticket, hand it to the kitchen, and move on. Asynchronous Apex is that kitchen: the trigger writes a ticket describing the work and returns right away, and the platform runs the work later in its own transaction with its own fresh governor limits.
+
+The simplest ticket is a future method. Priya marks a static method with the at future annotation and the callout equals true flag, passes the case Ids, and the callout runs after the commit. But future methods only accept primitives and collections of primitives, so she passes Ids and requeries. They return nothing, you cannot track them, and a future method cannot call another future method.
+
+When she needs more, she writes a Queueable class instead. It accepts whole sObjects or any custom type in its constructor, and System.enqueueJob returns a job Id she can look up in AsyncApexJob. One Queueable can enqueue one more from its execute method, so a chain of steps is possible. Add Database.AllowsCallouts and it can make callouts too.
+
+When the problem is volume, say rescoring two million cases overnight, she reaches for Batch Apex. The start method returns a Database.QueryLocator, which can hand back up to fifty million records. The execute method then receives one chunk at a time, two hundred records by default, each in its own transaction, and the finish method runs once at the end. To run it nightly, she wraps it in a Schedulable class and calls System.schedule with a job name, a cron expression that starts with seconds, and an instance of the class.
+
+The same escape hatch fixes the mixed DML error. Inserting a User and an Account in one transaction fails, because setup and non-setup objects cannot be written together. Move one insert into a future or Queueable job and each gets its own transaction.
+
+Now, what if three different systems care about new cases? Instead of the trigger knowing about all of them, Priya defines a platform event, an object whose name ends in underscore underscore e, and publishes one with EventBus.publish. Subscribers pick it up independently: an after insert trigger on the event, a platform event triggered flow, or a Lightning web component using the empApi module. That is publish and subscribe, and the publisher never waits for anyone.
+
+The rule of thumb: future for quick fire and forget, Queueable when you need objects, chaining, or a job Id, Batch for millions of rows, Schedulable to run on a clock, and platform events when more than one listener needs to know.

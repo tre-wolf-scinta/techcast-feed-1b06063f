@@ -1,0 +1,17 @@
+Bulkification and Governor Limits
+
+Priya loads a thousand Account records through Data Loader, and seconds later the job fails with "Too many SOQL queries: 101". The Account trigger passed every unit test. So what changed?
+
+Think of a transaction as one elevator ride with a weight limit. It doesn't matter who stepped in first. Everyone on that ride shares the limit, and if the total goes over, nobody moves. In Salesforce the ride is the transaction, the passengers are every trigger, flow, and Apex class inside it, and the weight limit is the governor limits.
+
+Salesforce splits those thousand records into chunks of up to 200, and the trigger fires once per chunk with all 200 in Trigger.new. Inside, a for loop walks Trigger.new, and inside that loop a SOQL query fetches each account's contacts. One query per record. At record 101 the transaction passes the synchronous limit of 100 SOQL queries, Salesforce throws a limit exception, and the whole chunk rolls back. The unit test inserted one record, so it never noticed.
+
+The fix is to write every trigger as if 200 records arrive at once, because they can. Collect the account IDs from Trigger.new into a Set, run one query for all contacts belonging to those accounts, load the results into a Map keyed by account ID, and read from the map inside the loop. One query instead of 200. Do the same with DML: add each changed record to a List and issue one update after the loop, since DML statements are capped at 150 per transaction. This is called bulkification.
+
+Now the surprise. Suppose that Account update also launches a record-triggered flow, the flow updates related Opportunities, and that fires the Opportunity trigger. None of them get a fresh counter. The flow's queries, its update, and the Opportunity trigger's work all draw from the same 100 query and 150 DML budget as Priya's trigger. The same holds for Apex invoked from a flow. One transaction, one elevator, one limit.
+
+To see how close you are, use the Limits class. Limits dot getQueries returns how many SOQL queries have run in this transaction, and Limits dot getLimitQueries returns the ceiling. The same pair exists for DML statements, DML rows, CPU time, and heap size, so you can log consumption or branch before you hit the wall.
+
+Two distinctions the exam loves. Most governor limits are per transaction and reset when it ends, but a few are per org over a rolling 24 hours, such as asynchronous Apex executions, capped at 250,000 or 200 times your user licenses, whichever is greater. And asynchronous contexts like future methods, Queueable, and Batch get a bigger elevator: 200 SOQL queries instead of 100, 60 seconds of CPU time instead of 10, and 12 megabytes of heap instead of 6. DML statements stay at 150 either way.
+
+So the rule: every trigger handles 200 records with one query and one DML, everything in a transaction shares one set of limits, and heavy work moves to async where the limits are higher.

@@ -1,0 +1,15 @@
+SOSL versus SOQL: Searching Everything at Once
+
+A caller tells Maya, a support rep, that she is from Acme and emailed last week. Where is that record? Acme could be an Account name, part of a Contact's email address, or a word in a Case subject. With Salesforce Object Query Language, SOQL, Maya's code would need three separate queries, one per object, each guessing which field to filter with LIKE. So how do you search every object for one word in a single call?
+
+Think of a library. SOQL is asking the librarian for one specific shelf and pulling books by catalog number. Precise, but you have to know the shelf. Salesforce Object Search Language, SOSL, is the search box at the front desk. It checks every shelf for your word and hands back one stack per section. SOQL is the shelf lookup, and SOSL is the building-wide text search.
+
+A SOSL statement starts with the keyword FIND, then the search term in quotes, then the keyword IN with a scope, then the keyword RETURNING with the objects and fields you want back. Maya's query says find Acme, in all fields, returning Account with Name, Contact with Name and Email, and Case with Subject. The scope is your first knob. All fields searches every searchable text field. Name fields restricts to names, email fields to email addresses, phone fields to phone numbers. A tighter scope runs faster and returns less noise. Each object in the RETURNING clause can carry its own WHERE filter, ORDER BY, and LIMIT, so it stays controllable.
+
+Now the part the exam loves. SOQL returns one list of records. SOSL returns a list of lists. The outer list has one inner list per object in your RETURNING clause, in that exact order. So Maya's result at index zero is the Account list, index one is Contacts, index two is Cases, and she casts each one to its type. Change the RETURNING order and the indexes change with it.
+
+But here is where SOSL bites. It never scans the tables. It reads a search index that Salesforce builds after a record is saved, so a brand new record can be invisible to SOSL for a short while. In an Apex test that gap is absolute. Records inserted in a test method are never indexed, so every SOSL query in a test returns empty results. The fix is Test.setFixedSearchResults, which takes a list of record IDs. The search then treats those records as found, and your RETURNING filters still apply on top. Forget that call and your test passes with zero rows while asserting nothing.
+
+SOSL also has its own governor limits, separate from SOQL. You get 20 SOSL queries per transaction, against 100 SOQL queries, and a single SOSL query returns at most 2,000 records, against 50,000 rows for SOQL. SOSL is a search tool, not a bulk data tool.
+
+The rule of thumb is simple. When you know the object and the field, use SOQL. When you know a word but not where it lives, use SOSL, and remember it comes back as a list of lists.

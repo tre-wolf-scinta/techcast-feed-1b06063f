@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Wed, 04 Nov 2026 23:24:02 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 23:32:13 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,146 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>Visualforce Controllers and Extensions</title>
+      <description>PD1 exam topic 31. When to use a standard controller, a standard list controller, a custom controller, or an extension on a Visualforce page, and what each one gives you for free.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-31-visualforce-controllers-and.mp3" length="3044133" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-31-visualforce-controllers-and</guid>
+      <pubDate>Wed, 04 Nov 2026 23:32:12 +0000</pubDate>
+      <itunes:title>Visualforce Controllers and Extensions</itunes:title>
+      <itunes:summary>PD1 exam topic 31. When to use a standard controller, a standard list controller, a custom controller, or an extension on a Visualforce page, and what each one gives you for free.</itunes:summary>
+      <itunes:duration>0:03:10</itunes:duration>
+      <itunes:episode>33</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-31-visualforce-controllers-and.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Visualforce Basics: Why Won&#x27;t My Field Save?</title>
+      <description>PD1 exam topic 30. How a Visualforce page is built from apex:page, expressions, and standard components, and how to read a page and spot why a field won&#x27;t save or shows read-only.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-30-visualforce-page-basics.mp3" length="2658401" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-30-visualforce-page-basics</guid>
+      <pubDate>Wed, 04 Nov 2026 23:31:27 +0000</pubDate>
+      <itunes:title>Visualforce Basics: Why Won&#x27;t My Field Save?</itunes:title>
+      <itunes:summary>PD1 exam topic 30. How a Visualforce page is built from apex:page, expressions, and standard components, and how to read a page and spot why a field won&#x27;t save or shows read-only.</itunes:summary>
+      <itunes:duration>0:02:46</itunes:duration>
+      <itunes:episode>32</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-30-visualforce-page-basics.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Asynchronous Apex and Platform Events</title>
+      <description>PD1 exam topic 29. Why callouts and mixed DML blow up inside a transaction, and how future methods, Queueable, Batch Apex, Schedulable, and platform events each move work out of it.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-29-asynchronous-apex-and-platform.mp3" length="2887658" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-29-asynchronous-apex-and-platform</guid>
+      <pubDate>Wed, 04 Nov 2026 23:30:49 +0000</pubDate>
+      <itunes:title>Asynchronous Apex and Platform Events</itunes:title>
+      <itunes:summary>PD1 exam topic 29. Why callouts and mixed DML blow up inside a transaction, and how future methods, Queueable, Batch Apex, Schedulable, and platform events each move work out of it.</itunes:summary>
+      <itunes:duration>0:03:00</itunes:duration>
+      <itunes:episode>31</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-29-asynchronous-apex-and-platform.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Apex Exception Handling: Try, Catch, and Rollback</title>
+      <description>PD1 exam topic 28. How try, catch, and finally work in Apex, what the built-in exception classes and their methods tell you, why LimitException cannot be caught, and how an uncaught exception rolls back the whole transaction.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-28-exception-handling.mp3" length="2808191" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-28-exception-handling</guid>
+      <pubDate>Wed, 04 Nov 2026 23:30:09 +0000</pubDate>
+      <itunes:title>Apex Exception Handling: Try, Catch, and Rollback</itunes:title>
+      <itunes:summary>PD1 exam topic 28. How try, catch, and finally work in Apex, what the built-in exception classes and their methods tell you, why LimitException cannot be caught, and how an uncaught exception rolls back the whole transaction.</itunes:summary>
+      <itunes:duration>0:02:55</itunes:duration>
+      <itunes:episode>30</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-28-exception-handling.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Save Order of Execution: What Runs When You Click Save</title>
+      <description>PD1 exam topic 27. Walk through every station a Salesforce record passes between the Save click and the commit, including why workflow field updates re-fire triggers and how recursion starts the whole sequence over.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-27-save-order-of-execution.mp3" length="2828701" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-27-save-order-of-execution</guid>
+      <pubDate>Wed, 04 Nov 2026 23:29:26 +0000</pubDate>
+      <itunes:title>Save Order of Execution: What Runs When You Click Save</itunes:title>
+      <itunes:summary>PD1 exam topic 27. Walk through every station a Salesforce record passes between the Save click and the commit, including why workflow field updates re-fire triggers and how recursion starts the whole sequence over.</itunes:summary>
+      <itunes:duration>0:02:56</itunes:duration>
+      <itunes:episode>29</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-27-save-order-of-execution.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Bulkification and Governor Limits</title>
+      <description>PD1 exam topic 26. Why a trigger that passes every unit test fails on a 1,000 record load, how to bulkify it, how flows and Apex share one transaction&#x27;s limits, and what the Limits class and async contexts give you.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-26-bulkification-and-governor.mp3" length="3046633" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-26-bulkification-and-governor</guid>
+      <pubDate>Wed, 04 Nov 2026 23:28:45 +0000</pubDate>
+      <itunes:title>Bulkification and Governor Limits</itunes:title>
+      <itunes:summary>PD1 exam topic 26. Why a trigger that passes every unit test fails on a 1,000 record load, how to bulkify it, how flows and Apex share one transaction&#x27;s limits, and what the Limits class and async contexts give you.</itunes:summary>
+      <itunes:duration>0:03:10</itunes:duration>
+      <itunes:episode>28</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-26-bulkification-and-governor.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Trigger Best Practices and the Handler Pattern</title>
+      <description>PD1 exam topic 25. Why a trigger that passes every test can still die on a 200 record data load, and how bulkification, a handler class, and a static recursion guard fix it for good.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-25-trigger-best-practices-and-the.mp3" length="3245388" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-25-trigger-best-practices-and-the</guid>
+      <pubDate>Wed, 04 Nov 2026 23:28:01 +0000</pubDate>
+      <itunes:title>Trigger Best Practices and the Handler Pattern</itunes:title>
+      <itunes:summary>PD1 exam topic 25. Why a trigger that passes every test can still die on a 200 record data load, and how bulkification, a handler class, and a static recursion guard fix it for good.</itunes:summary>
+      <itunes:duration>0:03:22</itunes:duration>
+      <itunes:episode>27</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-25-trigger-best-practices-and-the.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Trigger Events and Context Variables</title>
+      <description>PD1 exam topic 24. When a Salesforce trigger fires, what it can see and change in before versus after events, and which context variables are null in each of the seven trigger events.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-24-trigger-structure-and-context.mp3" length="2887656" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-24-trigger-structure-and-context</guid>
+      <pubDate>Wed, 04 Nov 2026 23:27:12 +0000</pubDate>
+      <itunes:title>Trigger Events and Context Variables</itunes:title>
+      <itunes:summary>PD1 exam topic 24. When a Salesforce trigger fires, what it can see and change in before versus after events, and which context variables are null in each of the seven trigger events.</itunes:summary>
+      <itunes:duration>0:03:00</itunes:duration>
+      <itunes:episode>26</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-24-trigger-structure-and-context.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>DML Statements versus Database Methods</title>
+      <description>PD1 exam topic 23. Why a plain insert rolls back the whole list on one bad record, how Database methods with allOrNone false give partial success and SaveResults, plus upsert with External IDs, cascade delete, merge, and the 150-statement limit.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-23-dml-statements-and-database.mp3" length="2768423" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-23-dml-statements-and-database</guid>
+      <pubDate>Wed, 04 Nov 2026 23:26:31 +0000</pubDate>
+      <itunes:title>DML Statements versus Database Methods</itunes:title>
+      <itunes:summary>PD1 exam topic 23. Why a plain insert rolls back the whole list on one bad record, how Database methods with allOrNone false give partial success and SaveResults, plus upsert with External IDs, cascade delete, merge, and the 150-statement limit.</itunes:summary>
+      <itunes:duration>0:02:53</itunes:duration>
+      <itunes:episode>25</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-23-dml-statements-and-database.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>SOSL versus SOQL: Searching Everything at Once</title>
+      <description>PD1 exam topic 22. When a search term could live on any object, SOSL finds it across all of them in one call, and this episode covers the FIND syntax, the list of lists it returns, the search index that makes tests tricky, and the governor limits you need to know for the exam.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-22-sosl-and-when-to-use-it-over.mp3" length="3010679" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-22-sosl-and-when-to-use-it-over</guid>
+      <pubDate>Wed, 04 Nov 2026 23:25:54 +0000</pubDate>
+      <itunes:title>SOSL versus SOQL: Searching Everything at Once</itunes:title>
+      <itunes:summary>PD1 exam topic 22. When a search term could live on any object, SOSL finds it across all of them in one call, and this episode covers the FIND syntax, the list of lists it returns, the search index that makes tests tricky, and the governor limits you need to know for the exam.</itunes:summary>
+      <itunes:duration>0:03:08</itunes:duration>
+      <itunes:episode>24</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-22-sosl-and-when-to-use-it-over.txt" type="text/plain"/>
+    </item>
     <item>
       <title>SOQL Fundamentals for Platform Developer I</title>
       <description>PD1 exam topic 21. How SOQL walks relationships, binds variables, pages, aggregates, and semi-joins, plus the single-record trap and why there is no SELECT star.</description>

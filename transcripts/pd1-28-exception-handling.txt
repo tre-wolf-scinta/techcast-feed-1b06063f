@@ -1,0 +1,17 @@
+Apex Exception Handling: Try, Catch, and Rollback
+
+Your Apex code inserts fifty shipment records and the fiftieth fails a validation rule. What happens to the other forty nine? If nothing catches that failure, all fifty vanish, along with every other change in the same transaction.
+
+Think of a chef's station. Cooking the dish is the try. The plan for when a pan catches fire is the catch. Wiping the station down is the finally, and it happens whether dinner came out or the pan went in the bin. In Apex, try is the work, catch is the recovery, and finally is the cleanup that always runs.
+
+Maya writes a method that takes a list of new orders, inserts a Shipment for each one, then creates a follow up task. A validation rule rejects any Shipment with no warehouse. Her first version has no try block. One order arrives without a warehouse, the insert throws a DmlException, nothing catches it, and the platform rolls back the whole transaction. The orders, the shipments, the task, all gone.
+
+So she wraps the insert in a try block with a catch for DmlException. Now the catch block runs instead of the crash, and the exception object tells her what went wrong. getMessage gives the description. getLineNumber says where in the class it happened. getStackTraceString gives the full call path for your log. Because it's a DmlException she gets two more. getNumDml returns how many records failed, and getDmlMessage with an index returns the message for each one, so the log can say record three is missing its warehouse. Then the finally block runs no matter what, where she resets a static flag her trigger uses.
+
+One nuance. Catching an exception does not undo DML that already ran earlier in the transaction. If Maya wants that undone too, she sets a Savepoint first and rolls back to it in the catch. Only an uncaught exception triggers the automatic full rollback.
+
+The other built in exceptions work the same way. A query returning zero rows assigned to a single sObject throws QueryException. Calling a method on a null variable throws NullPointerException. Asking for index ten in a list of five throws ListException. Reading a field you never queried throws SObjectException. Catch blocks are matched in order, so list the specific ones first and a plain catch Exception last as the safety net. When none of these fit, define your own: a class whose name ends with the word Exception, extending Exception, which you throw with your own message.
+
+But one exception ignores every catch block. If Maya's loop runs a query per record and crosses the limit of a hundred queries, the platform throws LimitException. It cannot be caught. The catch is skipped, the transaction rolls back, and the only fix is to bulkify the code.
+
+Try the work, catch the specific exceptions you can recover from, clean up in finally, and remember that anything uncaught, including every governor limit, rolls back the entire transaction.

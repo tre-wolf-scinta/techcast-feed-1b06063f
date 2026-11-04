@@ -1,0 +1,17 @@
+Visualforce Controllers and Extensions
+
+Priya needs a Visualforce page where a sales rep can open one Opportunity, tweak a few fields, and save. How much Apex does she have to write? None, if she picks the right controller.
+
+Think of a furnished apartment. You move in and the bed, the stove, and the lights already work. You can add your own furniture, or you can build a house from scratch, but you do not rebuild the stove. Visualforce controllers work the same way. The standard controller is the furnished apartment, a custom controller is the house you build yourself, and an extension is the furniture you bring in.
+
+So Priya sets the standardController attribute on her page to Opportunity. The platform reads the record ID from the page URL, loads the record, and hands her a set of built in actions. Save, quick save, edit, delete, cancel, and list all exist already. Her page just binds input fields to the record and calls save. One more point the exam likes: a standard controller runs in user mode, so the rep's field level security and sharing rules are enforced automatically.
+
+Now the ask grows. Sales wants a page that shows many Opportunities, twenty at a time, lets the rep pick a list view, edit several rows, and save them all at once. Priya keeps standardController set to Opportunity and adds the recordSetVar attribute. That one attribute swaps in the standard list controller. She now gets first, next, previous, and last for pagination, a filter ID so the rep can choose any list view, a page size that defaults to twenty, and mass update on save. It handles up to ten thousand records.
+
+But then finance wants a button that pushes the Opportunity to their system with one click. No built in action does that. Priya writes a class with one constructor argument, the ApexPages standard controller, and stores it. Inside, she calls getRecord to reach the Opportunity, and adds a method called sendToFinance. She lists the class in the extensions attribute of the page. This is a controller extension. It adds methods to whatever controller the page already has, and it can even override a built in action like save. A page can list several extensions separated by commas, and if two define the same method name, the leftmost one wins. The same pattern works for a list controller, except the constructor takes the standard set controller instead.
+
+When does Priya build the house from scratch? When the page is not really about one object's record, such as a wizard that creates an Account, a Contact, and an Opportunity together, or a page driven by a callout. Then she uses the controller attribute instead and names her own class. She writes everything herself, including loading, saving, and cancel. Custom controllers and extensions run in system mode unless the class is declared with sharing.
+
+One rule ties the exam scenarios together. A page has exactly one controller, either standard or custom, never both, but it can stack as many extensions on top as it needs.
+
+Start with the standard controller, add recordSetVar for lists, add an extension for anything missing, and reach for a custom controller only when no single record fits.

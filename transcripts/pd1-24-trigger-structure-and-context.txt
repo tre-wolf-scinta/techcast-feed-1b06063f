@@ -1,0 +1,17 @@
+Trigger Events and Context Variables
+
+Your Apex trigger fires on an Opportunity save. What can it see at that moment, and what can it change without paying for a second DML statement? It depends on when it fires.
+
+Think of mailing a package. Before the clerk scans it in, you can still fix the address on the label for free. After the scan, it has a tracking number, and you need that number to notify the recipient or link it to the rest of the shipment. A before trigger is the moment before the scan, and an after trigger is the moment after.
+
+Maya writes a trigger on Opportunity. When the stage moves to Closed Won, she wants to stamp a verified flag on the same record and create a follow-up Task linked to it. Then someone updates 200 opportunities through Data Loader. Salesforce offers seven events: before insert, before update, before delete, after insert, after update, after delete, and after undelete. There is no before undelete. Maya declares her trigger for before update and after update, so both halves run on the same 200 records in one transaction.
+
+In the before update half, Trigger.new holds the 200 records as they are about to be saved. Maya sets the flag directly on those records. No update statement. The platform writes her change as part of the save already in flight. Validation lives here too, because calling addError on a record in Trigger.new blocks that record before it reaches the database.
+
+In the after update half, the records in Trigger.new are read only, and setting a field throws a runtime exception. So after is for related records. Maya loops over Trigger.new, builds one Task per closed opportunity with its WhatId set to the opportunity Id, and inserts the whole list once. The Id is why this must be after: in before insert the records have no Id yet, so nothing can point at them.
+
+Now, which variables are null when. Trigger.new is the list of new versions, present on insert, update, and undelete, and null on delete. Trigger.old is the list of previous versions, present on update and delete only. Trigger.newMap maps Id to new record, and because before insert records have no Id, it exists only in before update, after insert, after update, and after undelete. Trigger.oldMap mirrors Trigger.old, update and delete only, and it is how Maya checks whether the stage really changed: look up each Id in oldMap and compare.
+
+The booleans tell you where you are. isInsert, isUpdate, isDelete, and isUndelete name the operation. isBefore and isAfter name the timing. isExecuting is true whenever Apex is running inside a trigger rather than from a Visualforce page, a web service, or anonymous Apex, useful when a shared helper class needs to know who called it.
+
+Rule of thumb: before to validate or change the record itself for free, after when you need the Id or touch anything else, and old exists only on update and delete while new is null only on delete.

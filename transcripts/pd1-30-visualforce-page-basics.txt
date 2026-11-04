@@ -1,0 +1,13 @@
+Visualforce Basics: Why Won't My Field Save?
+
+Two Visualforce pages bind the same account phone number with what looks like the same tag. On one, Sam types a new number, clicks Save, and it sticks. On the other, the field comes out as plain text he can't edit, or the page won't compile at all. Why?
+
+Think of a mail-in rebate. You can fill in every box on the sheet, but unless it goes inside the envelope with the address on it, the company never sees it. Visualforce has an envelope too, and it's the first thing to check.
+
+Every page starts with an apex page tag as the outer container. That's where you name the controller. Set standardController to Account and the platform loads the record from the id in the URL and gives you built-in actions like save, edit, and cancel. Inside, you read values with expressions: a curly brace, an exclamation point, then a merge field such as Account dot Phone. Global variables start with a dollar sign, so dollar User dot FirstName is the running user and dollar Label reaches your custom labels.
+
+Now Sam's working page. An apex pageBlock gives it the standard Salesforce look. Inside it, an apex inputField bound to Account dot Phone. That tag is smarter than a plain text box. It reads the field's metadata and renders the right widget on its own: a date picker for dates, a dropdown for picklists, a lookup for relationships, a red required bar when the field demands a value. It also respects field-level security. A commandButton with its action set to the save method fires the postback. And all of it sits inside an apex form. The form is the envelope. It's what packages the typed values and sends them back to the controller when the button is clicked. Leave it out and the inputField has nothing to post through, so Visualforce refuses to compile the page and tells you the input field must sit inside a form. Same for the button.
+
+So why would the field display as read-only on a page that does have a form? Three suspects. First, check the tag. An apex outputField only displays the value, formatted for its type, and hides it entirely if the user can't read it. Second, check the field. Formulas, roll-ups, and system fields like CreatedDate aren't editable, so inputField renders them as text. Third, check the user. If Sam's profile has read but not edit access, the very same inputField renders read-only for him and editable for his manager. Tables follow the same split: pageBlockTable loops over a list with value and var and draws a styled table from apex column children, while apex repeat loops with no markup at all, so you supply your own.
+
+If a field won't save, find the form; if it shows read-only, check the tag, then the field, then the user's field-level security.

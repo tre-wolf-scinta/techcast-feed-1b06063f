@@ -1,0 +1,17 @@
+DML Statements versus Database Methods
+
+Your Apex code inserts two hundred contacts and one of them fails a validation rule. Do the other hundred ninety nine make it in? That depends entirely on how you wrote the insert.
+
+Think of a cashier scanning a cart of groceries. A strict cashier voids the whole cart when one item won't scan, and you leave with nothing. A lenient cashier bags everything that scanned and hands you a receipt listing what didn't. Salesforce gives you both. The DML statement is the strict cashier, the Database class method is the lenient one, and the receipt is the SaveResult.
+
+Maya is loading two hundred trade show contacts through an Apex class. She builds a list and writes a plain insert statement on it. One contact has a bad email. Salesforce rolls back the entire statement, none of the two hundred are saved, and a DmlException is thrown. That is the statement contract: all or nothing, and failures arrive as exceptions. Insert, update, upsert, delete, undelete, and merge all behave this way.
+
+Now she switches to Database dot insert, passing the list and a second argument, allOrNone, set to false. Same bad email, different outcome. The hundred ninety nine good contacts commit, the bad one is skipped, and nothing is thrown. Instead she gets back an array of SaveResult objects, one per record, in the order of her list. She loops through them, checks isSuccess, and reads getErrors on the failures for the message and status code. Database dot upsert returns UpsertResult instead, which adds isCreated so you know whether each row was inserted or updated. Leave allOrNone at its default of true and the Database method behaves exactly like the statement.
+
+Upsert needs a key. Maya's list overlaps with contacts already in the org, so she marks a Badge Number field as an External ID and writes upsert contacts Contact dot Badge Number. No match on the badge number, the record is inserted. One match, it's updated. More than one match, that record errors. Leave the field off and upsert matches on the record Id.
+
+Delete cascades down master-detail. Delete an account that is the master of a custom Invoice object and every invoice goes with it. Undelete the account and the invoices come back too. Merge combines up to three records of one type into a single survivor, reparenting related records, and it only works for leads, contacts, cases, and accounts.
+
+Then the governor limit. A synchronous transaction allows one hundred fifty DML statements. Maya's one insert on two hundred contacts counts as one. An insert inside a loop over the same list counts as two hundred and dies at record one hundred fifty one.
+
+So the rule: a DML statement is the strict cashier, a Database method with allOrNone false is the lenient one, and either way you hand over the whole cart in one statement, never one item at a time.
