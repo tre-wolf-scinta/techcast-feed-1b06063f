@@ -1,0 +1,17 @@
+Exposing LWCs to App Builder, Flow, and Quick Actions
+
+Your Lightning web component works perfectly in a scratch org. Then an admin opens Lightning App Builder, searches for it, and it is not there. What did you miss?
+
+Think of a temp agency form. You tick the departments you are willing to work in, and for each one you list the settings a manager is allowed to adjust. Until that form is filed, nobody can book you. For a component, that form is the meta XML file sitting next to the JavaScript and HTML.
+
+Say Priya built a component called discountCalculator. Her meta XML starts with the isExposed flag. While it is false, the component is private: other components can import it, but no builder tool can see it. She sets it to true and adds a targets list, one entry per place the component may be dropped. The names all start with lightning, two underscores, then the location: RecordPage, AppPage, HomePage, FlowScreen for Flow Builder's screen palette, and RecordAction for quick actions. The Experience Cloud one is lightningCommunity, two underscores, Page.
+
+Now the admin wants to tune it. Priya adds a targetConfigs section with one targetConfig per target, and inside it a property with a name, a type, a label, and a default. She declares maxDiscount as an Integer defaulting to 10. In the JavaScript, a public property decorated with at api and the same name receives whatever the admin types. For the record page config she also adds an objects list naming Opportunity, so the component only shows up on Opportunity pages.
+
+On a record page, two more values arrive for free. If she declares at api recordId and at api objectApiName, the platform fills them with the current record's ID and object name. She never configures them, she just declares them.
+
+Flow screens are different. Nothing is automatic. Every value in or out goes through an at api property, and in the flow targetConfig each property can carry a role of inputOnly or outputOnly. Leave the role off and it works both ways. Here is the trap. When the component computes a final discount and assigns it to the at api property, the flow does not notice. Assignment updates the component, not the flow. To hand the value back, she imports FlowAttributeChangeEvent from lightning slash flowSupport and dispatches it with the property name and the new value.
+
+Quick actions add one switch. The RecordAction targetConfig sets an actionType of ScreenAction, which opens the component in a modal with recordId filled in, or Action, which runs headless. A headless action must expose a public method named invoke, because that is what the platform calls when the button is pressed.
+
+So remember the permission slip: isExposed opens the door, targets choose which doors, targetConfigs decide what the admin can tune, and recordId only shows up by itself where the platform is already holding a record.

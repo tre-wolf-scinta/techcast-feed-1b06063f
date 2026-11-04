@@ -1,0 +1,17 @@
+LWC Events: Up, Down, and Across
+
+Three Lightning web components share one page. One is nested inside another, and the third is a complete stranger to both. How does each one tell the others that something changed?
+
+Sam is building an order page. The parent is an order editor, with a line item picker nested inside it. Off to the side, on the same Lightning page but nested in nothing, sits an order total component.
+
+Picture a hotel with soundproof rooms. The front desk can ring any room, and a guest can call the desk back, but shouting through the wall reaches nobody next door. Each room is a component's shadow DOM, and the closed door is why no component can reach into another one's markup.
+
+Down the tree is the easy direction. The order editor sets attributes on the picker in its template. The picker marks those properties with the at api decorator, which makes them public and reactive. Treat them as read only inside the child, and clone an object before changing it. The parent can also call the child directly. The picker marks a method with at api, and the parent finds the picker with query selector on its template and calls it.
+
+Up the tree, the child announces instead. When Sam picks a line, the picker builds a CustomEvent named itemselected, all lowercase with no hyphens, puts the line's id in the detail property, and dispatches it. The order editor's template listens with an attribute spelled on plus the event name, onitemselected, and the handler reads event dot detail. Keep the detail to primitives. An object travels by reference, and the parent could mutate the child's state.
+
+Now the flags. By default bubbles and composed are both false, so the event fires on the picker's host element and stops. That is enough, because the host element lives in the parent's template. Set bubbles to true and composed to false, and the event climbs the DOM inside the parent's shadow tree but halts at the parent's own boundary. Set both to true, and it crosses every boundary up to the document, where any component on the page can hear it. Salesforce discourages that, because names collide and your component stops being a black box.
+
+The order total is in a different room entirely, so Sam uses Lightning Message Service, the hotel's public address system. Sam defines a message channel as metadata. The picker wires MessageContext and calls publish with the channel and a payload, and the order total calls subscribe with a handler. It works across Lightning web components, Aura, and Visualforce on the same page, and if a subscriber passes application scope, it hears messages from anywhere in the app, not just the active tab. Utility bar items are always active, so they hear messages even without it. The older pubsub pattern used a plain JavaScript module holding a registry of callbacks that siblings import. It only works within one page, and Salesforce now points you to Lightning Message Service instead.
+
+Down with at api, up with custom events, across with Lightning Message Service.

@@ -1,0 +1,19 @@
+Where a Visualforce Page Can Run
+
+You've built a Visualforce page and it works in preview. So where can it actually run? And why does Salesforce refuse to show it in some places unless it uses a specific controller?
+
+Maya builds a page called Warranty Summary. It takes an Account and rolls up the open warranty claims by product line. Her team wants it in several places, and each place has its own rule.
+
+Think of the page as a kitchen appliance. Salesforce gives you a set of sockets to plug it into. Most sockets take any plug, but a few are keyed, and the key is the standard controller for the object. That one rule explains most of what follows.
+
+The simplest socket is a Visualforce tab. Any page with any controller can sit in the navigation bar as a standalone tool. Next, Maya wants the summary inside the Account record, below the standard fields. That means embedding it in the page layout, and this socket is keyed. The layout editor only lists pages that use the standard controller for Account, because the layout passes the page the current record ID. An extension on top of the standard controller is fine, but a custom controller alone will not appear. The same key applies to a custom button or link on the detail page. Maya sets the content source to Visualforce page, and only Account standard controller pages show up. A list button is slightly different, since it needs the standard list controller to receive the selected records.
+
+Now the team asks for something bigger. They want the Warranty Summary to replace the standard Account detail page entirely. That is not a tab and not a button. That is an action override. Under Buttons, Links, and Actions on the object, Maya can override New, Edit, View, Delete, Clone, Tab, and List. Replacing the detail page means overriding View, and once again the page must use the Account standard controller.
+
+Here is the one socket that works the opposite way. Sales wants the summary on a dashboard. A Visualforce dashboard component must have no controller, a custom controller, or a standard list controller. A page bound to a single-record standard controller is rejected, because a dashboard has no record to hand it. Maya's page would need a rewrite for that spot.
+
+Three more surfaces round it out. Visualforce email templates let the same markup render inside an outbound email, with merge fields for the recipient and the related record. Experience Cloud sites can expose Visualforce pages and tabs to external users, once their profiles grant access. And for Lightning Experience and the Salesforce mobile app, Maya checks the box on the page labeled available for Lightning Experience, Experience Builder sites, and the mobile app. That unlocks it as a Lightning App Builder component, a mobile navigation item, or a quick action.
+
+The exam question will state a requirement and ask which option fits. Standalone tool means a tab. Content on the record alongside standard fields means a layout embed or a Lightning page component. Launch on demand from a record means a custom button. Replace the standard detail page means override the View action. Send it in email means a Visualforce email template.
+
+Rule of thumb: anything that lives on a record needs the standard controller for that object, and a dashboard is the one place that forbids it.

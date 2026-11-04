@@ -1,0 +1,17 @@
+LWC Component Anatomy and Decorators
+
+Why does changing a value inside a JavaScript object sometimes rerender your Lightning web component, and sometimes do nothing at all? The answer sits in three decorators, and the exam loves asking which one you need.
+
+Priya is building a component called contactCard that shows an account's contacts on a record page. On disk that's a folder named contactCard. Inside it, an HTML template holds the markup. A JavaScript file exports a class that extends LightningElement, the base class every component inherits from. A configuration file ending in js meta dot xml declares the API version, whether the component is exposed, and which targets it can be dropped on, like a record page or an app page. CSS is optional. In another component's markup, the camel case folder name becomes c dash contact dash card.
+
+Think of decorators like stickers on moving boxes. A fragile sticker doesn't change what's in the box, it tells the movers how to handle it. A decorator is a sticker on a class field that tells the framework how to treat that field. All three are imported from the lwc module.
+
+First, Priya needs the record ID from the page. She puts the api decorator on a field called recordId. That makes it public: a parent component or the Lightning App Builder can set it from outside, and when it changes, the template rerenders. Treat public properties as read only inside the component, and copy the value into a private field if you need to change it.
+
+Next she stores a filter object with a nested status property. When she changes filter dot status, nothing rerenders. Why? Since Spring 2020, every field is reactive on its own, but only to reassignment. The framework watches the field, not what's inside it. Add the track decorator and it also observes changes to the object's properties and to array elements. That's the whole job of track today. On a primitive, it adds nothing.
+
+Then the data. She wires an Apex method, or a Lightning Data Service adapter like getRecord, to a property. The wire decorator takes the adapter and a configuration object. Prefix recordId with a dollar sign in that configuration and the parameter becomes reactive: change the ID and the wire fires again. The result arrives as an object with a data property and an error property.
+
+In the template, she uses lwc colon if to show a spinner until data arrives, with lwc colon elseif and lwc colon else for the other branches. The older if colon true and if colon false still compile but are deprecated. She loops with for colon each, naming each row with for colon item, and every element inside the loop needs a key attribute with a unique value so the framework can diff the list instead of rebuilding it.
+
+Remember it this way: api means public, track means watch inside objects and arrays, wire means data, and every loop item needs a key.

@@ -1,0 +1,15 @@
+Lightning Framework Benefits and Aura Versus LWC
+
+Two frameworks, one page, one builder. Why does Salesforce ship both Aura and Lightning Web Components, and which one does the exam want you to pick?
+
+Maya is building an order summary panel for the Account record page at an online store. The panel lists the account's open orders, with a button on each row to flag an order for review. It has to work on desktop and in the Salesforce mobile app, and she wants it shipped this week.
+
+Think of two contractors. One drags a generator, a water tank, and a full tool set to every job, even though the house already has power and plumbing. The other plugs straight into the wall. Aura is the first contractor. It was built before browsers had native building blocks for components, so it re-implemented all of them in its own JavaScript. Lightning Web Components, LWC for short, is the second contractor. It plugs into what browsers now ship natively.
+
+Both frameworks give Maya the same core benefits. The framework is component-based, so she builds the panel out of small pieces, a container and a row component, and reuses the row somewhere else later. It is event-driven, so when someone clicks the flag button, the row fires an event, the container catches it and updates its state, and nothing polls. It is device-aware, so she drops the panel onto the record page in Lightning App Builder once and it renders on desktop and in the mobile app. And it ships base components, so the card, the data table, the button, and the record form all come from the lightning namespace and she writes almost no markup or styling herself.
+
+The difference is how each one gets there. In LWC, the panel is a custom element the browser registers natively. Her JavaScript is a standard module with plain imports and exports. Her markup and styles live inside shadow DOM, the browser's own Document Object Model feature for walling off a component's internals so outside CSS cannot leak in. Aura does all of that in its own proprietary layer, and that layer costs time at runtime: more JavaScript to download, parse, and run before the first order appears. That is why LWC performs better, and why Salesforce recommends it for anything new.
+
+Now, Maya's org already has an Aura component on that page, built years ago, and the new panel has to live inside it. Can she go the other way and put the Aura component inside an LWC? No. Composition is one-directional. An Aura component can contain a Lightning web component, but an LWC can never contain Aura. So the exam pattern is this: build the new piece as LWC, and if an older Aura shell is forced on you by an existing component or by a feature only Aura exposes, nest the LWC inside that shell, never the reverse. Both still sit side by side on the same page in the same builder.
+
+When a question asks which framework to use, answer Lightning Web Components, and the only place Aura belongs in your answer is as the outer shell around them.

@@ -1,0 +1,17 @@
+LWC Data Access: Wire, LDS, and Imperative Apex
+
+Your Lightning Web Component has to show an Account, run a custom query, and then save a change. Which data path do you use for each step? The exam asks this constantly, and the answer hinges on one annotation.
+
+Think of a bakery that offers two ways to get bread. You can set up a standing order, and a fresh loaf arrives whenever your details change, or you can walk to the counter and buy one loaf right now. The wire service is the standing order, and an imperative Apex call is the trip to the counter. Priya is building a component for the Account record page, and she will use both.
+
+Her first job is a simple view and edit panel. She writes no Apex at all. She drops in lightning-record-form, passes the record ID and the object API name, and lists the fields. The form reads and writes through Lightning Data Service, which enforces field-level security and sharing and caches the record so every component on the page shares one copy. When she needs her own layout, she switches to lightning-record-edit-form or lightning-record-view-form and places individual field components inside.
+
+Next, Priya wants the Account's industry in her own markup. She decorates a property with wire, points it at the getRecord adapter, and passes the record ID with a dollar sign in front. That dollar sign makes the parameter reactive. When the record ID changes, the adapter fetches again and the property updates on its own. The getObjectInfo adapter works the same way for metadata like labels and field details. Both adapters come from Lightning Data Service, so they share that same cache.
+
+Then she needs a query the adapters can't express, say the five most recent open cases on the account. She writes an Apex method and wires to it. But wire only accepts a method marked AuraEnabled with cacheable set to true. Cacheable means the platform may serve the result from the client cache instead of hitting the server, which is fast. It also means the method is forbidden from doing DML.
+
+Now she adds a button that closes a case. That is DML, so it has to live in a non-cacheable method called imperatively. She imports the method, calls it from the click handler, and gets a promise back with the result. Put DML in a cacheable method and the platform throws a runtime error.
+
+Here's the catch. After the case closes, her wired list still shows it, because the cached query result is stale. She calls refreshApex and hands it the whole object the wire provisioned, data and error together, not just the data property. That tells the platform to drop the cached entry and run the query again.
+
+So the rule is simple: forms and wire for reading, cacheable means no DML, imperative for writing, and refreshApex to make the two agree.

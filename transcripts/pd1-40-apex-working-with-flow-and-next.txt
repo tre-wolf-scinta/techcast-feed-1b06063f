@@ -1,0 +1,15 @@
+Apex Actions, Flow, and Next Best Action
+
+Your record-triggered flow needs a churn risk score, and the math is too hairy for a formula. How does the flow hand that job to Apex, and how does the answer come back?
+
+Picture a short-order cook at a diner. Tickets don't arrive one at a time. The server drops a whole stack on the pass, the cook works through them, and the plates come back in the same order the tickets came in. That is the contract between Flow and Apex: a list goes in, a list comes back, one call per batch, same order.
+
+Maya is a support agent, and when a case closes, a flow should score the account's churn risk. You write a static Apex method, add the invocable method annotation, and Flow Builder shows it as an Apex action. The method takes at most one parameter, and if it has one, that parameter must be a list. It returns a list too, or nothing at all. Why a list? Because when a data load closes two hundred cases at once, the flow does not call your method two hundred times. It bundles the inputs from every interview into one list and calls you once. You return one output element for each input, in the same position. Get that wrong and a case gets someone else's score.
+
+The inputs themselves are a plain Apex class whose fields carry the invocable variable annotation. Each field gets a label that shows in Flow Builder, a description, and a required flag. The variables must be public or global and not static. The flow author fills in the account ID and the case count, and the output variable lands back in the flow ready to use in a Decision element.
+
+Now the complication. Your Apex scoring logic finds a high-risk account and wants to launch an autolaunched flow that creates a retention task. Can Apex start a flow? Yes. The Flow dot Interview class lets Apex create an interview, pass a map of input variables, and call start. So a flow can call Apex, and that Apex can call another flow. That chain is legal. Just keep the invocable method's own rules in mind: static, public or global, and only one per class.
+
+Where does Next Best Action fit? Next Best Action takes Recommendation records, runs them through a strategy that filters, ranks, and limits them, and displays the survivors in the Einstein Next Best Action component on Maya's case page. The strategy is built in Flow Builder as a recommendation strategy flow, and it can call your Apex action to pull in the score. When Maya clicks Accept on "Offer a loyalty credit," the recommendation's action, which is a screen flow, runs right there. On an opportunity page, the same component nudges a sales rep toward an upsell.
+
+Flow hands Apex a stack of tickets, Apex sends back plates in the same order, and Next Best Action is the server who decides which plate reaches the table.

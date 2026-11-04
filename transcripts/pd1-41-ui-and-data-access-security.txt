@@ -1,0 +1,15 @@
+Three Attacks Your Apex Has to Stop
+
+What happens when Priya types a single quote into your search box? If your Apex glues her text into a query string, that quote closes the string, and whatever follows becomes part of your SOQL. That is SOQL injection, the first of three attacks the exam expects you to spot.
+
+Think of a bouncer who checks your ticket but never looks in your bag. The platform is that bouncer. It verifies who the user is on every request, but once your code is running, the platform trusts what your code does. The bag check is the part you write.
+
+Here is the running example. Priya searches contacts on a Visualforce page, and the controller builds the where clause from her text. She types a quote, then the word or, then a condition that is always true, and now she sees every contact in the org. Static SOQL with a bind variable is immune, because her value never becomes query text. Dynamic SOQL goes through Database.query as a string, so you call String.escapeSingleQuotes on her input first, or use Database.queryWithBinds and pass the values in a map.
+
+Next she attacks the page instead. She saves a contact whose last name is a script tag. Another user opens the record, and the browser runs that script with the viewer's session. This is cross-site scripting. Visualforce HTML encodes merge fields by default, but you lose that protection when you set escape to false on an output text component, or when you drop a merge field inside a script or style block, where you have to encode it yourself with a function like J S encode. Lightning Web Components escape template expressions too. The danger is bypassing the template, such as writing innerHTML by hand under the manual DOM directive.
+
+The third attack never touches your input. Priya emails an admin a link to your Visualforce page, and that page's action attribute runs a method that deletes a record on load. The admin is logged in, the request carries their session, and the delete happens. This is cross-site request forgery. Standard pages carry an anti-CSRF token on every state-changing request. For your own pages, never put DML in a page action that runs on load. Require a button click.
+
+One more layer. Apex runs in system mode, so a query happily returns fields the user has no permission to see. WITH USER_MODE in the query enforces object permissions, field permissions, and sharing. WITH SECURITY_ENFORCED enforces object and field access and throws if anything is off limits. Security.stripInaccessible quietly removes the fields the user cannot see, which fits when you still want to show the rest. Schema describe methods, like checking isAccessible on a field, do the same job by hand. And at the component layer, Lightning Web Security has replaced Locker Service as the sandbox that keeps one component out of another.
+
+The rule of thumb: bind your inputs, let the platform escape your output, keep DML behind a click, and tell Apex to run as the user.

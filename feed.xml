@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Wed, 04 Nov 2026 23:32:13 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 23:51:25 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,146 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>Three Attacks Your Apex Has to Stop</title>
+      <description>PD1 exam topic 41. SOQL injection, cross-site scripting, and cross-site request forgery walked through on one Visualforce page, plus how to make Apex respect object and field permissions.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-41-ui-and-data-access-security.mp3" length="2904389" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-41-ui-and-data-access-security</guid>
+      <pubDate>Wed, 04 Nov 2026 23:51:25 +0000</pubDate>
+      <itunes:title>Three Attacks Your Apex Has to Stop</itunes:title>
+      <itunes:summary>PD1 exam topic 41. SOQL injection, cross-site scripting, and cross-site request forgery walked through on one Visualforce page, plus how to make Apex respect object and field permissions.</itunes:summary>
+      <itunes:duration>0:03:01</itunes:duration>
+      <itunes:episode>43</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-41-ui-and-data-access-security.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Apex Actions, Flow, and Next Best Action</title>
+      <description>PD1 exam topic 40. How invocable methods and variables expose Apex to Flow as bulk list-in, list-out actions, how Apex can start a flow in return, and where Next Best Action strategies and the Einstein Next Best Action component fit for agents and reps.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-40-apex-working-with-flow-and-next.mp3" length="2571371" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-40-apex-working-with-flow-and-next</guid>
+      <pubDate>Wed, 04 Nov 2026 23:50:44 +0000</pubDate>
+      <itunes:title>Apex Actions, Flow, and Next Best Action</itunes:title>
+      <itunes:summary>PD1 exam topic 40. How invocable methods and variables expose Apex to Flow as bulk list-in, list-out actions, how Apex can start a flow in return, and where Next Best Action strategies and the Einstein Next Best Action component fit for agents and reps.</itunes:summary>
+      <itunes:duration>0:02:40</itunes:duration>
+      <itunes:episode>42</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-40-apex-working-with-flow-and-next.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Exposing LWCs to App Builder, Flow, and Quick Actions</title>
+      <description>PD1 exam topic 39. How the meta XML file&#x27;s isExposed flag, targets, and targetConfigs decide where a Lightning web component can be dropped, and how recordId, Flow inputs, and quick action types reach it.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-39-exposing-components-to-lightning.mp3" length="2780167" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-39-exposing-components-to-lightning</guid>
+      <pubDate>Wed, 04 Nov 2026 23:50:09 +0000</pubDate>
+      <itunes:title>Exposing LWCs to App Builder, Flow, and Quick Actions</itunes:title>
+      <itunes:summary>PD1 exam topic 39. How the meta XML file&#x27;s isExposed flag, targets, and targetConfigs decide where a Lightning web component can be dropped, and how recordId, Flow inputs, and quick action types reach it.</itunes:summary>
+      <itunes:duration>0:02:53</itunes:duration>
+      <itunes:episode>41</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-39-exposing-components-to-lightning.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>LWC Lifecycle Hooks and Reactivity</title>
+      <description>PD1 exam topic 38. Walk through the five Lightning Web Component lifecycle hooks, what is safe in each, and why reassigning a field rerenders while mutating an object does not without the track decorator.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-38-lwc-lifecycle-hooks-and.mp3" length="2690596" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-38-lwc-lifecycle-hooks-and</guid>
+      <pubDate>Wed, 04 Nov 2026 23:49:28 +0000</pubDate>
+      <itunes:title>LWC Lifecycle Hooks and Reactivity</itunes:title>
+      <itunes:summary>PD1 exam topic 38. Walk through the five Lightning Web Component lifecycle hooks, what is safe in each, and why reassigning a field rerenders while mutating an object does not without the track decorator.</itunes:summary>
+      <itunes:duration>0:02:48</itunes:duration>
+      <itunes:episode>40</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-38-lwc-lifecycle-hooks-and.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>LWC Events: Up, Down, and Across</title>
+      <description>PD1 exam topic 37. How Lightning web components talk to each other: at api down the tree, custom events up, the bubbles and composed flags at shadow boundaries, and Lightning Message Service for strangers on the same page.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-37-lwc-events-and-component.mp3" length="2876352" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-37-lwc-events-and-component</guid>
+      <pubDate>Wed, 04 Nov 2026 23:48:51 +0000</pubDate>
+      <itunes:title>LWC Events: Up, Down, and Across</itunes:title>
+      <itunes:summary>PD1 exam topic 37. How Lightning web components talk to each other: at api down the tree, custom events up, the bubbles and composed flags at shadow boundaries, and Lightning Message Service for strangers on the same page.</itunes:summary>
+      <itunes:duration>0:02:59</itunes:duration>
+      <itunes:episode>39</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-37-lwc-events-and-component.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>LWC Data Access: Wire, LDS, and Imperative Apex</title>
+      <description>PD1 exam topic 36. How a Lightning Web Component reads and writes records through base forms, the wire service, and imperative Apex, and why the cacheable annotation decides which path you can use.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-36-lwc-data-access-wire-service.mp3" length="2672632" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-36-lwc-data-access-wire-service</guid>
+      <pubDate>Wed, 04 Nov 2026 23:48:10 +0000</pubDate>
+      <itunes:title>LWC Data Access: Wire, LDS, and Imperative Apex</itunes:title>
+      <itunes:summary>PD1 exam topic 36. How a Lightning Web Component reads and writes records through base forms, the wire service, and imperative Apex, and why the cacheable annotation decides which path you can use.</itunes:summary>
+      <itunes:duration>0:02:47</itunes:duration>
+      <itunes:episode>38</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-36-lwc-data-access-wire-service.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>LWC Component Anatomy and Decorators</title>
+      <description>PD1 exam topic 35. What lives inside a Lightning web component folder, what the api, track, and wire decorators actually do, and how lwc:if, for:each, and key behave in the template.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-35-lwc-component-anatomy-and.mp3" length="2888911" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-35-lwc-component-anatomy-and</guid>
+      <pubDate>Wed, 04 Nov 2026 23:47:33 +0000</pubDate>
+      <itunes:title>LWC Component Anatomy and Decorators</itunes:title>
+      <itunes:summary>PD1 exam topic 35. What lives inside a Lightning web component folder, what the api, track, and wire decorators actually do, and how lwc:if, for:each, and key behave in the template.</itunes:summary>
+      <itunes:duration>0:03:00</itunes:duration>
+      <itunes:episode>37</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-35-lwc-component-anatomy-and.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Lightning Framework Benefits and Aura Versus LWC</title>
+      <description>PD1 exam topic 34. Why Salesforce ships two Lightning component frameworks, what both of them give you, and why the exam wants you to pick Lightning Web Components unless an Aura wrapper is forced on you.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-34-lightning-component-framework.mp3" length="2900650" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-34-lightning-component-framework</guid>
+      <pubDate>Wed, 04 Nov 2026 23:46:52 +0000</pubDate>
+      <itunes:title>Lightning Framework Benefits and Aura Versus LWC</itunes:title>
+      <itunes:summary>PD1 exam topic 34. Why Salesforce ships two Lightning component frameworks, what both of them give you, and why the exam wants you to pick Lightning Web Components unless an Aura wrapper is forced on you.</itunes:summary>
+      <itunes:duration>0:03:01</itunes:duration>
+      <itunes:episode>36</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-34-lightning-component-framework.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Where a Visualforce Page Can Run</title>
+      <description>PD1 exam topic 33. A tour of every surface where a Visualforce page can be deployed, which ones require the standard controller, and how to match a stated requirement to the right option on the Platform Developer I exam.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-33-where-visualforce-pages-can-be.mp3" length="3165869" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-33-where-visualforce-pages-can-be</guid>
+      <pubDate>Wed, 04 Nov 2026 23:46:12 +0000</pubDate>
+      <itunes:title>Where a Visualforce Page Can Run</itunes:title>
+      <itunes:summary>PD1 exam topic 33. A tour of every surface where a Visualforce page can be deployed, which ones require the standard controller, and how to match a stated requirement to the right option on the Platform Developer I exam.</itunes:summary>
+      <itunes:duration>0:03:18</itunes:duration>
+      <itunes:episode>35</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-33-where-visualforce-pages-can-be.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>View State and the Visualforce Page Lifecycle</title>
+      <description>PD1 exam topic 32. How a Visualforce postback rebuilds your controller from view state, why a value sometimes fails to persist, and how transient keeps you under the 170 KB limit.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-32-controller-methods-view-state.mp3" length="2944154" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-32-controller-methods-view-state</guid>
+      <pubDate>Wed, 04 Nov 2026 23:45:28 +0000</pubDate>
+      <itunes:title>View State and the Visualforce Page Lifecycle</itunes:title>
+      <itunes:summary>PD1 exam topic 32. How a Visualforce postback rebuilds your controller from view state, why a value sometimes fails to persist, and how transient keeps you under the 170 KB limit.</itunes:summary>
+      <itunes:duration>0:03:04</itunes:duration>
+      <itunes:episode>34</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-32-controller-methods-view-state.txt" type="text/plain"/>
+    </item>
     <item>
       <title>Visualforce Controllers and Extensions</title>
       <description>PD1 exam topic 31. When to use a standard controller, a standard list controller, a custom controller, or an extension on a Visualforce page, and what each one gives you for free.</description>
