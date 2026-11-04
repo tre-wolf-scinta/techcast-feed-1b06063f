@@ -1,0 +1,15 @@
+Why Salesforce Won't Let You Delete That Field
+
+You click Delete on a custom field, and Salesforce refuses. No confirm dialog, just an error. Why does the platform block you, and what else does it block?
+
+Priya has a custom object called Shipment with a text field called Tracking Code, forty characters long. An Apex trigger reformats it on insert, a Visualforce page displays it, and a Flow updates it when a carrier confirms pickup. Requirements change. Tracking Code needs to go, replaced by a lookup to a new Carrier object.
+
+Think of knocking out a wall in your house. If plumbing runs through that wall, the inspector refuses the permit until you reroute the pipes. On the platform, the compiler is the inspector, and the pipes are the references in your code.
+
+So Priya opens the field and clicks Delete. Salesforce checks its dependency index, finds the trigger, the page, and the Flow, and returns an error listing all three. The rule is simple. Any custom field or custom object referenced by Apex, Visualforce, or a Flow cannot be deleted until every reference is gone. The same applies at the object level. She can't delete Shipment while an Apex class still names it. The fix order matters. First remove the field from the trigger and the page. Then remove it from the Flow, including older versions, since each version holds its own reference. Only then does Delete succeed. And in production, Apex can't be edited in Setup at all, so the removal itself goes out as a deployment.
+
+Now the tempting shortcut. Instead of deleting, Priya considers changing Tracking Code from Text to Number. Two things bite. First, if the field is referenced in Apex, the platform won't let you change its data type at all. Remove the references first. Second, even with no code in the way, some conversions destroy data. Text to Number drops every value that isn't numeric. Shortening a text field truncates longer values. Converting from Checkbox, or from a multi-select picklist, loses the stored values entirely. Priya has ten thousand Shipment records, and eight thousand tracking codes contain letters. One click would blank all eight thousand.
+
+The exam's tool for seeing all of this is Schema Builder. It's a drag and drop canvas in Setup that draws every object, its fields, and the relationship lines between them. You can create custom objects, fields, and lookup or master-detail relationships right on the canvas, and changes save immediately. But it plays by the same rules. It won't delete a referenced field either, and fields you create there aren't added to page layouts automatically.
+
+So here's the rule. Code is a lien on your schema. Anything Apex, Visualforce, or a Flow references can't be deleted or retyped until the reference is gone, and even a reference-free type change can throw data away, so check the dependencies and the data before you touch the field.

@@ -1,0 +1,21 @@
+Flow Types: Picking the Right Trigger
+
+An order record lands in Salesforce and three things need to happen: a priority field gets set on that same order, a shipping task gets created for the warehouse, and stale drafts get cleaned up every night. Which flow type handles each one, and why does the exam care so much about the difference?
+
+Think of a smart home. One light turns on because a door opened. The thermostat changes because it is seven in the morning. The voice assistant acts because you asked it to. And every device reacts when the weather service broadcasts a storm warning. Same house, four different things that start an action. Flow types are the same idea: the logic inside looks similar, but what starts the flow, and when, decides which type you build.
+
+Priya runs automation for an online store that takes about 2,000 orders a day. Her first job is simple: when an order over 500 dollars is created, set the priority field to high. She builds a record-triggered flow that runs before the record is saved. The order is already in memory, the flow changes the field value, and the save continues with no extra database write. No data manipulation, no second trip to the database, which is why before-save is the fastest option for same-record updates. The tradeoff is scope. A before-save flow can only touch the triggering record. No related records, no emails, no Apex calls.
+
+Her second job is the shipping task, and that is a different record. So she needs a record-triggered flow that runs after the record is saved. Now the order has an ID, and the flow can create records, update related ones, send email alerts, call Apex, and add scheduled paths, like a reminder two days after creation.
+
+The nightly cleanup has no record event at all. Nothing changed, the clock just moved. That is a schedule-triggered flow: Priya picks a start time and frequency, sets a filter for draft orders older than 30 days, and the flow runs once per matching record.
+
+Now a support agent needs to issue a refund by hand, answering a few questions along the way. A person is driving, so that is a screen flow, launched from a button, a Lightning page, or a quick action.
+
+Priya also has a tax calculation that both the refund flow and an Apex class need. She builds it as an autolaunched flow: no trigger, no screens, just logic that Apex, the REST API, or another flow calls as a subflow.
+
+Finally, the warehouse system publishes a Shipment Delayed platform event. A platform event-triggered flow subscribes to that message and updates the affected orders in the background, with no user session involved.
+
+One more thing the exam likes to test. Workflow Rules and Process Builder are retired. You cannot create new ones, and Salesforce provides a Migrate to Flow tool to convert the old ones. If a question asks which declarative tool to use, the answer is Flow, and a before-save flow is the fast replacement for the old workflow field update.
+
+So pick the flow by what starts it: a field on the same record means before-save, anything beyond that record means after-save, a clock means scheduled, a person means screen, code or another flow means autolaunched, and an event message means platform event-triggered.

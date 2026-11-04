@@ -1,0 +1,15 @@
+External IDs and Upsert
+
+Priya's company bills out of an ERP, and every night a job pushes ten thousand customer records into Salesforce as Accounts. The ERP has never heard of a Salesforce record ID. So how does the job know whether a customer already exists in Salesforce or needs to be created?
+
+Her first version just inserts everything. By Friday there are five copies of every customer. Her second version queries Salesforce by the ERP customer number first, builds a map in Apex, splits the list into inserts and updates, and sends two calls. It works, but it is two round trips, it races with anything else touching Accounts, and the query filters on a plain custom field, so on a large object it is not selective and runs slow.
+
+Think about moving contacts to a new phone. The new phone never asks for the old phone's internal row number. It matches on something both phones agree on, the phone number, and either merges the contact or adds a new one. The ERP customer number is that phone number, a key both systems understand.
+
+So Priya adds a text field on Account called ERP Customer Number and checks the External ID box. Two things happen. Salesforce builds a custom index on the field, so lookups by that value are fast and SOQL filters on it count as selective. And the field becomes a legal match key for upsert. Now the nightly job sends one upsert call, naming that field. For each incoming record Salesforce looks up the value. Zero matches, it inserts a new Account. Exactly one match, it updates that Account. More than one match, that record fails with a duplicate external ID error while the rest of the batch continues, as long as the call is not all or none. This is an External ID, and it is the exam's standard answer whenever another system is the system of record.
+
+Now, External ID by itself does not stop duplicates. It only says the field can be used for matching. Uniqueness is a separate checkbox, and for text fields you choose case sensitive or case insensitive. If Priya leaves it off and two Accounts somehow carry the same ERP number, every later upsert for that customer hits the multiple match error. So the usual pairing is External ID plus Unique, which guarantees the one match path. Only four field types can be External IDs: text, number, email, and auto number. Not picklists, not checkboxes, not formulas, not lookups. You get up to twenty five External ID fields per object.
+
+One level deeper. In Apex the statement is upsert the list, then the field name, and the same key works on relationships. Priya can load Contacts and point each one at its Account by ERP number instead of looking up the Account ID first.
+
+The rule: External ID means this field can find the record, Unique means it finds at most one, and upsert handles the create or update decision for you.

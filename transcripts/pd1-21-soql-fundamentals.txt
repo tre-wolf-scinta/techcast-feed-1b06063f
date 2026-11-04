@@ -1,0 +1,15 @@
+SOQL Fundamentals for Platform Developer I
+
+Sam needs every account in the West region, with each account's open opportunities and the owner's name. How many queries does that take in Apex? One, if you know SOQL, the Salesforce Object Query Language.
+
+Think of SOQL as ordering from a waiter who only brings exactly what you name. You can't say bring me everything. But you can ask for the dish, the sauce that came with it from the kitchen, and the list of sides that belong to it. The fields are the dish, the parent record is the sauce, and the child records are the sides.
+
+Sam writes a query on Account that selects Name and Owner dot Name. That dot walks up to the parent User record inside the same query. Then, inside the select list, he adds a subquery in parentheses that selects Amount from Opportunities. That plural word is the child relationship name, and the children come back nested on each account. For a custom relationship the name ends in double underscore r. His WHERE clause compares Region to an Apex variable, and he puts a colon in front of the variable name. Apex binds the value in safely, with no string concatenation and no injection risk. The colon works with a list or set too, so WHERE Id IN colon ids fetches many records in one trip. He finishes with ORDER BY Name, LIMIT 50, and OFFSET 100 to skip the first two pages. OFFSET comes after LIMIT and caps at two thousand rows, so it's for small paging, not for walking a million records.
+
+The result lands in a list of Account. But when Sam wants one account by Id, he assigns the query straight to a single Account variable. That compiles fine, and it throws a QueryException if zero rows come back or if more than one does. When you aren't certain of exactly one row, assign to a list and check its size.
+
+For a report he selects StageName and SUM of Amount from Opportunity, grouped by StageName. That returns a list of AggregateResult, not Opportunity, and he reads each value with get, using the alias he declared or the default name expr0. Any selected field that isn't inside an aggregate function must appear in the GROUP BY. Then, to find accounts that have at least one closed won opportunity, he filters WHERE Id IN, followed by a subquery selecting AccountId from Opportunity where the stage is Closed Won. The inner query runs on a different object, returns IDs, and feeds the outer filter. This is a semi-join, and NOT IN gives you the anti-join.
+
+Now, what about select star? SOQL has no wildcard. The closest thing is the FIELDS function, with ALL, STANDARD, or CUSTOM. In Apex, FIELDS(ALL) and FIELDS(CUSTOM) require a LIMIT of 200 or less, so it's a tool for exploration, not for bulk processing.
+
+Name every field you want, walk up with a dot, walk down with a subquery, bind with a colon, and only assign to a single sObject when exactly one row is guaranteed.

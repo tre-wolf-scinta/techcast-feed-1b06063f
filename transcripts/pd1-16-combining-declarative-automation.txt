@@ -1,0 +1,13 @@
+Flow Calls Apex, Apex Calls Flow
+
+Maya has a record-triggered flow on Opportunity that does eight things, and the eighth is a tax calculation with rules no formula element can express. Does she throw the flow away and rebuild it as an Apex trigger? No. She keeps the flow and hands only the tax math to Apex. That hand-off is what the exam tests, and it has sharp edges.
+
+Think of assembling flat-pack furniture with an electrician friend on call. You follow the instruction sheet yourself, step by step. When you hit the wiring step, you call your friend, who does that one job and hands the cabinet back. And if you are building five cabinets, your friend comes once and wires all five, not five separate visits. The instruction sheet is Flow, the friend is Apex, and the single visit is bulk safety.
+
+In Apex, Maya writes a class with one static method and puts the InvocableMethod annotation above it, the one written with an at sign in front. That annotation alone makes the method show up in Flow Builder as an Action. The rules are strict. The method must be static and public or global, a class can hold only one of them, and it takes at most one parameter, which must be a list. It returns either nothing or a list. Why lists? When 200 opportunities update in one transaction, Flow calls her method once with 200 inputs, not 200 times. She returns one result per input, in the same order, so Flow can match each answer to the record that asked. If each record needs more than one value in or out, she writes a small inner class whose members carry the InvocableVariable annotation, with a label, a description, and a required flag. One such class for inputs, another for outputs, and Flow shows those fields right on the Action element.
+
+The reverse direction uses the Flow Interview class. Maya has a batch job that needs an autolaunched flow called Send Renewal Reminder. She builds a map from the flow's input variable names to values, calls the class's createInterview method with the flow's API name and that map, then calls start on the result. When the flow finishes, she reads any output variable with getVariableValue. Two cautions. The flow runs synchronously inside her transaction and spends her governor limits, and calling start inside a loop is the same mistake as a query inside a loop.
+
+So when a scenario question describes a flow that needs heavy logic, the right answer keeps the orchestration in Flow and pushes only the hard part into an invocable method. The wrong answers rebuild everything as a trigger, or write an invocable that accepts a single Id and then loop over it in Flow.
+
+Flow orchestrates, Apex calculates, and every hand-off between them carries a list.

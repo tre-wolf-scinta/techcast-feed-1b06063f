@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Wed, 04 Nov 2026 23:15:47 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 23:24:02 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,146 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>SOQL Fundamentals for Platform Developer I</title>
+      <description>PD1 exam topic 21. How SOQL walks relationships, binds variables, pages, aggregates, and semi-joins, plus the single-record trap and why there is no SELECT star.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-21-soql-fundamentals.mp3" length="2904403" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-21-soql-fundamentals</guid>
+      <pubDate>Wed, 04 Nov 2026 23:24:02 +0000</pubDate>
+      <itunes:title>SOQL Fundamentals for Platform Developer I</itunes:title>
+      <itunes:summary>PD1 exam topic 21. How SOQL walks relationships, binds variables, pages, aggregates, and semi-joins, plus the single-record trap and why there is no SELECT star.</itunes:summary>
+      <itunes:duration>0:03:01</itunes:duration>
+      <itunes:episode>23</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-21-soql-fundamentals.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Apex Interfaces, Classes, and Sharing Keywords</title>
+      <description>PD1 exam topic 20. How Apex interfaces let the platform run your code as a contract, when to reach for virtual and abstract classes instead, and how the sharing keywords decide which records a class can see.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-20-apex-classes-interfaces-and.mp3" length="2832868" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-20-apex-classes-interfaces-and</guid>
+      <pubDate>Wed, 04 Nov 2026 23:23:19 +0000</pubDate>
+      <itunes:title>Apex Interfaces, Classes, and Sharing Keywords</itunes:title>
+      <itunes:summary>PD1 exam topic 20. How Apex interfaces let the platform run your code as a contract, when to reach for virtual and abstract classes instead, and how the sharing keywords decide which records a class can see.</itunes:summary>
+      <itunes:duration>0:02:57</itunes:duration>
+      <itunes:episode>22</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-20-apex-classes-interfaces-and.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Apex Control Flow Without the Heap Blowup</title>
+      <description>PD1 exam topic 19. How Apex if-else, switch, and every loop form behave, which loop avoids the heap limit, and the boundary mistakes the Platform Developer I exam likes to test.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-19-control-flow-statements.mp3" length="2801898" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-19-control-flow-statements</guid>
+      <pubDate>Wed, 04 Nov 2026 23:22:39 +0000</pubDate>
+      <itunes:title>Apex Control Flow Without the Heap Blowup</itunes:title>
+      <itunes:summary>PD1 exam topic 19. How Apex if-else, switch, and every loop form behave, which loop avoids the heap limit, and the boundary mistakes the Platform Developer I exam likes to test.</itunes:summary>
+      <itunes:duration>0:02:55</itunes:duration>
+      <itunes:episode>21</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-19-control-flow-statements.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Apex Collections: List, Set, and Map</title>
+      <description>PD1 exam topic 18. How Apex Lists, Sets, and Maps each earn their place, and why the Set of Ids plus Map of Id to sObject pattern is the heart of bulkified trigger code.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-18-collections-list-set-and-map.mp3" length="2644161" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-18-collections-list-set-and-map</guid>
+      <pubDate>Wed, 04 Nov 2026 23:21:57 +0000</pubDate>
+      <itunes:title>Apex Collections: List, Set, and Map</itunes:title>
+      <itunes:summary>PD1 exam topic 18. How Apex Lists, Sets, and Maps each earn their place, and why the Set of Ids plus Map of Id to sObject pattern is the heart of bulkified trigger code.</itunes:summary>
+      <itunes:duration>0:02:45</itunes:duration>
+      <itunes:episode>20</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-18-collections-list-set-and-map.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Apex Variables, Types, and Modifiers</title>
+      <description>PD1 exam topic 17. Why Apex variables start null, how to pick the right primitive and sObject types, and what static, final, and the access modifiers really do inside one transaction.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-17-apex-variables-constants-data.mp3" length="2965892" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-17-apex-variables-constants-data</guid>
+      <pubDate>Wed, 04 Nov 2026 23:21:18 +0000</pubDate>
+      <itunes:title>Apex Variables, Types, and Modifiers</itunes:title>
+      <itunes:summary>PD1 exam topic 17. Why Apex variables start null, how to pick the right primitive and sObject types, and what static, final, and the access modifiers really do inside one transaction.</itunes:summary>
+      <itunes:duration>0:03:05</itunes:duration>
+      <itunes:episode>19</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-17-apex-variables-constants-data.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Flow Calls Apex, Apex Calls Flow</title>
+      <description>PD1 exam topic 16. How invocable methods let Flow hand hard logic to Apex, how the Flow Interview class lets Apex start a flow, and why every hand-off between them must carry a list.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-16-combining-declarative-automation.mp3" length="2542906" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-16-combining-declarative-automation</guid>
+      <pubDate>Wed, 04 Nov 2026 23:20:36 +0000</pubDate>
+      <itunes:title>Flow Calls Apex, Apex Calls Flow</itunes:title>
+      <itunes:summary>PD1 exam topic 16. How invocable methods let Flow hand hard logic to Apex, how the Flow Interview class lets Apex start a flow, and why every hand-off between them must carry a list.</itunes:summary>
+      <itunes:duration>0:02:39</itunes:duration>
+      <itunes:episode>18</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-16-combining-declarative-automation.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Flow Types: Picking the Right Trigger</title>
+      <description>PD1 exam topic 15. How to pick between before-save, after-save, scheduled, screen, autolaunched, and platform event-triggered flows, and why Flow replaces Workflow Rules and Process Builder on the PD1 exam.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-15-flow-types-and-declarative.mp3" length="3070907" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-15-flow-types-and-declarative</guid>
+      <pubDate>Wed, 04 Nov 2026 23:20:00 +0000</pubDate>
+      <itunes:title>Flow Types: Picking the Right Trigger</itunes:title>
+      <itunes:summary>PD1 exam topic 15. How to pick between before-save, after-save, scheduled, screen, autolaunched, and platform event-triggered flows, and why Flow replaces Workflow Rules and Process Builder on the PD1 exam.</itunes:summary>
+      <itunes:duration>0:03:12</itunes:duration>
+      <itunes:episode>17</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-15-flow-types-and-declarative.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Loading Data Into a Sandbox</title>
+      <description>PD1 exam topic 14. When to use the Data Import Wizard versus Data Loader, why most sandboxes arrive empty, and how External IDs and upsert keep parent and child records linked when you load them.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-14-importing-and-exporting-data.mp3" length="3093898" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-14-importing-and-exporting-data</guid>
+      <pubDate>Wed, 04 Nov 2026 23:19:17 +0000</pubDate>
+      <itunes:title>Loading Data Into a Sandbox</itunes:title>
+      <itunes:summary>PD1 exam topic 14. When to use the Data Import Wizard versus Data Loader, why most sandboxes arrive empty, and how External IDs and upsert keep parent and child records linked when you load them.</itunes:summary>
+      <itunes:duration>0:03:13</itunes:duration>
+      <itunes:episode>16</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-14-importing-and-exporting-data.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Why Salesforce Won&#x27;t Let You Delete That Field</title>
+      <description>PD1 exam topic 13. How Apex, Visualforce, and Flow references lock a field or object in place, what a data type change can silently destroy, and where Schema Builder fits in.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-13-schema-changes-constrained-by.mp3" length="2762163" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-13-schema-changes-constrained-by</guid>
+      <pubDate>Wed, 04 Nov 2026 23:18:33 +0000</pubDate>
+      <itunes:title>Why Salesforce Won&#x27;t Let You Delete That Field</itunes:title>
+      <itunes:summary>PD1 exam topic 13. How Apex, Visualforce, and Flow references lock a field or object in place, what a data type change can silently destroy, and where Schema Builder fits in.</itunes:summary>
+      <itunes:duration>0:02:52</itunes:duration>
+      <itunes:episode>15</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-13-schema-changes-constrained-by.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>External IDs and Upsert</title>
+      <description>PD1 exam topic 12. How marking a field as an External ID lets upsert match records from another system without a Salesforce ID, which field types qualify, what the Unique option adds, and what happens with zero, one, or several matches.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-12-external-ids-and-upsert.mp3" length="2832822" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-12-external-ids-and-upsert</guid>
+      <pubDate>Wed, 04 Nov 2026 23:17:55 +0000</pubDate>
+      <itunes:title>External IDs and Upsert</itunes:title>
+      <itunes:summary>PD1 exam topic 12. How marking a field as an External ID lets upsert match records from another system without a Salesforce ID, which field types qualify, what the Unique option adds, and what happens with zero, one, or several matches.</itunes:summary>
+      <itunes:duration>0:02:57</itunes:duration>
+      <itunes:episode>14</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-12-external-ids-and-upsert.txt" type="text/plain"/>
+    </item>
     <item>
       <title>Roll-Up Summary Fields and the Lookup Trap</title>
       <description>PD1 exam topic 11. Why roll-up summary fields need a master-detail relationship, which four functions they support, what they refuse to summarize, and how to work around average and lookup requirements on the Platform Developer I exam.</description>

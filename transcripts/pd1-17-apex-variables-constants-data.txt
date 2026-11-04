@@ -1,0 +1,17 @@
+Apex Variables, Types, and Modifiers
+
+Why does a counter you set in an Apex trigger quietly go back to zero on the very next request? And why does a plain Integer throw a null pointer exception the first time you add one to it? Both come down to how Apex treats variables, and the exam tests both.
+
+Picture Priya writing a class that applies a discount to Opportunities. She declares an Integer called processed and, inside a loop, increments it. The first increment throws a null pointer exception. That is the first rule: every Apex variable, including primitives, is null until you assign it. There is no silent default of zero or false. She fixes it by initializing to zero.
+
+Next she picks types for the money. The amount is a Decimal, an arbitrary precision number and the type currency fields come back as. Double is sixty four bit floating point, fine for a percentage, risky for cents. She stores the record key in an Id rather than a String, so a fifteen character value is expanded to eighteen and garbage throws at runtime. Dates go in Date or Datetime, file bytes in Blob. The records themselves are sObjects, typed as Opportunity when she knows the shape or as generic SObject when she does not. For the discount tier she uses an enum, a fixed set of named values like Bronze, Silver, and Gold, which gives her switch statements instead of magic strings.
+
+Now think of an office. Each employee has a desk drawer, private to them. On the wall there is one noticeboard everyone shares, and the cleaners wipe it every night. The desk drawer is an instance variable, one copy per object. The noticeboard is a static variable, one copy for the whole class. And the nightly wipe is the transaction boundary.
+
+Priya marks a Boolean as static and names it hasRun, so her trigger skips a second pass when a workflow field update fires it again. It works, because every instance in that transaction sees the same copy. But the next request starts with hasRun back at its initial value. Static variables in Apex live only for the length of a single transaction, never across requests. That is the counter resetting from the hook. Static members are also allowed only in outer classes, not inner ones.
+
+For the cap on the discount she writes static final and names it MAX_DISCOUNT. The final keyword means assign once, either at declaration or in a constructor for instance fields, and then it is locked. Static plus final is the Apex pattern for a constant.
+
+Finally, visibility. Priya writes nothing in front of a helper method, so it is private, the default for methods and variables. She marks the entry point public so the trigger handler can call it. Protected would open it to subclasses and inner classes only, and it applies only to instance members. Global exposes it to every org and namespace, which is why it belongs in managed packages and almost nowhere else.
+
+Remember it this way: everything starts null, statics live for one transaction, final means write once, and private is what you get when you say nothing.

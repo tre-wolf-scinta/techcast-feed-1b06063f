@@ -1,0 +1,15 @@
+Loading Data Into a Sandbox
+
+Your new developer sandbox is empty. No accounts, no contacts, nothing for your trigger to run against. You have a spreadsheet from the old system and you need it in by lunch. Which tool do you reach for, and when does that tool stop being enough?
+
+Think of it like moving house. For a few boxes, you carry them through the front door yourself. For a whole house, you hire a truck with a ramp and a loading plan. Salesforce gives you both. The front door is the Data Import Wizard. The truck is Data Loader.
+
+Priya has 20,000 accounts and 40,000 contacts. She opens the Data Import Wizard in Setup. It runs in the browser with nothing to install, handles up to 50,000 records per run, and covers a short list of objects: accounts, contacts, leads, solutions, campaign members, person accounts, and custom objects. Its best feature is matching. She can tell it to find duplicates by name, by email, by Salesforce ID, or by an external ID, and update them instead of inserting copies. Then she tries to load 300,000 opportunity line items. The wizard refuses. It is over the limit, the object is not on the list, and there is no way to schedule it to run overnight.
+
+So she installs Data Loader. It is a desktop app that talks to the API, so it works on every object and handles far bigger loads. Many exam questions still quote five million records, and the current Data Loader guide says up to one hundred fifty million, so either way it is the tool once you pass fifty thousand. It can insert, update, upsert, delete, and hard delete, and it can export. Export all even pulls records sitting in the recycle bin. It also runs from the command line on Windows using a configuration file, which means a scheduled task can load or extract data every night with nobody watching. For true backups there is a separate Setup feature called Data Export, which bundles every object into zipped CSV files, weekly on Enterprise and above, monthly on other editions, and keeps the download available for 48 hours.
+
+Now the hard part. Every contact needs an AccountId, and Salesforce only creates those IDs when the accounts land. The slow way is to load accounts, export their new IDs, and paste them into the contact file by hand. The better way is an External ID. Priya adds a text field on Account called Legacy Account Number, marks it as an External ID, and fills it from the old system. Then she loads contacts with upsert, mapping the account relationship to that field instead of to AccountId. Data Loader finds each parent by its legacy number and writes the real ID for her. And because upsert matches first, running the file twice updates rather than duplicates.
+
+One catch. None of this data copies into a sandbox on its own. Developer and Developer Pro sandboxes bring metadata only. A Partial Copy sandbox uses a template to bring a sample of records, and only a Full sandbox copies everything.
+
+So the rule is simple: wizard for small loads on common objects, Data Loader for anything big, scripted, exported, or deleted, and External IDs with upsert so parents and children link up without you ever touching a Salesforce ID.

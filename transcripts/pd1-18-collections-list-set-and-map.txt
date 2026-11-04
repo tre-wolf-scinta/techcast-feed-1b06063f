@@ -1,0 +1,13 @@
+Apex Collections: List, Set, and Map
+
+A trigger fires on two hundred contacts in one insert, and every contact needs a field from its parent account. How many queries should that take?
+
+Priya writes a before insert trigger on Contact that stamps the parent account's industry onto each new record. Her first version loops over the new contacts and, inside the loop, queries the account for that one contact. One contact, one query. It passes her unit test with a single record. Then a data load inserts two hundred contacts at once. Apex allows one hundred SOQL queries per synchronous transaction, so the trigger fails around contact one hundred and one and the whole insert rolls back.
+
+Think about grocery shopping. The slow way is to drive to the store, buy one item, drive home, and repeat. The smart way is to write a list with no duplicates, make one trip, and sort everything into labeled bins at home so you can grab any item instantly. The list is a Set, the single trip is one query, and the labeled bins are a Map.
+
+Here is the rewrite. Trigger.new arrives as a List, which is ordered, zero indexed, and allows duplicates. Priya loops over it once and adds each contact's AccountId to a Set of Id. A Set keeps every value unique, so if fifty contacts share one account, that id goes in once. Sets also answer contains in constant time because they hash their members. Now she runs one SOQL query: select Id and Industry from Account where Id is in that Set. Apex lets you bind a Set directly into an IN clause, so the whole batch costs one query. She stores the result in a Map of Id to Account. That Map constructor accepts a List of sObjects and keys each record by its Id automatically. On a second pass over Trigger.new, she calls get on the Map with each contact's AccountId and has the parent in hand without touching the database. Two hundred contacts, one query. This is called bulkification, and it is the pattern the exam tests most.
+
+Two complications. The get method returns null when the key is missing, so a contact with no account needs a null check before you read the industry. And sometimes you need the other direction, grouping children under a parent. Use a Map of Id to List of Contact: check containsKey for the account id, put an empty List if it is absent, then add the contact to that List. Same Map, with a collection as the value.
+
+The rule: List when order or duplicates matter, Set when you need uniqueness or a fast membership check, Map when you look things up by key. And whenever you see a query inside a loop, collect ids into a Set, query once, load the results into a Map, and look up from there.

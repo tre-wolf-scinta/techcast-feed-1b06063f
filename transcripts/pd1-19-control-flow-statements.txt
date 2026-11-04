@@ -1,0 +1,15 @@
+Apex Control Flow Without the Heap Blowup
+
+Priya writes a cleanup job that selects forty thousand Contacts with a dozen fields each, drops the result into a list, and loops over it. In a sandbox with two thousand contacts it runs fine. In production it dies with a heap size error before the loop body ever runs. So which loop form would have saved her, and why?
+
+Think of streaming a movie versus downloading it first. Downloading pulls the whole file onto your disk before you watch a single frame. Streaming pulls a few seconds at a time, plays them, and throws them away. Assigning a query to a list is the download. Looping directly over the query is the stream.
+
+Here is the download version. Priya declares a list of Contact, assigns the SOQL query to it, then writes a traditional for loop with an integer counter from zero up to the list size. Every one of those forty thousand records has to sit in memory at once, and the synchronous heap limit is six megabytes. The list alone blows past it.
+
+Now the stream version. Priya puts the SOQL query straight into the for loop header, with a Contact variable in front of it. Apex runs the query and hands her records in chunks of two hundred, and once a chunk is processed it can be discarded. This is called a SOQL for loop. If she declares the loop variable as a list of Contact instead of a single Contact, each iteration gives her the whole chunk of two hundred, which is the shape you want when you issue one DML statement per chunk. When an exam question describes a large query and asks which loop avoids the heap limit, the answer is the SOQL for loop.
+
+Inside the loop she branches on the contact's Lead Source. A chain of if, else if, else works, but Apex also has a switch statement. She writes switch on the field, then a when clause for each literal string, and a when else at the bottom as the default. Switch in Apex has no fall through and needs no break, and one when clause can list several values separated by commas. It accepts Integer, Long, String, enum values, and sObjects, where the when clause checks the record's type and assigns it to a typed variable in one step.
+
+Now the off by one trap. Suppose Priya's counter runs while i is less than or equal to the list size. The last pass asks for an index that does not exist and throws a list index out of bounds exception. Count the iterations in your head on every code reading question. A while loop checks its condition first and may run zero times. A do while checks at the end, so the body always runs at least once. Break leaves the loop entirely, continue skips to the next iteration, and if you add or remove items from a list while a for each loop is walking it, Apex throws an exception.
+
+The rule: stream large queries with a SOQL for loop, branch with switch when the values are fixed, and check every loop boundary for one extra pass.
