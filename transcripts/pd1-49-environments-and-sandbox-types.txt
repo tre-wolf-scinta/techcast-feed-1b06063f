@@ -1,0 +1,19 @@
+Sandbox Types and the Release Pipeline
+
+Your new Opportunity trigger passes every unit test in your Developer sandbox. You deploy it to production and it fails on the very first save, because a validation rule only fires on records with a certain account type, and your sandbox never had a single real account in it. So which environment should have caught that, and why didn't yours?
+
+Think of putting on a play. First you read the script alone at your desk. Then the cast does a table read. Then comes the dress rehearsal with the real set, real costumes, and real lighting. Each step looks more like opening night, and each step costs more to run. Salesforce environments work the same way: every sandbox is a copy of production that trades fidelity for cost and refresh speed.
+
+Meet Maya, who is building that trigger for an org with about two million Opportunity records. She starts in a Developer sandbox. It copies metadata only: objects, fields, Apex, flows, and settings, but zero production records. It holds 200 megabytes of data and can be refreshed once a day. It's fast and cheap, and she creates her own test records by hand. Her trigger works, on her data.
+
+Next her team merges everyone's work in a Developer Pro sandbox. Same idea, metadata only, refreshed daily, but with one gigabyte of storage so the team can load a larger, scripted test data set and run integration tests against external systems.
+
+Then comes user acceptance testing in a Partial Copy sandbox. This one copies metadata plus a sample of real data, chosen by a sandbox template that lists which objects to include, up to ten thousand records per object. It holds five gigabytes and can be refreshed every five days. Here the testers open real accounts with that account type, and the validation rule finally fires. This is the stage that would have caught Maya's bug.
+
+The last rehearsal is a Full sandbox for staging and performance testing. It copies everything: all metadata and all two million Opportunities, with the same storage as production. The price is time. A Full copy takes a long time to create, and you can refresh it only every 29 days, so whatever you copy, you live with for a month.
+
+Scratch orgs sit outside this ladder. They aren't copies of production at all. A scratch org is a disposable Salesforce DX environment built from a JSON definition file that declares the edition and features, then filled from source control. It expires after seven days by default and can live at most 30. It fits feature development when your team treats version control, not the org, as the source of truth.
+
+One trap: a refresh wipes the sandbox and replaces it with a fresh copy. Anything not in version control is gone.
+
+So the pipeline runs Developer sandbox or scratch org for development, Developer Pro for integration, Partial Copy for UAT, Full for staging, then production. The closer an environment sits to production, the more real data it carries and the less often you can refresh it, so pick the sandbox by how real the test needs to be.

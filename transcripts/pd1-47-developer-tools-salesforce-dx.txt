@@ -1,0 +1,13 @@
+Which Developer Tool Does What
+
+Priya has a trigger to write, a field to add, a test class to run, and a Bulk API load to try. Salesforce gives her five different tools. Which one does which job, and why does the exam care?
+
+Think of a recipe card versus the dish sitting in the fridge. If the dish is your only record, you cannot share it, you cannot remake it, and when it spoils it is gone. If the recipe card is the source of truth, you can throw the dish out and cook it again any time. Salesforce DX is the recipe card approach: your metadata lives in a version controlled project on disk, and orgs are dishes you cook from it.
+
+The old way is editing the org directly. Priya opens Setup in a developer org, creates the field, writes the trigger in the Developer Console, and tests it there. It works, until a teammate changes the same trigger in a different org, or until she needs that exact state again for a bug report. The org was the only copy, and nobody can rebuild it.
+
+So she creates a DX project instead. The project has a file called sfdx-project.json at its root, which defines the package directories and the API version, and a folder called force-app, which is where the source lives in files: one file per class, trigger, object, and field. She authorizes a Dev Hub, then uses the sf command line interface to create a scratch org, a temporary org built from a definition file that expires in seven days by default and can live up to thirty. She deploys her source into it, builds in VS Code with the Salesforce extensions, and pulls any changes she made in the org back to disk. Source tracking tells the CLI what changed on each side. When she is done she runs Apex tests from the CLI, commits to git, deletes the scratch org, and deploys the same source to a sandbox with the same deploy command. This is source driven development, and VS Code with the Salesforce Extension Pack is the recommended editor for it.
+
+Now, two jobs still want a browser. Priya needs to run a one off script to backfill a field and read the debug log line by line. That is the Developer Console: anonymous Apex, a SOQL and SOSL query editor, a tests tab, logs, and checkpoints, all inside the org, with no project setup. Then she wants to see the raw JSON a REST endpoint returns and push ten thousand records through the Bulk API. That is Workbench, a separate web app that lets you call the REST API, run Metadata API deploys and retrieves, describe objects, and submit Bulk API jobs without writing a line of client code.
+
+The exam rule of thumb: project files, scratch orgs, tests, and deployments go through the sf CLI and VS Code, quick in-browser Apex and logs go through the Developer Console, and poking the APIs by hand goes through Workbench.

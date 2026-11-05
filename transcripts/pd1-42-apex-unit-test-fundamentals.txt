@@ -1,0 +1,15 @@
+Apex Unit Test Fundamentals
+
+What does the platform actually check before it lets Ravi's trigger into production, and why does a green test sometimes prove nothing?
+
+Ravi writes a trigger on Opportunity. When a deal closes at 100,000 dollars or more, it enqueues a Queueable job that creates a renewal opportunity and emails the account owner. Production won't take it until 75 percent of the org's Apex is covered by tests and every trigger has some coverage. So Ravi writes a test class.
+
+Think of a flight simulator. The controls are real and the instruments respond, but the plane never leaves the hangar, and nothing Ravi does inside it touches the real sky. An Apex test is that simulator: the code runs for real, but the org is sealed off around it.
+
+Sealed off three ways. Data first. Since API version 24, tests see none of the records already in the org by default, so Ravi inserts his own account and opportunity, usually in a method marked at TestSetup so each test method gets a fresh copy, and everything rolls back when the test ends. He could set SeeAllData to true on the annotation, but then his test breaks the day someone deletes a record, so treat that as the wrong answer. Email next. Messaging.sendEmail runs and counts against limits, but nothing leaves the org. And callouts. If the job also hits an external tax service, the test fails outright, because test methods cannot make real callouts. Ravi registers a mock with Test.setMock that returns a canned response instead.
+
+Now the structure. The class carries the at isTest annotation, which also keeps it out of the org's Apex code size limit. Each test method is static, returns void, takes no arguments, and carries its own at isTest annotation. You'll still see the older testMethod keyword, but it's deprecated. Inside, Ravi inserts his data, calls Test.startTest, updates the opportunity to Closed Won, then calls Test.stopTest. Those two calls matter. startTest hands the code between them a fresh set of governor limits, so setup queries don't eat the budget he's actually testing. And stopTest forces every asynchronous job queued since startTest to run synchronously, right there, before the next line. Without it, the renewal opportunity doesn't exist yet when Ravi looks for it.
+
+Then he looks. He queries for the renewal and calls Assert.areEqual with an expected count of one. The older System.assertEquals family still works, but the Assert class is the current one. Here's the trap. If Ravi deletes the assertions, the test still passes and every line it touched still counts as covered. Coverage says the code ran. Only an assertion says it did the right thing.
+
+So a test is a sealed simulator: build your own data, mock what leaves the org, bracket the action in startTest and stopTest, and assert the outcome, because coverage without assertions proves nothing.

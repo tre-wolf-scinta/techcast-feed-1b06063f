@@ -1,0 +1,15 @@
+Why Your Apex Test Can't Find Any Data
+
+Maya's trigger test just failed with the error "List has no rows for assignment to SObject". The query looks fine. The Acme account definitely exists in the org. So why can't her test find it?
+
+Because by default, an Apex test runs in an empty org. Since API version 24, test methods see none of your existing records, with a few exceptions for setup objects like User, Profile, and Organization. Every account, contact, and opportunity in the org is invisible to the test. Think of a cooking class where every station starts with a bare counter and the shared pantry is locked. If your recipe needs eggs, you bring eggs. Your test is the recipe, and the records it needs are the ingredients it has to bring along.
+
+So Maya's first fix is the obvious one. At the top of her test method she inserts an Acme account, runs the trigger logic against it, then asserts. The test passes. Now she writes four more test methods for the same trigger, and each one starts with the same ten lines of setup. That is slow to write and slow to run, because every method inserts the same records again.
+
+Here is the better approach. She moves that setup into a static method marked with the testSetup annotation. The framework runs it once, before any test method in the class, and the records it creates are available to every method. If one method updates or deletes those records, the changes are rolled back when that method finishes, so the next method starts from the original, unmodified state. A class can have only one setup method, and it only works in the default data isolation mode, which matters in a minute.
+
+What if a test needs two hundred records with specific field values? Typing that in Apex is painful. Maya can upload a comma separated values file as a static resource, with the field names in the header row, and call Test.loadData with the object type and the resource name. The framework inserts the rows and hands back the list of records, ready to query.
+
+Now the complication. Maya's next test creates an opportunity line item, which needs a price book entry in the standard price book. You cannot create the standard price book inside a test. A tempting fix is to mark the test with SeeAllData set to true, which unlocks the whole pantry. But now the test depends on whatever data happens to be in that org, so it passes in the sandbox and fails in production, and it disables testSetup for the class. The right tool is Test.getStandardPricebookId, which returns the standard price book's ID inside a normal isolated test, so she can insert her own price book entry against it.
+
+So when the exam asks why a test cannot find data, the answer is data isolation, and the fix is to create the data in the test, in a testSetup method, or through Test.loadData, with SeeAllData as the last resort for data you truly cannot build.

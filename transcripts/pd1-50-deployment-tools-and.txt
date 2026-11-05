@@ -1,0 +1,17 @@
+Deployment Tools: Change Sets to Packages
+
+Maya has three things waiting in a sandbox: a new trigger, a new field, and an old field that needs to disappear. Production needs all three changes. Which deployment tool can actually carry them?
+
+Think of an office building's internal mail cart next to a courier you hire. The cart only runs between offices in the same building, it only delivers, and it never hauls anything away. The courier goes to any address, and will carry junk out too. Change sets are the cart. The Metadata API is the courier.
+
+Maya starts with the cart. In the sandbox she builds an outbound change set, adds the trigger and the field, and uploads it. Production receives it as an inbound change set for an admin to deploy. That only works because the two orgs share a deployment connection, meaning a sandbox and its own production org. And the old field? Change sets can't delete anything, so it stays until someone removes it by hand. Some components can't ride the cart at all, such as organization-wide email addresses, web-to-lead setup, and many org-level settings. Those get configured manually in the target.
+
+So Maya switches to the courier. She pulls the source into VS Code and runs a Salesforce CLI deploy, which is the Metadata API underneath. It goes from any org to any org she can log in to. For the deletion, she adds a second manifest called destructive changes, lists the old field, and the deploy removes it. Older teams did the same job with the Ant Migration Tool, a Java wrapper around the same API. Salesforce retired it with the Spring twenty four release. It may still run, but it gets no updates and no support, and Salesforce points you to the CLI now.
+
+If Maya's team ships the same feature to many orgs, she wraps it as a package instead. An unlocked package is versioned, built from source, and installable in any org, and the customer can still edit what's inside. A managed package adds a namespace, hides the code, and upgrades cleanly, which is what AppExchange vendors use.
+
+Whatever the route, production runs the same gate. Everything must compile. Apex tests run, by default all local tests, meaning yours and not those from managed packages. You need 75 percent coverage overall, some coverage on every trigger, and every test passing. If you run specified tests instead, each class and trigger in the deployment needs 75 percent on its own. Production is all or nothing, so one failure rolls back everything.
+
+Here's the trick for a slow test suite. Maya runs a validation-only deploy on Thursday, which runs the tests but changes nothing. It passes. That validated deployment can then be quick deployed within 10 days, skipping the test run entirely, as long as the validation ran the tests and they all passed.
+
+Change sets click between connected orgs and never delete, the Metadata API goes anywhere and can delete, packages version the same metadata, and production always demands compiling code, passing tests, and 75 percent coverage.

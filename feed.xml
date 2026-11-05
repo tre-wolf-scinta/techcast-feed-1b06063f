@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Wed, 04 Nov 2026 23:51:25 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 00:01:03 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,132 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>Deployment Tools: Change Sets to Packages</title>
+      <description>PD1 exam topic 50. How change sets, the Metadata API, packages, and the Ant Migration Tool compare, and what every production deployment has to pass to land.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-50-deployment-tools-and.mp3" length="2834114" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-50-deployment-tools-and</guid>
+      <pubDate>Thu, 05 Nov 2026 00:01:02 +0000</pubDate>
+      <itunes:title>Deployment Tools: Change Sets to Packages</itunes:title>
+      <itunes:summary>PD1 exam topic 50. How change sets, the Metadata API, packages, and the Ant Migration Tool compare, and what every production deployment has to pass to land.</itunes:summary>
+      <itunes:duration>0:02:57</itunes:duration>
+      <itunes:episode>52</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-50-deployment-tools-and.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Sandbox Types and the Release Pipeline</title>
+      <description>PD1 exam topic 49. How Developer, Developer Pro, Partial Copy, and Full sandboxes differ from each other and from scratch orgs, and which one belongs at each stage of a Salesforce release pipeline.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-49-environments-and-sandbox-types.mp3" length="2978866" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-49-environments-and-sandbox-types</guid>
+      <pubDate>Thu, 05 Nov 2026 00:00:21 +0000</pubDate>
+      <itunes:title>Sandbox Types and the Release Pipeline</itunes:title>
+      <itunes:summary>PD1 exam topic 49. How Developer, Developer Pro, Partial Copy, and Full sandboxes differ from each other and from scratch orgs, and which one belongs at each stage of a Salesforce release pipeline.</itunes:summary>
+      <itunes:duration>0:03:06</itunes:duration>
+      <itunes:episode>51</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-49-environments-and-sandbox-types.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Debugging Async Jobs and Flows</title>
+      <description>PD1 exam topic 48. How to find and diagnose failed Batch, Queueable, Future, Scheduled, and Flow runs in Salesforce using Apex Jobs, AsyncApexJob, abortJob, flow error emails, and Flow debug mode.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-48-monitoring-and-debugging.mp3" length="2949145" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-48-monitoring-and-debugging</guid>
+      <pubDate>Wed, 04 Nov 2026 23:59:38 +0000</pubDate>
+      <itunes:title>Debugging Async Jobs and Flows</itunes:title>
+      <itunes:summary>PD1 exam topic 48. How to find and diagnose failed Batch, Queueable, Future, Scheduled, and Flow runs in Salesforce using Apex Jobs, AsyncApexJob, abortJob, flow error emails, and Flow debug mode.</itunes:summary>
+      <itunes:duration>0:03:04</itunes:duration>
+      <itunes:episode>50</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-48-monitoring-and-debugging.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Which Developer Tool Does What</title>
+      <description>PD1 exam topic 47. How Salesforce DX, the sf CLI, VS Code, the Developer Console, and Workbench divide the work, and how to pick the right one when an exam question asks which tool performs a task.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-47-developer-tools-salesforce-dx.mp3" length="2658373" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-47-developer-tools-salesforce-dx</guid>
+      <pubDate>Wed, 04 Nov 2026 23:58:57 +0000</pubDate>
+      <itunes:title>Which Developer Tool Does What</itunes:title>
+      <itunes:summary>PD1 exam topic 47. How Salesforce DX, the sf CLI, VS Code, the Developer Console, and Workbench divide the work, and how to pick the right one when an exam question asks which tool performs a task.</itunes:summary>
+      <itunes:duration>0:02:46</itunes:duration>
+      <itunes:episode>49</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-47-developer-tools-salesforce-dx.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Debug Logs and Trace Flags</title>
+      <description>PD1 exam topic 46. How trace flags and debug levels capture exactly one user&#x27;s Apex transaction, how to read the debug, query, and limit lines in the log, and where the size caps and checkpoints fit in.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-46-debug-logs-and-trace-flags.mp3" length="2929892" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-46-debug-logs-and-trace-flags</guid>
+      <pubDate>Wed, 04 Nov 2026 23:58:20 +0000</pubDate>
+      <itunes:title>Debug Logs and Trace Flags</itunes:title>
+      <itunes:summary>PD1 exam topic 46. How trace flags and debug levels capture exactly one user&#x27;s Apex transaction, how to read the debug, query, and limit lines in the log, and where the size caps and checkpoints fit in.</itunes:summary>
+      <itunes:duration>0:03:03</itunes:duration>
+      <itunes:episode>48</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-46-debug-logs-and-trace-flags.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Running Tests and Code Coverage</title>
+      <description>PD1 exam topic 45. Why green tests can still block a production deployment, what Salesforce actually counts as coverage, and how the 75 percent rule changes depending on how you deploy.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-45-running-tests-and-code-coverage.mp3" length="2908147" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-45-running-tests-and-code-coverage</guid>
+      <pubDate>Wed, 04 Nov 2026 23:57:38 +0000</pubDate>
+      <itunes:title>Running Tests and Code Coverage</itunes:title>
+      <itunes:summary>PD1 exam topic 45. Why green tests can still block a production deployment, what Salesforce actually counts as coverage, and how the 75 percent rule changes depending on how you deploy.</itunes:summary>
+      <itunes:duration>0:03:01</itunes:duration>
+      <itunes:episode>47</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-45-running-tests-and-code-coverage.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Apex Tests for Triggers, Async, Callouts, and Sharing</title>
+      <description>PD1 exam topic 44. How to test Apex triggers in bulk, force asynchronous jobs to run, mock callouts, drive a Visualforce controller, and use runAs for sharing without mistaking it for a permissions check.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-44-testing-triggers-controllers.mp3" length="2837903" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-44-testing-triggers-controllers</guid>
+      <pubDate>Wed, 04 Nov 2026 23:56:59 +0000</pubDate>
+      <itunes:title>Apex Tests for Triggers, Async, Callouts, and Sharing</itunes:title>
+      <itunes:summary>PD1 exam topic 44. How to test Apex triggers in bulk, force asynchronous jobs to run, mock callouts, drive a Visualforce controller, and use runAs for sharing without mistaking it for a permissions check.</itunes:summary>
+      <itunes:duration>0:02:57</itunes:duration>
+      <itunes:episode>46</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-44-testing-triggers-controllers.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Why Your Apex Test Can&#x27;t Find Any Data</title>
+      <description>PD1 exam topic 43. Why Apex tests run in an empty org by default, and how to feed them data with inline inserts, a testSetup method, Test.loadData, and Test.getStandardPricebookId instead of SeeAllData.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-43-test-data-strategies.mp3" length="2755871" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-43-test-data-strategies</guid>
+      <pubDate>Wed, 04 Nov 2026 23:56:19 +0000</pubDate>
+      <itunes:title>Why Your Apex Test Can&#x27;t Find Any Data</itunes:title>
+      <itunes:summary>PD1 exam topic 43. Why Apex tests run in an empty org by default, and how to feed them data with inline inserts, a testSetup method, Test.loadData, and Test.getStandardPricebookId instead of SeeAllData.</itunes:summary>
+      <itunes:duration>0:02:52</itunes:duration>
+      <itunes:episode>45</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-43-test-data-strategies.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Apex Unit Test Fundamentals</title>
+      <description>PD1 exam topic 42. How Apex tests seal off the org, why Test.startTest and Test.stopTest matter, and why coverage without assertions proves nothing.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/pd1-42-apex-unit-test-fundamentals.mp3" length="2860862" type="audio/mpeg"/>
+      <guid isPermaLink="false">pd1-42-apex-unit-test-fundamentals</guid>
+      <pubDate>Wed, 04 Nov 2026 23:55:38 +0000</pubDate>
+      <itunes:title>Apex Unit Test Fundamentals</itunes:title>
+      <itunes:summary>PD1 exam topic 42. How Apex tests seal off the org, why Test.startTest and Test.stopTest matter, and why coverage without assertions proves nothing.</itunes:summary>
+      <itunes:duration>0:02:58</itunes:duration>
+      <itunes:episode>44</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/pd1-42-apex-unit-test-fundamentals.txt" type="text/plain"/>
+    </item>
     <item>
       <title>Three Attacks Your Apex Has to Stop</title>
       <description>PD1 exam topic 41. SOQL injection, cross-site scripting, and cross-site request forgery walked through on one Visualforce page, plus how to make Apex respect object and field permissions.</description>

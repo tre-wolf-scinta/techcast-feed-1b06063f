@@ -1,0 +1,17 @@
+Debugging Async Jobs and Flows
+
+Priya's nightly batch job was supposed to renew fifty thousand contracts overnight. At eight in the morning the records are untouched, and nobody saw an error. So where does she look?
+
+Think of an airport departure board. Every flight gets one row with a status, boarding, delayed, or cancelled, and if it's cancelled, a short reason. You don't go find the plane. You find the row. Salesforce keeps the same kind of board for every asynchronous job, and the first debugging step is reading the row, not rerunning the job.
+
+That board lives in Setup under Apex Jobs. Every Batch, Queueable, Future, and Scheduled Apex job gets an entry showing its type, the class, when it was submitted, its status, how many batches were processed, and how many failed. Priya opens it and finds her job marked Failed, with one batch processed and the reason in the Status Detail column: a validation rule blocked the update.
+
+Each row on that page is a record of the AsyncApexJob object, so she can also query it from Apex or the Developer Console. The fields worth knowing are Status, which is one of Queued, Holding, Preparing, Processing, Completed, Failed, or Aborted, plus JobType, NumberOfErrors, JobItemsProcessed, TotalJobItems, and ExtendedStatus, which holds the error message. The ID returned by Database.executeBatch or System.enqueueJob is that record's ID, so she logs it when she submits and looks it up later.
+
+Now suppose the job is still running and chewing through bad data. She stops it by calling System.abortJob with the job ID. That works for Batch and Queueable jobs, and for Scheduled jobs if she passes the CronTrigger ID instead. Future methods are the exception: they return no ID, so they can't be aborted. The Scheduled Jobs page in Setup lists every scheduled job with its next run time, and its delete action does the same thing as abortJob.
+
+Flows have their own board. When a record-triggered flow hits an unhandled fault, it stops, rolls back the transaction, and sends a flow error email, by default to the admin who last modified the flow. The email names the element that failed and the error text. In Process Automation Settings she can redirect those emails to the Apex Exception Email recipients, the same list that receives unhandled Apex exceptions, so every failure lands in one inbox. Interviews that are waiting on a Pause element or that failed show up under Paused and Failed Flow Interviews, where she can see what they're waiting for and delete the stuck ones.
+
+To reproduce the problem, she opens the flow in Flow Builder and clicks Debug. Debug mode runs the flow against a record she picks, shows every element it visits and every variable's value along the way, and can run in rollback mode so nothing gets saved.
+
+Rule of thumb: when async work goes quiet, read the row first. Apex Jobs and AsyncApexJob for Apex, the error email and Paused and Failed Flow Interviews for flows, abortJob to stop the bleeding, and debug mode to replay it.

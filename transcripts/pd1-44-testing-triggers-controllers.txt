@@ -1,0 +1,19 @@
+Apex Tests for Triggers, Async, Callouts, and Sharing
+
+Why does Apex with 90 percent coverage still break the first week in production? Because coverage proves the code ran, not that it survives bulk loads, async timing, outside systems, or another user's permissions.
+
+Maya owns an Account trigger. On insert it sets a risk rating, then enqueues a Queueable that calls an external credit API and writes the score back. A Visualforce page displays the score, and a sharing rule controls which reps can see the record.
+
+Think of a flight simulator. The pilot flies a full route with a full passenger load, but the airport outside the window is painted on. Apex tests work the same way: the platform walls your test off from the real world, so you stage the outside yourself, and you load the plane the way it flies in production.
+
+Start with the trigger. The temptation is to insert one Account and assert the rating. But triggers process records in chunks of up to 200, so the test should insert a list of 200 Accounts in a single DML statement and assert on all of them. If a query or DML hides inside a loop, this test catches it, because the limits exception fires before the asserts do.
+
+Now the Queueable. The insert enqueues the job, but when does it run? That is what startTest and stopTest on the Test class are for. Anything enqueued between them runs synchronously when stopTest is called, so asserts placed after stopTest see the finished work. And startTest hands the code under test a fresh set of governor limits, so setup data does not eat into them.
+
+But the job makes a callout, and test methods cannot make real HTTP calls. This is the painted airport. Maya writes a class that implements HttpCalloutMock, returns a canned response carrying a score of 720, and registers it with setMock before startTest. For a SOAP service generated from a WSDL, the interface is WebServiceMock instead. Without a mock, the callout throws and the test fails.
+
+The Visualforce controller has no browser in a test. Maya calls setCurrentPage with a reference to the page, puts the Account id into the page parameters, constructs the controller (through a StandardController if the page uses one), calls the action method, and asserts on the result.
+
+Finally, sharing. Test code runs in system mode and sees everything. To prove a rep in another role cannot see Maya's Account, she wraps the query in the runAs method on the System class with that user and asserts it returns nothing. Here is the exam trap: runAs enforces record sharing only. It does not enforce object permissions or field-level security, so it cannot prove that a profile lacks delete access. For that, assert on the describe results instead.
+
+Load the trigger with 200, bracket async in startTest and stopTest, paint the outside world with a mock, drive the controller through setCurrentPage, and remember that runAs tests who can see a record, never who is allowed to touch it.

@@ -1,0 +1,15 @@
+Running Tests and Code Coverage
+
+Your change set just failed to deploy to production, and the error says code coverage is at 71 percent. Every test passed. So what is Salesforce actually measuring, and why did green tests not save you?
+
+Picture a fire drill in an office building. The inspector does not care whether anyone checked the extinguishers. The inspector only records which hallways the drill actually walked through. Code coverage works the same way. It counts which lines of Apex ran while your tests executed, not whether your tests checked anything. An assertion is the extinguisher check. Coverage is the hallway.
+
+Here is how Priya hits this. She writes an opportunity trigger that calls a handler class with a hundred lines of logic. Her test inserts one opportunity and asserts nothing. When she runs it from the Developer Console, the test passes and the trigger shows coverage, because inserting the record fired the trigger and the handler ran. Only executable lines count, so comments and blank lines are ignored, and the test class itself is left out of the math entirely. Her hundred line handler counts. Her test class does not.
+
+Now she deploys. Production applies two rules. First, the org-wide total across all classes and triggers must be at least 75 percent, computed from the tests that run during the deployment. Second, every trigger needs some coverage, even a single line. Priya's handler has a branch for closed won deals that her one opportunity never reached. Forty lines never executed. Combined with older uncovered code already in the org, the total lands at 71, and the deploy stops. The fix is a second test that inserts a closed won opportunity, so the drill walks that hallway too.
+
+Where she runs the tests matters less than how. The Developer Console, the Apex Test Execution page in Setup, VS Code, and the Salesforce CLI command sf apex run test all drive the same platform test runner. So do the Tooling API and the Metadata API, which is what a deployment uses under the hood. The real split is synchronous versus asynchronous. An asynchronous run queues a job and you poll for results, which is how you run a whole org. A synchronous run makes you wait and hands back results as soon as it finishes, and it can only run tests from a single class. Pick async for the full suite and sync for the class you are editing.
+
+One trap for the exam. If Priya deploys with the run specified tests option, the 75 percent rule changes shape. Each class and trigger in the package must individually reach 75 percent, not the org as a whole. And coverage is not a quality score. A test with no assertions can give you 100 percent coverage and catch nothing. Salesforce enforces the percentage. You enforce the assertions.
+
+Coverage counts executed lines in non-test code, production demands 75 percent overall plus some coverage on every trigger, and only your assertions prove any of it works.
