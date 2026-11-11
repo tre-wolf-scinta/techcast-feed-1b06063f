@@ -1,0 +1,33 @@
+Anatomy of an Opportunity Product
+
+An opportunity product has five money related numbers on it. List price, sales price, subtotal, discount, and total price. Only some of them can be written, and if you write the wrong pair on insert, Salesforce rejects the record. So which numbers are inputs and which are derived?
+
+Picture a repair estimate from a car mechanic. Each line names a part from the parts catalog, how many, the catalog price, the price the shop is charging you, and the line total. If the shop knocks ten percent off for a returning customer, that shows on the line too. The estimate's grand total is just the lines added up. An opportunity product is one line of that estimate, and the opportunity amount is the grand total.
+
+Now the fields, with a running example. Maya sells a monthly package to a company with three locations. The price book entry lists it at three hundred dollars.
+
+List price is copied from the entry. Three hundred. It's read only on the line, and it records where Maya started.
+
+Quantity is an input. Three.
+
+Sales price, the unit price field in the API, is an input. It defaults to the list price, and Maya can change it. She sets two hundred eighty.
+
+Subtotal is derived. Quantity times sales price. Eight hundred forty.
+
+Discount is an input, and it's a percentage, not an amount. Maya adds ten percent.
+
+Total price is derived. Subtotal minus the discount. Seven hundred fifty six.
+
+That's the whole chain. Three hundred listed, two hundred eighty agreed, three units, ten percent off, seven hundred fifty six on the line.
+
+But there's a twist for code. On insert, you may set the sales price or the total price, but never both. Set the total, and Salesforce works backwards to a sales price by dividing by quantity. Set both and the insert fails. Integrations trip on this when they try to be helpful and send every number they have.
+
+Next, the roll up. Once a deal has even one line, the opportunity amount is the sum of the line totals and becomes read only. Saving a line changes the amount, which means the opportunity itself gets saved again, and every flow and trigger on the opportunity runs too. Insert ten lines one at a time and you've fired the opportunity's automation ten times. Insert them in one list and it runs once.
+
+A few more fields earn their place. Service date says when the line starts, which matters the moment a deal has items starting on different days. Description holds free text per line. Product id and product code are carried on the line, so reports and queries don't need to reach through the entry.
+
+And notice what's missing. The line has no owner. You can see a line if you can see its opportunity, and edit it if you can edit the opportunity. Security on lines is security on the deal.
+
+Here's the craft beat. Keeping list price and sales price side by side on every line means discounting is never lost. You can always ask how far below list a deal landed, for every line ever sold, without a separate audit table.
+
+So remember the estimate. Catalog price in, agreed price and quantity in, discount in, and everything else is arithmetic Salesforce does for you.

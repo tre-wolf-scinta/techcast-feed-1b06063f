@@ -1,0 +1,23 @@
+The Opportunity as a Container for Lines
+
+How do you write a validation rule on an opportunity that says "this deal must include exactly one core subscription"? A validation rule can't loop over child records. It only sees the record being saved. So how does the opportunity know what's inside it?
+
+Picture a shopping cart that belongs to one store. Everything in it was picked off that store's shelves at that store's prices. If you decide to switch stores, you can't just relabel the cart. You empty it and start over. And at the checkout, the total isn't something you type in. It's whatever is in the cart. That's how an opportunity behaves once it has lines.
+
+The store is the price book. The opportunity has a field called price book id, and it can hold exactly one. The first line you add sets it if it isn't set already. After that, every line must come from that book. Try to change the book on a deal that already has lines, and the screen warns you that the products will be removed. Through the API, the change is simply refused until the lines are gone.
+
+The checkout total is the amount. With lines present, the amount is the sum of the line totals and it's read only. Integrations that used to write the amount directly start failing the day someone adds products, which is a classic surprise during a rollout.
+
+There's also a checkbox called has opportunity line item. It flips to true when the first line arrives. It's the cheapest test you have for "does this deal have products at all," and it works in formulas, list views, and flow entry conditions.
+
+Now, back to the validation question. The answer is roll up summary fields. The opportunity product sits under the opportunity in a master detail style relationship, so you can build roll up summaries on the opportunity that count, sum, or find the minimum or maximum of line fields, with a filter. Count of lines where product family equals core subscription. Sum of total price where family equals add on. Minimum discount. Once those exist, the validation rule is easy. Core subscription count must equal one. The roll up does the looking inside the cart, and the rule reads the result.
+
+Here's the number to remember. Roll up summary fields are capped per object, by default twenty five, and that cap can be raised by Salesforce support. That's plenty, but it is finite, so design a few general ones, like counts per family, rather than one per product.
+
+And a caution for developers. Roll ups recalculate when lines change, which saves the opportunity again. So a line change can wake up the opportunity's flows, triggers, and validation rules. A rule that fires on every opportunity save will now also fire when someone edits a line, sometimes with an error message that makes no sense from the line's screen.
+
+Two more fields shape everything built on top. Type, like new business or renewal, is a picklist anyone can change. Record type is different, because it controls the stage path through a sales process, the page layout, and the picklist values a user sees. Type describes the deal. Record type decides how the deal is worked.
+
+Here's the craft beat. The opportunity doesn't store what was sold. It summarizes it. The lines are the truth, and the opportunity is a view of them.
+
+So when you want a rule about what's in a deal, don't look at the opportunity's fields. Teach the opportunity to count its own cart.

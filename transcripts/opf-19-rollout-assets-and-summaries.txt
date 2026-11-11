@@ -1,0 +1,27 @@
+Rollout 8: What the Customer Owns
+
+If you wanted to know whether a customer has the experience add-on today, where would you look? The checkbox on the account? The yes or no field on the opportunity? An asset? The Stripe subscription? There are at least four answers, and on a bad day, they disagree.
+
+Picture the directory board in an office building lobby. It lists every tenant and their floor. Visitors trust it, delivery drivers trust it, and nobody walks the halls to check. But a well run building never lets anyone edit the board directly. When a tenant moves in or out, the lease changes first, and the board is updated from the lease. The board is a view of the truth, not the truth. Our account summary fields are that lobby board. Dozens of flows read them, and so do the outside reporting scripts and the product platform's database. The danger is that today, some of them are written directly, from several places.
+
+Let's start with what's good. The asset layer works. An asset is one delivered product or service on an account. When an asset is created, a work item is created for the team that builds or configures it, and the asset's type decides which team. Asset status changes flow back to the account. That's a real fulfillment rail, and the website product already rides it.
+
+But there are two sources of truth feeding it. Core products produce assets through a mapping object that says which product makes which assets. The two add ons don't. Their assets are created from the yes or no fields on the opportunity, which come from VanillaSoft and bypass the lines entirely. So a deal can say "add on sold" in a field with no line, or have a line with no field, and only one of those produces an asset.
+
+So the first move is one path. Every asset comes from a line, through the mapping. Give the experience add on its price book entry, add it to the mapping, and have the VanillaSoft flow create an add on line instead of only setting the yes or no field. Keep the field for a while as a check, flag any deal where the two disagree, and retire the field once they stop disagreeing.
+
+The second move is the shared key. Each asset stores the id of the opportunity product that created it. Each Stripe item, from the last episode, stores the same line id and product code. Now line, asset, and billing item can be walked in any direction.
+
+One quiet risk deserves a sentence. The mapping rows are data, not metadata, so they aren't in source control and don't deploy with the code. Consider moving them to a custom metadata type, so the mapping is versioned and travels with deployments.
+
+Now the lobby board. The account summary fields, like monthly revenue, contract end, package, and the has this product checkboxes, should stay. Too many consumers read them to remove them. But they should become derived. A single piece of automation recalculates them from the account's active assets whenever an asset changes, and nothing else writes them. The consumers don't change at all. They just start reading a board that's always generated from the leases.
+
+That's also what makes single product cancellation possible. Today, cancellation assumes the whole account. In the new model, a cancellation request names the product. Fulfilling it ends that one asset, removes that one Stripe item, and the summary recalculates. If no active assets remain, the account is churned. So churn becomes two numbers. Product churn, which is an asset ending. And customer churn, which is the last asset ending. Both are honest, and both fall out of the same records.
+
+Multi-location needs a decision. Today each location is its own account under a parent, with one deal per location. For cross-sell, ask where the product is delivered. A website for one location belongs on that location's account. Something that serves the whole business belongs on the parent. Write that rule per product, ideally as a field on the product, so reps don't have to guess.
+
+Here's the number. Four. Four places that can claim what a customer owns today. The target is one, assets, with everything else derived from it.
+
+The craft beat is that consumers never notice. The flows and scripts that read the account keep working, because the board looks the same. Only its source changed.
+
+So next time someone wants a new checkbox on the account, ask one question. Is it a fact, or a view of the assets?

@@ -1,0 +1,23 @@
+Discounts as Data, Not Just a Lower Price
+
+Two deals both closed at two hundred seventy dollars a month for the same package. On the first, the rep lowered the sales price. On the second, the rep left the sales price at list and typed a ten percent discount. Same revenue. But a report of "average discount" says the first deal had none. So which number is lying?
+
+Neither. The word discount is a concept, not a field. Salesforce gives you more than one place to put it, and if your reps use different places, your reporting quietly splits in two.
+
+Picture buying a car. The window sticker shows the manufacturer's price. The salesperson negotiates you down. A good dealership's paperwork shows both numbers, the sticker and the deal, plus any rebate as its own line. A sloppy one just writes the final price. Six months later, nobody can say how much was given away. In Salesforce, the sticker is the list price on the line, and the deal is what the customer pays.
+
+So where can a discount hide? Three places. One, a lower sales price than list. Two, the discount percent field on the line, applied after quantity. Three, outside Salesforce entirely, like a coupon added later in the billing system. The first two are visible if you look. The third is invisible.
+
+Here's the number that fixes reporting. Effective discount. It's one minus the line's total price divided by list price times quantity. That formula catches both of the first two styles at once. Build it as a formula field on the opportunity product, and every line answers the same question in the same way, no matter how the rep typed it. With a list of three hundred, quantity one, and a total of two hundred seventy, the effective discount is ten percent on both of those deals.
+
+Now, enforcement. Most companies have a floor, a lowest price a rep can offer without a manager. Where can Salesforce enforce it?
+
+The simplest place is a validation rule on the line. Store the floor somewhere the line can see it, usually a custom field on the product or on the price book entry, and refuse a sales price below it. That's a hard wall, with no exceptions.
+
+The more realistic place is an approval process. Roll the deepest effective discount up to the opportunity, using a maximum roll up, and when it crosses a threshold, the deal needs approval before it can move forward. The rep can still sell below the floor, but only with a recorded yes from a named manager. That's a gate, not a wall.
+
+And there's a middle option. Lock the sales price field for reps entirely and allow discounting only through the percent field, so every discount is a separate, visible number. It's simple, but it fights with reps who think in final prices.
+
+Here's the craft beat. Keeping list price, sales price, and discount as separate numbers costs nothing at entry time, but it means every closed deal permanently records how far from list it landed. That record is what lets a pricing team ask whether discounts are actually closing more deals.
+
+So next time someone says a discount was given, ask the only question that matters. Where was it written down?

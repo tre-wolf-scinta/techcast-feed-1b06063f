@@ -1,0 +1,27 @@
+Rollout 5: Getting Paper Out of Salesforce
+
+A Customer Success rep builds a cross-sell deal in Salesforce. The products are right, the prices are approved, and the customer says yes on the phone. Now what? Salesforce has never generated a contract. Not once. The deal is ready, and there's no way to get paper out for a signature.
+
+Today, paper is born in VanillaSoft's world. The rep triggers the send, PandaDoc builds the contract from its templates, collects the signature, and on card deals it also captures the card and creates the Stripe customer. Then the signed PDF is pulled into Salesforce and attached to the deal. And here's the detail that matters. The way the signed document finds its deal is the VanillaSoft contact id.
+
+Picture checked luggage at an airport. Your bag travels separately from you, through belts and carts and holds, and it finds its way back to you because of the tag. The tag carries a flight number and a code that the airline's system understands. Today, every contract travels with a VanillaSoft tag. A deal born in Salesforce has no VanillaSoft id, so its signed contract is a bag with a tag nobody can read. It'll land somewhere, but not on the right deal.
+
+So there are two problems here, and they're separable. How do we generate the paper? And how does the signed paper find its way home?
+
+Start with generating it. Option one is to adopt standard quotes now. Reps build a quote from the deal's lines, sync it, and the contract is generated from the quote. That gives you expiration dates, multiple options per deal, and a clean record of exactly what was offered. But it adds an object, its lines, page layouts, permissions, and sync behavior to test, all before the first cross-sell can close.
+
+Option two is to send a priced contract straight from the opportunity's lines. PandaDoc can be fed from Salesforce records, so the pricing table in the contract is built from the opportunity products, and the rep sends it from the deal. No new object. The lines are the offer. What you give up is multiple options per deal and a frozen record of what was offered, apart from the signed PDF itself.
+
+The recommendation is option two first, and quotes later. Customer Success cross-sell is mostly one product, one price, one option. The value of quotes is presenting alternatives, and that need shows up when sales moves into Salesforce with real negotiation. Before building, confirm exactly which Salesforce objects your PandaDoc setup can map into its pricing tables, and whether custom fields like prepaid months come across.
+
+Now the tag. Every document sent from Salesforce should carry the Salesforce opportunity id as its key. The step that attaches signed PDFs then matches in order. If the document has an opportunity id, use it. If it only has a VanillaSoft id, use the old match. If it has neither, flag it for a person. Both lanes keep working, and over time, the old tag simply stops appearing.
+
+There's a hidden trap in the card step. On card deals today, signing also captures the card and creates a Stripe customer. A cross-sell customer already has a Stripe customer, with a payment method that's already working. So the cross-sell contract template must not create a second Stripe customer, or billing ends up with two customer records for one account and a guard that can't tell which is real. The existing customer template should skip card capture, or at most offer to update the card on the existing Stripe customer.
+
+And the close gate needs a version of itself for the new lane. Today it checks for a signed contract, a linked payment profile, and billing details on the account. For a cross-sell, the payment profile and billing details already exist, so the real gate is the signed contract with the right opportunity id attached.
+
+Here's the number. One key per document. The day every contract carries exactly one Salesforce id, the matching logic becomes a lookup instead of a guess.
+
+The craft beat is that the join key is the quiet hero of the current design. It's why the pull based close pipeline works when things arrive out of order. Keeping that pattern, and just changing which id is written on the tag, preserves everything that's reliable about it.
+
+So before arguing quotes versus no quotes, ask the question that decides what breaks first. When the signature comes back, how does it know where it belongs?

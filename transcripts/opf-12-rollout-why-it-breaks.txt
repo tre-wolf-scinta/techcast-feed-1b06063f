@@ -1,0 +1,25 @@
+Rollout 1: Built for One Motion
+
+Every deal in our org has line items. Billing is built from them. Fulfillment reads them. So on paper, we already have an opportunity product model. Then why can't a Customer Success rep sell a website to an existing customer tomorrow?
+
+Because having line items is a label, not a capability. Our lines aren't a model of what was sold. They're a translation of three text values that arrive from somewhere else.
+
+Picture a car factory that has built one model for ten years. Every station on the line assumes the same frame. The welding robots know where the joints are. The paint booth knows the shape. The final inspection checks for exactly one engine. Now the company wants to build a small van on the same line. Changing the paint color is easy. But every station has a hidden assumption about the frame, and each one has to be found and retooled. That's our org. The station assumptions are our flows, validation rules, the billing mapper, and the reporting scripts, and the frame they all assume is one new customer buying one core subscription.
+
+Let's walk the line the way a deal does today. A sales rep works the lead in VanillaSoft. The rep picks the price, the prepay option, the setup fee, and the payment method there. PandaDoc collects the signature. Only then does Salesforce hear about the deal, and it arrives already sold. A flow takes three text values, the sold monthly price, the prepay choice, and the setup fee, and builds the lines. Nobody in Salesforce ever composes a deal from products.
+
+So look at what those lines really carry. The core package line's sales price is whatever number was typed upstream. There's no list price behind it in any meaningful sense, because the price book prices are placeholders. Prepay is a zero dollar product where quantity means months. And the two add ons don't depend on the lines at all, because yes or no fields on the opportunity drive their fulfillment. So we have two sources of truth for what was sold, and they can disagree.
+
+Now try to run a cross-sell deal through that line. A Customer Success rep opens a deal on an existing subscriber to sell a website. Here are the stations that break, the ones checked this week first.
+
+There are no opportunity record types, so this deal gets the same stages, layout, and rules as new business. The billing mapper expects exactly one core package line, and this deal has none, so it's rejected. The billing handoff refuses any customer who already has a live subscription, and every cross-sell customer has one. Salesforce can't generate a contract, so there's no paper to sign. And the document to deal match uses the VanillaSoft contact id, which a Salesforce born deal doesn't have.
+
+Then the ones from earlier in the year that still need confirming. A rule that blocks a new deal on an existing subscriber. A rule that requires a core package on every deal. A close gate and a close fan out that only watch new business and winback types, so a different type either closes with no checks, or worse, triggers new customer setup on an existing customer. And the new sale alert, which feeds the round robin that assigns an account specialist, could reassign the specialist on an existing account.
+
+Here's the number to carry through this whole series. One. One product per account. That assumption sits in the billing mapper, the account summary fields, the reporting scripts, and the product platform's database. Every design question we'll work through is a version of the same question: where does one have to become many, and who reads it when it does?
+
+And here's what's worth keeping, because not everything is broken. The close pipeline is pull based, self healing, and monitored. Lines already exist on every deal, and billing trusts them. The asset layer is a working fulfillment rail. And the billing handoff refuses to guess. That last one is the craft beat of the current system. A strict mapper that flags anything it doesn't understand is exactly what you want while the model is changing underneath it. It turns silent wrong charges into visible questions.
+
+So the work isn't to build a product model from scratch. It's to retool each station so it can handle a second frame, while the first one keeps rolling off the line every day.
+
+So the question to bring to every design meeting is simple. Which station assumes one, and what breaks when it sees two?

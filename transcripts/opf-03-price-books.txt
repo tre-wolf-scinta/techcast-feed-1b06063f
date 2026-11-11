@@ -1,0 +1,21 @@
+Price Books and the Standard Price Rule
+
+Why does Salesforce refuse to put a product in your new partner price book, even though the product is active and the price book is active? The error says the product needs a standard price first. It feels like bureaucracy. It's actually the rule that holds the whole pricing model together.
+
+Picture a hotel. Every room has a rack rate, the official price posted at the front desk. Then the hotel has a corporate rate, a member rate, and a travel agent rate. Each of those is a separate rate sheet, but none of them can exist for a room that has no rack rate. The rack rate is the reference point every other rate is measured from. In Salesforce, the rack rate sheet is the standard price book, and the other rate sheets are custom price books.
+
+The API name is Pricebook two. Every org has exactly one standard price book. It's created for you, it can't be deleted, and it's flagged with a checkbox called is standard. Every product you intend to sell gets an entry there first, with a standard price. Only then can that product appear in any custom price book.
+
+Custom price books are where context lives. A book for partners, a book for a region, a book for a promotion that ends in March. Each one has a name, a description, and an active flag. Deactivate a book and nobody can choose it on a new deal, but deals that already use it keep their lines.
+
+So why insist on the standard price first? Because it gives every product one guaranteed reference price in one known place. Reports can always compare a sold price to the standard list. And inside a custom book, an entry can say "use the standard price" instead of carrying its own number, so a price change made once flows to every book that opted in.
+
+Now the developer detail that bites in tests. In an Apex test, the standard price book isn't visible as a normal record you can query without seeing all data. So Salesforce gives you a method that returns its id directly, called get standard price book id on the Test class. You use that id to insert the standard entry, then you build any custom book and its entries on top. Forget the standard entry and the custom entry insert fails with that same "needs a standard price" error.
+
+Next, access. Price books have their own sharing setting, with three levels. No access hides them. View only lets people see the prices. Use lets people actually pick that book on a deal. Set the default to view only and share specific books as use with specific groups, and you've quietly built a guardrail: a support rep can read the partner prices but can't sell from them.
+
+Here's the number to hold. One. An opportunity can point at exactly one price book. Every line on that deal must come from that book. Mixing a partner price and a retail price on one deal isn't possible by design, and that constraint is a feature. The book you choose is the pricing context of the deal.
+
+The craft here is the reference point. Every negotiated rate, every discount, every partner deal is measured against one standard number that always exists.
+
+So when that error appears, read it as the model protecting you. No rack rate, no room on any rate sheet.

@@ -1,0 +1,25 @@
+Rollout 3: A Catalog You Can Measure Against
+
+The core package has been sold at more than twenty different monthly prices. Salesforce knows every one of those prices. What it can't tell you is how far below list any of them were. So did discounting close those deals, or did it just give money away?
+
+Picture measuring sticks with a ruler that has no markings. You can lay two sticks side by side and see that one is shorter. But you can't say by how much, and you can't compare today's stick to last year's. Our price book is that ruler. It has numbers on it, but they're placeholders that nothing depends on. Every sold price is a stick with nothing to measure it against.
+
+Let's be precise about today. Reps start at a published list price in their heads, discount to close, and type the result into VanillaSoft. That number becomes the core package line's sales price. The list price on the line comes from a placeholder entry, so the gap between them means nothing. Product codes and families are almost all blank. And as of September, the experience add-on didn't even have a price book entry, so it couldn't be a line at all.
+
+There are two ways forward. Option one, keep storing only the sold price. It's simple, nothing upstream changes, and billing already works from it. But discounts stay invisible, the floor stays a human habit, and any approval logic has nothing to compare against. Option two, real list prices in the standard price book, with the discount as data on every line.
+
+Option two is the recommendation, and here's the part that makes it cheap. The flow that builds lines from VanillaSoft's three values doesn't have to change much. It already picks a price book entry and sets the sales price to the sold amount. The moment the entry carries the real list price, every new line automatically records both numbers, list and sold. The acquisition lane starts producing discount data without anyone in sales doing anything differently. Add the effective discount formula on the line, and reporting on discounting starts the day the prices are fixed.
+
+Then comes the catalog cleanup that every integration will lean on. Give every live product a stable product code: the core package, the setup fee, the three prepay products if they survive, the experience add-on, and the website. Use a small set of families, like core subscription, add on, one time fee, and prepay. Today the billing side has a small mapping that says which Stripe product each Salesforce product bills under. Product codes turn that mapping into a lookup by code instead of by record id, which survives a sandbox refresh and a product rename.
+
+Now the floor. Today it's enforced by people. Once Customer Success reps compose deals in Salesforce, the system can enforce it. Here are the three placements, from softest to hardest. A warning, like a formula that flags lines below floor on a report, with no blocking. An approval process, where the deepest effective discount rolls up to the opportunity, and crossing the floor sends the deal to a named manager before it can be won. Or a validation rule that refuses any sales price below the floor. For the existing customer lane, the approval is the right fit. Save offers and retention pricing sometimes need to go below floor, and you want a recorded yes, not a wall. Store the floor as a custom field on the price book entry, next to the list price it belongs to.
+
+What about the acquisition lane? Its deals arrive already signed, so an approval there would be too late. Report on it instead, until sales moves into Salesforce and can be gated at the right moment.
+
+Here's the number to keep. Twenty. More than twenty distinct sold prices for one product. After this change, each of those becomes a measurable distance from one list price, and that turns a pile of numbers into a pricing story.
+
+The craft beat is that this is a data change, not a process change, for the people selling today. Fix the ruler and every measurement after it means something.
+
+And there's one open question for the team. Does the published list price change often? If it does, stamp the list price into a custom field on each line when it's created, so every old deal keeps the exact number it was measured against, no matter how the price book changes later.
+
+So before arguing about discounts, ask the only question that matters. Discounted from what?

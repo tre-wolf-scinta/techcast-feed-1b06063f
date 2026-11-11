@@ -1,0 +1,23 @@
+The Product Object: A Catalog, Not a Price Tag
+
+Two orgs both say they have a product catalog. One has fifteen products with names. The other has fifteen products with codes, families, and clean active flags. Only one of them can run billing, reporting, and fulfillment off that catalog. So what's the difference?
+
+A product name is a label, not a key. Names get renamed. Marketing changes "Pro Plan" to "Growth Plan" and every automation that matched on the name quietly stops matching.
+
+Think of a library. Every book has a title on the spine, but the library never finds a book by title. It finds it by the call number. Two editions can share a title and still have different call numbers, and a book can get a new cover without moving on the shelf. On the product object, the name is the spine and the product code is the call number.
+
+Here's what the object holds. The API name is Product two. The fields that matter are the name, the product code, the family, the description, an active checkbox, and a quantity unit of measure. There's also a stock keeping unit field, and two checkboxes that allow revenue and quantity schedules, which get their own episode.
+
+Product code is a plain text field. Salesforce does not force it to be unique, and that is the first trap. If you want it to behave like a key, you enforce that yourself, with a duplicate rule, a validation, or by mirroring it into a unique external id field. Once it's reliable, every system around Salesforce can agree on what was sold without matching on names. Billing maps a code to its own product. Fulfillment maps a code to the work that has to happen. Reports group by it.
+
+Family is a picklist. It's the shelf section in the library, the coarse grouping like core subscription, add on, or one time fee. Reports and validation rules love it, because "does this deal have a core subscription line" becomes a check on family instead of a list of product ids that someone has to keep updated.
+
+Now the active flag. Retired products should be deactivated, never deleted. A product with history sits under closed opportunities, assets, and old reports. Deactivating it hides it from new deals and keeps the past intact. Salesforce itself protects products that are already used on deals, so deleting one is never a clean option anyway. It's like a library withdrawing a book from circulation but keeping the record that you once borrowed it.
+
+So what does a product deliberately leave out? Price. The product says what something is. It never says what it costs, because cost depends on context, and context lives in price books.
+
+Here's a quick health check you can run in your head on any org. Count active products. Count how many have a blank product code. If that second number is anything above zero, nothing downstream can trust the catalog, and every integration ends up inventing its own private mapping table to cope.
+
+Which brings up the craft beat. A good catalog is boring on purpose. Stable codes, a small set of families, honest active flags, and no clever exceptions. It's boring so that everything built on top of it can be interesting.
+
+So next time someone says the catalog is fine, ask one question. If every product got renamed tomorrow, would anything break?

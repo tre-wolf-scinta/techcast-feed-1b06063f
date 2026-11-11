@@ -1,0 +1,31 @@
+Rollout 4: Prepay Is How You Pay, Not What You Buy
+
+We sell three prepay products. Prepay three months, prepay six months, prepay twelve months. Each one is a zero dollar line, and its quantity is the number of months. So here's a fair question. When a customer prepays, what did they buy that they wouldn't have bought otherwise?
+
+Nothing. Prepay is how you pay, not what you buy. It's a payment term wearing a product's clothes.
+
+Picture a parking garage that rents monthly spaces. Some drivers pay month by month. Some pay for six months up front, then go monthly. The space is exactly the same. The garage doesn't invent a new kind of parking space called "six month space." It writes the payment arrangement on the rental agreement. Our org did invent the six month space. And it worked, because the whole business sold one thing.
+
+Let's be fair to the current design before changing it. Modeling prepay as a line was clever under the constraints. VanillaSoft sends three text values, and the flow had to put prepay somewhere the billing mapper could read. A line was the one structure the mapper already parsed, so prepay became a line. The mapper's rule is clean: at most one prepay line, zero dollars, quantity equal to the month count. And a second flow copies the prepay value back up to the opportunity. It's consistent. It's just answering a question the product object was never meant to answer.
+
+So where does it break? Cross-sell. Imagine a customer who already pays monthly for the core package and now wants to prepay twelve months of a website. A single prepay line on the deal doesn't say which product it prepays. With one product per deal, that never mattered. With two, it's ambiguous. Quantity is also overloaded. On every other line, quantity means how many units. On these, it means months. Any report that sums quantity is now adding locations to months.
+
+Here are the three options.
+
+Option one, keep prepay as a product line. No migration, the mapper keeps working, and the ambiguity stays. You'd need a rule that a prepay line applies to the core package only, which just moves the one product assumption somewhere else.
+
+Option two, prepay as a term on the deal or on the line. A number field called prepaid months. On the opportunity it's simple, but it has the same ambiguity as option one once a deal holds two products. On the line, it's exact. The core package line says zero prepaid months, the website line says twelve. The mapper reads the field instead of hunting for a special product. Prepay leaves the catalog entirely.
+
+Option three, prepay as a billing schedule attribute. Salesforce records only the commercial term, and the billing system owns the mechanics. In Stripe, that means an up front invoice for the prepaid months, then the subscription bills monthly after that. This is where the mechanics belong anyway. But Salesforce still needs a field to tell billing what was agreed, so option three really sits on top of option two.
+
+So the recommendation is option two at line level, feeding option three. Prepaid months as a field on the opportunity product, and the billing handoff turns that into the right Stripe setup per item.
+
+Now the transition, because the acquisition lane can't stop. Teach the mapper to accept both shapes for a while. If a deal has a prepay product line, read it the old way. If a line has prepaid months filled in, read it the new way. If both appear, flag it for a person, which is the mapper's existing habit. Change the VanillaSoft flow to write the field instead of creating a prepay line. Once no new deals carry prepay lines, deactivate the three prepay products. Don't delete them, because closed deals still point at them.
+
+Here's the number. Three products become one field. And every report that sums quantity starts telling the truth.
+
+There's one open question for the business. Today prepay isn't a discount. A prepaid deal pays the monthly price times the months. If that ever changes, like two months free for paying a year up front, the field design handles it easily. The discount becomes an ordinary line discount, measured against list like any other.
+
+The craft beat is putting each fact where its meaning lives. What was bought belongs on the product. How it's paid belongs on the terms.
+
+So next time a new product is proposed, ask one question. Is this something the customer gets, or just a way they pay?

@@ -1,0 +1,21 @@
+Rollout 2: Two Lanes and a Fence
+
+How do you add a second kind of deal to an org where dozens of automations assume there's only one kind, without a single new business deal behaving differently on the day you ship?
+
+Picture a highway crew adding an express lane to a busy road. They don't paint the new lane and open it the same morning. First they put up the concrete barrier, while traffic keeps flowing in the old lanes. They check that nothing about the old lanes changed. Only then do they open the new one. The barrier comes first, because once two kinds of traffic share the road, every mistake becomes a collision. In our org, the barrier is fencing every existing automation to its own lane.
+
+Start with the lanes themselves. Today the opportunity has no record types. Everything keys on the Type field: new business, Revival for winbacks, and a few rarer values. Type is a description. Anyone with edit access can change it, and it says nothing about how the deal should be worked. Record type is different. It decides the sales process, which means the stage path, plus the page layout and which picklist values a user sees. So the proposal is two record types. One for acquisition, which is everything that arrives from VanillaSoft today, new business and winbacks. And one for existing customers, which is cross-sell and upsell worked by Customer Success.
+
+The acquisition lane barely changes for users. Deals still arrive from the integration user, already sold. The default record type for that integration user becomes acquisition, so nothing upstream has to send anything new. The existing customer lane gets its own stages, because those deals really are worked in Salesforce, from open to quoted to signed to won.
+
+Now the barrier, which is most of the work. Every flow, validation rule, trigger, and scheduled job on the opportunity gets inventoried, and each one gets an explicit lane. The close gate, which checks for a signed contract, a payment profile, and billing details, gets fenced to acquisition, and the existing customer lane gets its own close rules. The Closed Won fan out, which sets account status, creates the contract, builds assets, books the welcome call, and fires the billing handoff, gets fenced to acquisition too. A cross-sell customer must never be onboarded as if they were new. The rule that blocks a new deal on an existing subscriber, if it still exists, becomes acquisition only, since blocking that is the whole point of the new lane. And the new sale alert needs care, because it feeds the Zapier automation that assigns an account specialist. A cross-sell riding that alert could reassign an existing customer's specialist. So that alert gets fenced, and the cross-sell lane gets its own, separate notification.
+
+Here's the number. However many automations key on Type today, that's how many entry conditions need a record type added. If it's thirty, it's thirty small edits, and each one is easy. The risk isn't in any one of them. It's in the one you miss. So the inventory is a deliverable in its own right, a list of every automation with its lane written beside it, and reviewed by a second person.
+
+And here's the sequencing trick that makes it safe. Ship the fence before anyone can use the new lane. Create both record types, assign every existing deal to acquisition, add the record type condition to every automation, but give no users access to the existing customer lane yet. In that release, behavior should be identical to today. Watch a few days of real deals close through the sweep job and the stuck deal monitor. If nothing changes, the barrier holds. Only then turn on the new lane for a small group of Customer Success reps.
+
+There's one design choice worth debating. Should winbacks stay in acquisition? A Revival customer is a former customer coming back as new, and today's fan out treats them as new, which seems right. So they stay in acquisition, and Type keeps its job as a reporting label inside each lane.
+
+The craft beat is that record type turns an implicit rule into an explicit one. Today, "this is new business" is inferred from a picklist anyone can change. After this, the lane is chosen once, at creation, and every automation can read it with confidence.
+
+So the rule for this phase is simple. Barrier first, quiet release, then open the lane.

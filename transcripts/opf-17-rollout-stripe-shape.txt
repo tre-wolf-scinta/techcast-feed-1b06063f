@@ -1,0 +1,23 @@
+Rollout 6: One Subscription or Two
+
+Today, the billing handoff refuses to create a subscription for any customer who already has a live one. It's a good guard. It stopped double billing during the move back to Stripe. And it will refuse every single cross-sell we ever close, because every cross-sell customer already has a live subscription. So the guard has to change. But into what? That depends on a bigger decision.
+
+Picture a family phone plan. When your teenager needs a phone, you have two choices. Add a line to the existing plan, or open a separate account. Adding a line means one bill, one due date, one card on file, and if the card fails, every line is at risk together. A separate account means two bills, two due dates, and cancelling one never touches the other. Neither is wrong. They're optimized for different things. Stripe gives us exactly the same choice. A second item on the existing subscription, or a second subscription.
+
+Let's take the second item first. A Stripe subscription can hold several items, each with its own price and quantity. Add the website as an item, and the customer gets one invoice with two lines, charged once. Stripe prorates the first partial period for you. Cancelling the website means removing that one item, and the core package keeps billing. A failed payment is one failed invoice, which matches how Zapier brings failures into Salesforce as cases today, one per charge. The cost is coupling. Items on one subscription share a billing cycle, so the website bills on the core package's date, whether or not that suits the sale. And anything that touches the subscription as a whole, like pausing it, touches every product on it.
+
+Now the second subscription. Each product gets its own billing date, its own invoices, and its own lifecycle. Pausing, prepaying, or cancelling one never touches the other. That independence is real. But the customer now gets two charges on their card, often on different days. They're local service businesses, and two charges from the same vendor looks like a mistake, which is the fastest way to a dispute. Failed payments double. And anything that assumed one subscription per customer, like the product platform's database or the reporting scripts that read a single charge failure field, now has to choose which subscription it means.
+
+So here's the recommendation. A second item on the existing subscription is the default. Customers see one bill, our support story stays simple, and single product cancellation still works by removing an item. Keep the second subscription as a deliberate exception, for cases where independent timing is the point. The clearest one is prepay on an add on while the core stays monthly. Prepay on one item inside a shared monthly cycle gets awkward fast, and a separate subscription, or an up front invoice plus an item that starts later, is cleaner. Decide that case explicitly, and let the mapper flag anything else.
+
+Now back to the guard. Today it asks, does this customer have a live subscription? The new question is narrower. Does this customer already have a live item for this product? That's only answerable if every Stripe item carries a key back to Salesforce. So when the handoff creates or adds an item, it writes metadata onto that item: the product code, and the id of the opportunity product that sold it. Then the guard checks the customer's live items for the same product code, and refuses only a real duplicate. The acquisition lane keeps the old rule for brand new customers, and the existing customer lane uses the new one.
+
+The mapper changes too. Its rule of exactly one core package line becomes a rule per lane. Acquisition deals still need exactly one core line. Existing customer deals need at least one product line, and no core package unless it's an explicit plan change. And the strict habit survives, so anything outside those rules still goes to a person.
+
+Here's the number. One. One bill per customer is worth protecting, because it's what the customer actually experiences.
+
+The craft beat is the metadata key. Writing the line's id onto the Stripe item costs one field, and it turns every future question, like what is this charge for, who sold it, and is it already active, into a lookup.
+
+Two open questions for the team. For multi-location customers, does each location account have its own Stripe customer, or do they share one? And how should a mid cycle add on be prorated in the first invoice, and is that what reps will promise on the phone?
+
+So when someone asks one subscription or two, answer with the question underneath. What should the customer see on their card statement?

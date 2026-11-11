@@ -1,0 +1,25 @@
+Rollout 7: Who Owns the Discount
+
+Run a report of monthly recurring revenue in Salesforce, then pull the same number from Stripe. They won't match. Not because anything is broken, but because a whole category of money changes happens in a place Salesforce never sees. So which system should own a discount?
+
+Here's how it works today. At the point of sale, there's no discount record at all, because the discount is baked into the sold price. After the sale, Customer Success gives discounts, mostly to save a customer who asked to cancel. The outcome is recorded on the cancellation request, with a future monthly amount and some notes. Then someone applies it by hand in Stripe, as a coupon or a changed price. Stripe knows the real price. Salesforce knows a sentence in a notes field.
+
+Picture a checkbook register next to a bank account. The bank is the truth about money. It's what actually cleared. The register is your own record, with reasons, like "rent" or "refund from the store." If you write every check in the register first, reconciling at the end of the month takes minutes. If some payments only ever happen at the bank, you spend the evening guessing what each one was for. Stripe is our bank. Salesforce should be our register. Right now, save offers are payments that only happen at the bank.
+
+There are two clean directions.
+
+Option one, Stripe is the origin, and Salesforce mirrors it. Reps keep applying discounts in Stripe, and an integration listens for discount and price changes and writes them back into Salesforce, onto the right asset or account. This is the least change for the team. It ends the false mismatches quickly. But the reason for the discount, the approval, and the link to the cancellation request all still live in someone's head, because Stripe doesn't know why.
+
+Option two, Salesforce is the origin, and Stripe executes. A save offer becomes a record in Salesforce, attached to the cancellation request and to the specific product it discounts. It carries an amount or a percent, a duration, a reason, and an approver. When it's approved, the integration creates the coupon or price change in Stripe and writes the Stripe id back. This gives you reasons, approvals, and reporting on which save offers actually keep customers. It's also real build work, and it doesn't stop someone from editing Stripe by hand anyway.
+
+So the recommendation is both, in order. Phase one is the mirror. It's cheaper, it fixes reporting now, and every hand edit in Stripe becomes visible in Salesforce. Phase two makes Salesforce the origin for new save offers, starting with the existing customer lane, since that's where Customer Success already works. And keep the mirror running after phase two, now as a reconciliation check. Any discount in Stripe with no Salesforce origin gets flagged for a person, which is the same refuse to guess habit the billing handoff already has.
+
+Where should the discount live in Salesforce? Not on the original opportunity product. That line is past tense, it records what was agreed at the sale, and rewriting it hides history. The better home is a record that hangs off the asset, the product the customer owns now, with dates. That way, the asset's current price is list price, minus the original sale discount, minus any active save offer, and each piece is its own fact with its own reason.
+
+Here's the number to watch. Count the accounts where Salesforce monthly revenue differs from Stripe by more than a dollar. Today that count is mostly noise from untracked discounts. After phase one, it should drop to near zero, and every account still on the list is a real problem worth looking at. That's the moment the report becomes useful.
+
+There's an open question about the cancellation request itself. Should a save offer be a field on it, as it is today, or its own record? If a customer can receive more than one save offer over their lifetime, it needs to be its own record.
+
+The craft beat is in the split of responsibilities. The bank decides what cleared. The register explains why. Neither tries to do the other's job.
+
+So the next time revenue numbers disagree, don't ask which one is right. Ask which one knows the reason.

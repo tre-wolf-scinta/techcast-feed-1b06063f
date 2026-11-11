@@ -1,0 +1,25 @@
+Five Objects Behind Every Deal
+
+Where does the price of a product live in Salesforce? Most people say on the product. It doesn't. And that one wrong answer explains half the messy orgs you will ever inherit.
+
+Take Maya, a rep selling a monthly software package to a plumbing company. She opens a deal, adds the package, types a quantity of one, and the deal's amount fills in by itself. Five objects just worked together to make that happen.
+
+Picture a restaurant. The kitchen has recipes. Each recipe says what a dish is, but not what it costs. The prices are printed on menus, and the same restaurant can print a lunch menu and a dinner menu with different prices for the same dish. When you order, the server writes each dish on your ticket, with the price from whichever menu you were handed, and maybe a manager knocks a little off. That's the whole data model. Recipes are products, menus are price books, each printed line on a menu is a price book entry, the ticket is the opportunity, and every dish on the ticket is an opportunity product.
+
+Now the real names. The product object, Product two in the API, is the catalog. It holds the name, a product code, a family, and an active flag. Notice what it does not hold: a price.
+
+The price book, Pricebook two in the API, is a named list of prices. Every org has exactly one standard price book, and you can add custom ones for a region, a channel, or a partner deal.
+
+The price book entry is the join between them. One product, in one price book, in one currency, at one list price. This is the menu line.
+
+The opportunity is the deal. It points at exactly one price book, so every product Maya adds comes from the same menu.
+
+And the opportunity product, Opportunity Line Item in the API, is one line on the ticket. It points at a price book entry, carries a quantity and a sales price, and records the list price it started from.
+
+So why split price away from the product? Because a price is not a property of a thing. It's a property of a thing sold in a context. The same package costs one amount for a single location and another through a partner. If price sat on the product, you would clone the product for every context, and your reporting would shatter into look alike rows. Putting price on the join means one product, many prices, and every line on every deal traces back to one catalog row. That is the elegant decision at the heart of this model.
+
+Here's the number to carry home. The count of price book entries is products, times price books, times currencies. Fifteen products, two books, one currency, is thirty entries. Add a second currency and you have sixty. When an org feels heavy, that multiplication is usually why.
+
+One more thing happens the moment Maya saves her line. The opportunity's amount stops being a field she types. It becomes the sum of the line totals, and Salesforce locks it. The deal now reports what was sold, line by line, instead of what someone remembered to type.
+
+So, the recipe says what it is, the menu says what it costs here, and the ticket says what this customer actually got.

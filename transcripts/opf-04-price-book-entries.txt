@@ -1,0 +1,21 @@
+Price Book Entries: Where a Price Actually Lives
+
+Here's a field name that has confused almost every Salesforce developer at least once. On the price book entry, the API field called unit price is what the screen calls list price. On the opportunity product, a field also called unit price is what the screen calls sales price. Same API name, two different meanings. So which number is which, and where does it come from?
+
+Start with what the entry is. Picture the shelf tags in a grocery chain. The can of coffee is the same everywhere. But each store has its own tag on the shelf, and a store near the border might have two tags for the same can, one in each currency. Every tag says one thing: this product, in this store, in this currency, costs this much. A price book entry is exactly one of those tags. The product is the can, the price book is the store, and the entry is the tag.
+
+The fields line up with that. Product id and price book id say which can and which store. Currency, if your org has multiple currencies turned on, says which currency. Unit price, the confusing one, is the list price on the tag. There's an active flag, and there's a checkbox called use standard price.
+
+The rule that follows is strict. For any product, in any one price book, there's at most one entry per currency. Try to insert a second and Salesforce rejects it as a duplicate. So an entry is the unique answer to the question, what is the list price of this product, here, in this currency?
+
+Use standard price matters in custom books. Tick it, and the entry ignores its own number and follows the standard book's price for that product. It's a live link, not a copy. Change the standard price once and every custom entry that opted in follows. Leave it unticked, and the entry holds its own independent number.
+
+Now back to the two unit prices. When Maya adds a product to a deal, she isn't really picking a product. She's picking an entry. The new opportunity product stores a reference to that entry, and its list price comes from the entry's unit price, the tag. Then the line gets its own unit price, the sales price, which defaults to the list price and which Maya can change. So the entry's unit price is what the store asks. The line's unit price is what this customer pays per unit. Same field name, one level apart.
+
+Here's the number. Think of the tags, not the cans. Fifteen products in two books and two currencies can mean sixty tags to maintain. Every new book or currency multiplies the work, so add them only when a context really prices differently.
+
+And one practical rule. When an entry should stop being sold, deactivate it rather than deleting it. Lines on old deals point at that entry, and a deactivated entry keeps their history readable while blocking new sales.
+
+Here's what makes this design good. Because every line points at an entry, every sold line can be traced to a specific list price, in a specific book, in a specific currency. You never have to guess what a rep started from.
+
+So remember it this way. The entry's unit price is the tag on the shelf. The line's unit price is what the customer actually paid at the register.

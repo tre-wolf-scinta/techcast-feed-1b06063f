@@ -1,0 +1,21 @@
+Automation and Apex on Line Items
+
+You write a small trigger on opportunity products that stamps a product code on each line. It works in testing. Then a data load inserts two hundred lines across fifty deals, and you hit a limit on the opportunity, an object your trigger never touched. Why?
+
+Picture a row of dominoes. You only flick the first one, but every domino it touches falls too. A line item save is the first domino. Because the opportunity's amount and every roll up summary recalculate, the opportunity is saved again, so its validation rules, its flows, and its triggers all run. Anything they update can knock over the next one. Your trigger stayed small. The chain behind it did not.
+
+So the first rule is to know the chain. A line insert runs the line's own automation, then the parent opportunity goes through its own save. If the opportunity has heavy flows, every line operation pays for them. The defense is bulk work. Insert lines in one list per transaction, never one at a time in a loop, so the opportunity chain runs once per batch instead of once per line. And make opportunity automation check whether anything it cares about actually changed before doing work.
+
+Second rule, price book entry lookups. Code that builds lines needs entry ids, and an entry is unique by three things together: product, price book, and currency. The bulk safe pattern is one query for all the entries you need, then a map keyed on those three values joined into one string. Then every line looks up its entry in memory. Query inside the loop and you'll run out of queries around the hundredth line.
+
+Third, the active checks. Inserting a line against an inactive entry, or an entry from a different price book than the deal's, fails. Validate before inserting, and log which deal and which product failed, because the platform's error message rarely says which line in the batch caused it.
+
+Fourth, deletes. Delete an opportunity and its lines go with it. But records removed by a cascade delete don't fire their own delete triggers. Only the record that started the delete does. So if your line delete trigger cleans something up, like an asset or a billing flag, it silently won't run when the whole deal is deleted. Put that cleanup on the opportunity's delete as well.
+
+Fifth, tests. Test classes can't see the standard price book as a normal record. Call the test class's method that returns the standard price book id, insert a standard entry for each product, then build any custom book on top. Create the opportunity with that book set, then insert all lines in one list. Assert on the opportunity's amount afterwards, because that proves the roll up chain ran.
+
+And a quick note on flows. Record triggered flows work on opportunity products too, and before save flows are the cheapest way to default fields like a service date. But remember they're part of the same domino row.
+
+Here's the number. One. One query for entries, one insert for lines, one opportunity save chain per batch. Every extra one is multiplied by the number of deals in the load.
+
+So when line automation misbehaves, don't stare at the line. Look at the dominoes standing behind it.

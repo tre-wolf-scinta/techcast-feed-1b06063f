@@ -1,0 +1,33 @@
+Rollout 9: The Order You Build It In
+
+Every piece we've discussed in this series is reasonable on its own. Record types, real list prices, prepay as a field, paper from Salesforce, a new billing shape, assets as the one truth. But ship them in the wrong order and new business stops closing for a day, and new business is how the company pays for everything else. So what goes first?
+
+Picture engineers replacing an old bridge that thousands of cars cross every day. They don't close it and rebuild. They build the new span right beside the old one. They move one lane of traffic across, watch it for a while, then move the next. The old bridge keeps carrying whatever hasn't moved yet, and it comes down only when it's empty. Every step is small, and every step can be undone by moving traffic back. That's the shape of this migration. The old bridge is the VanillaSoft lane. The new span is the existing customer lane. And the traffic moves one kind of deal at a time.
+
+Here's an order that follows that rule.
+
+Step one is the catalog, because it's invisible to users and everything leans on it. Product codes, families, real list prices, a floor field on each entry, and a price book entry for the experience add on. The VanillaSoft flow keeps working, and from that day every new line records list price and sold price side by side.
+
+Step two is the fence release. Both record types exist, every current deal is acquisition, and every automation has its lane condition. Nobody can create an existing customer deal yet. The success test is boring on purpose. A week of real deals closes exactly as before, through the sweep job, with the stuck deal monitor quiet.
+
+Step three is billing, behind a switch. The mapper learns per lane rules, the guard learns to check per product, and the handoff writes the line id and product code onto every Stripe item. Put the new behavior behind a setting, ideally custom metadata, that's off for the existing customer lane until the pilot. Test it in a sandbox against Stripe's test mode.
+
+Step four is paper. A PandaDoc template fed from the opportunity's lines, carrying the opportunity id as its key, with no card capture for existing customers. The signed document matcher learns to prefer the opportunity id.
+
+Step five is the pilot. Two or three Customer Success reps, one product, the website, because it already rides the asset rail. Every pilot deal gets reviewed by a person the next morning, end to end, from line to asset to Stripe item. Run it until a week goes by with nothing to fix.
+
+Step six is the asset clean up. One path from line to asset, the add on yes or no fields retired after a period of agreeing with the lines, and account summary fields recalculated from assets. Then single product cancellation becomes possible.
+
+Step seven is discounts. The Stripe mirror first, then save offers born in Salesforce.
+
+And step eight is moving sales. VanillaSoft stops creating opportunities, reps build acquisition deals in Salesforce from products, prepay becomes a field, the floor becomes an approval, and quotes arrive if reps need options. Only then do the old prepay products and the VanillaSoft id match get retired.
+
+Here's the number. Eight steps, and only the last one changes how the sales team works. Everything before it is invisible to them or limited to a handful of Customer Success reps. That's the point. The riskiest people to disrupt are the ones bringing in new customers, so they move last, onto a road that's already carried traffic for weeks.
+
+There's a smaller comparison that helps here. A feature switch per lane is like a valve on a pipe. If anything goes wrong in the pilot, you close the valve and the old flow carries on, with no deployment needed.
+
+And there's an open business question that has to be answered before step five, not after. How are Customer Success reps credited for a cross-sell? Opportunity splits exist, and the commission calculator hasn't produced real numbers in years. If credit isn't decided, the pilot reps will reasonably ask why they're doing it.
+
+The craft beat is that each step leaves the system working and better. If the project paused after any step, the org would still be in a good state. That's the test of a good migration order.
+
+So when someone asks to skip ahead, ask one question. If we stopped right after this step, would everything still close?

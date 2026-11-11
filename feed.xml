@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Thu, 05 Nov 2026 00:01:03 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Nov 2026 16:36:58 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,286 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>Rollout 9: The Order You Build It In</title>
+      <description>Opportunity Products, rollout lecture 9. A migration order that keeps live new business safe: catalog first, the fence release, billing and paper changes, a small Customer Success pilot, then assets, discounts, and finally moving sales into Salesforce.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-20-rollout-migration-order.mp3" length="4723913" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-20-rollout-migration-order</guid>
+      <pubDate>Wed, 11 Nov 2026 16:36:42 +0000</pubDate>
+      <itunes:title>Rollout 9: The Order You Build It In</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 9. A migration order that keeps live new business safe: catalog first, the fence release, billing and paper changes, a small Customer Success pilot, then assets, discounts, and finally moving sales into Salesforce.</itunes:summary>
+      <itunes:duration>0:04:55</itunes:duration>
+      <itunes:episode>72</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-20-rollout-migration-order.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Rollout 8: What the Customer Owns</title>
+      <description>Opportunity Products, rollout lecture 8. Assets as the one record of entitlement, a shared key from line to asset to Stripe item, keeping account summary fields alive as a derived view, single product cancellation, per product churn, and multi-location accounts.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-19-rollout-assets-and-summaries.mp3" length="4703407" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-19-rollout-assets-and-summaries</guid>
+      <pubDate>Wed, 11 Nov 2026 16:35:16 +0000</pubDate>
+      <itunes:title>Rollout 8: What the Customer Owns</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 8. Assets as the one record of entitlement, a shared key from line to asset to Stripe item, keeping account summary fields alive as a derived view, single product cancellation, per product churn, and multi-location accounts.</itunes:summary>
+      <itunes:duration>0:04:54</itunes:duration>
+      <itunes:episode>71</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-19-rollout-assets-and-summaries.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Rollout 7: Who Owns the Discount</title>
+      <description>Opportunity Products, rollout lecture 7. Save offers are applied by hand in Stripe today, so Salesforce revenue never matches. Mirroring Stripe into Salesforce versus making Salesforce the origin, and a phased path with reconciliation.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-18-rollout-discount-truth.mp3" length="4504675" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-18-rollout-discount-truth</guid>
+      <pubDate>Wed, 11 Nov 2026 16:33:50 +0000</pubDate>
+      <itunes:title>Rollout 7: Who Owns the Discount</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 7. Save offers are applied by hand in Stripe today, so Salesforce revenue never matches. Mirroring Stripe into Salesforce versus making Salesforce the origin, and a phased path with reconciliation.</itunes:summary>
+      <itunes:duration>0:04:41</itunes:duration>
+      <itunes:episode>70</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-18-rollout-discount-truth.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Rollout 6: One Subscription or Two</title>
+      <description>Opportunity Products, rollout lecture 6. When a customer adds a second product, should Stripe get a second subscription or a second item on the existing one? What that decides for invoices, failed payments, single product cancellation, prepay, and the double billing guard.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-17-rollout-stripe-shape.mp3" length="4927659" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-17-rollout-stripe-shape</guid>
+      <pubDate>Wed, 11 Nov 2026 16:32:31 +0000</pubDate>
+      <itunes:title>Rollout 6: One Subscription or Two</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 6. When a customer adds a second product, should Stripe get a second subscription or a second item on the existing one? What that decides for invoices, failed payments, single product cancellation, prepay, and the double billing guard.</itunes:summary>
+      <itunes:duration>0:05:08</itunes:duration>
+      <itunes:episode>69</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-17-rollout-stripe-shape.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Rollout 5: Getting Paper Out of Salesforce</title>
+      <description>Opportunity Products, rollout lecture 5. Salesforce has never sent a contract. Whether to adopt standard Quotes now or send a priced PandaDoc contract straight from the deal&#x27;s lines, and why the document to deal join key has to change.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-16-rollout-paper-and-quotes.mp3" length="4695476" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-16-rollout-paper-and-quotes</guid>
+      <pubDate>Wed, 11 Nov 2026 16:31:00 +0000</pubDate>
+      <itunes:title>Rollout 5: Getting Paper Out of Salesforce</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 5. Salesforce has never sent a contract. Whether to adopt standard Quotes now or send a priced PandaDoc contract straight from the deal&#x27;s lines, and why the document to deal join key has to change.</itunes:summary>
+      <itunes:duration>0:04:53</itunes:duration>
+      <itunes:episode>68</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-16-rollout-paper-and-quotes.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Rollout 4: Prepay Is How You Pay, Not What You Buy</title>
+      <description>Opportunity Products, rollout lecture 4. Three ways to model prepay (a zero dollar product line, a term on the deal or line, or a billing schedule attribute), what each means for the billing mapper and for cross-sell, and a transition path.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-15-rollout-prepay.mp3" length="4753228" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-15-rollout-prepay</guid>
+      <pubDate>Wed, 11 Nov 2026 16:29:39 +0000</pubDate>
+      <itunes:title>Rollout 4: Prepay Is How You Pay, Not What You Buy</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 4. Three ways to model prepay (a zero dollar product line, a term on the deal or line, or a billing schedule attribute), what each means for the billing mapper and for cross-sell, and a transition path.</itunes:summary>
+      <itunes:duration>0:04:57</itunes:duration>
+      <itunes:episode>67</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-15-rollout-prepay.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Rollout 3: A Catalog You Can Measure Against</title>
+      <description>Opportunity Products, rollout lecture 3. Real list prices and discount as data versus storing only the sold price, product codes and families as shared keys, and where the manager approval floor should live once reps build deals in Salesforce.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-14-rollout-catalog-and-prices.mp3" length="4584191" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-14-rollout-catalog-and-prices</guid>
+      <pubDate>Wed, 11 Nov 2026 16:28:12 +0000</pubDate>
+      <itunes:title>Rollout 3: A Catalog You Can Measure Against</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 3. Real list prices and discount as data versus storing only the sold price, product codes and families as shared keys, and where the manager approval floor should live once reps build deals in Salesforce.</itunes:summary>
+      <itunes:duration>0:04:46</itunes:duration>
+      <itunes:episode>66</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-14-rollout-catalog-and-prices.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Rollout 2: Two Lanes and a Fence</title>
+      <description>Opportunity Products, rollout lecture 2. Using opportunity record types to give acquisition and existing customer deals separate stages, layouts, and rules, and how to fence every current automation to its lane without breaking live new business.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-13-rollout-two-lanes.mp3" length="4556136" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-13-rollout-two-lanes</guid>
+      <pubDate>Wed, 11 Nov 2026 16:26:52 +0000</pubDate>
+      <itunes:title>Rollout 2: Two Lanes and a Fence</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 2. Using opportunity record types to give acquisition and existing customer deals separate stages, layouts, and rules, and how to fence every current automation to its lane without breaking live new business.</itunes:summary>
+      <itunes:duration>0:04:44</itunes:duration>
+      <itunes:episode>65</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-13-rollout-two-lanes.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Rollout 1: Built for One Motion</title>
+      <description>Opportunity Products, rollout lecture 1. Why the current Salesforce setup, shaped around one new customer buying one core subscription through an outside sales tool, blocks both cross-sell and bringing sales back, and which assumptions have to change.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-12-rollout-why-it-breaks.mp3" length="4546930" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-12-rollout-why-it-breaks</guid>
+      <pubDate>Wed, 11 Nov 2026 16:25:35 +0000</pubDate>
+      <itunes:title>Rollout 1: Built for One Motion</itunes:title>
+      <itunes:summary>Opportunity Products, rollout lecture 1. Why the current Salesforce setup, shaped around one new customer buying one core subscription through an outside sales tool, blocks both cross-sell and bringing sales back, and which assumptions have to change.</itunes:summary>
+      <itunes:duration>0:04:44</itunes:duration>
+      <itunes:episode>64</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-12-rollout-why-it-breaks.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Automation and Apex on Line Items</title>
+      <description>Opportunity Products, part 11. The developer view: how a line item save cascades into the opportunity, bulk safe price book entry lookups, cascade deletes that skip triggers, and test data setup with the standard price book.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-11-code-on-line-items.mp3" length="3472123" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-11-code-on-line-items</guid>
+      <pubDate>Wed, 11 Nov 2026 16:24:11 +0000</pubDate>
+      <itunes:title>Automation and Apex on Line Items</itunes:title>
+      <itunes:summary>Opportunity Products, part 11. The developer view: how a line item save cascades into the opportunity, bulk safe price book entry lookups, cascade deletes that skip triggers, and test data setup with the standard price book.</itunes:summary>
+      <itunes:duration>0:03:37</itunes:duration>
+      <itunes:episode>63</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-11-code-on-line-items.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>After the Win: Contracts, Orders, and Assets</title>
+      <description>Opportunity Products, part 10. What happens to opportunity lines after a deal closes: the Contract, the Order and Order Product, and the Asset as the record of what a customer owns, plus the key that ties them together.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-10-after-the-win.mp3" length="3315672" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-10-after-the-win</guid>
+      <pubDate>Wed, 11 Nov 2026 16:23:04 +0000</pubDate>
+      <itunes:title>After the Win: Contracts, Orders, and Assets</itunes:title>
+      <itunes:summary>Opportunity Products, part 10. What happens to opportunity lines after a deal closes: the Contract, the Order and Order Product, and the Asset as the record of what a customer owns, plus the key that ties them together.</itunes:summary>
+      <itunes:duration>0:03:27</itunes:duration>
+      <itunes:episode>62</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-10-after-the-win.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Quotes and Quote Sync</title>
+      <description>Opportunity Products, part 9. How Salesforce Quotes and Quote Line Items relate to Opportunity Products, how syncing one quote keeps the deal and the quote in step, and where quote PDFs fit.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-09-quotes-and-sync.mp3" length="3326085" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-09-quotes-and-sync</guid>
+      <pubDate>Wed, 11 Nov 2026 16:22:01 +0000</pubDate>
+      <itunes:title>Quotes and Quote Sync</itunes:title>
+      <itunes:summary>Opportunity Products, part 9. How Salesforce Quotes and Quote Line Items relate to Opportunity Products, how syncing one quote keeps the deal and the quote in step, and where quote PDFs fit.</itunes:summary>
+      <itunes:duration>0:03:28</itunes:duration>
+      <itunes:episode>61</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-09-quotes-and-sync.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Revenue and Quantity Schedules</title>
+      <description>Opportunity Products, part 8. How Opportunity Product schedules spread a line across time with divide or repeat, what they are good for in forecasting, and why they are not a billing engine.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-08-schedules.mp3" length="3416891" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-08-schedules</guid>
+      <pubDate>Wed, 11 Nov 2026 16:21:01 +0000</pubDate>
+      <itunes:title>Revenue and Quantity Schedules</itunes:title>
+      <itunes:summary>Opportunity Products, part 8. How Opportunity Product schedules spread a line across time with divide or repeat, what they are good for in forecasting, and why they are not a billing engine.</itunes:summary>
+      <itunes:duration>0:03:33</itunes:duration>
+      <itunes:episode>60</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-08-schedules.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Discounts as Data, Not Just a Lower Price</title>
+      <description>Opportunity Products, part 7. The three ways a discount can hide on a line, how to measure the effective discount with one formula, and where price floors and approvals can be enforced.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-07-discounts-as-data.mp3" length="3319431" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-07-discounts-as-data</guid>
+      <pubDate>Wed, 11 Nov 2026 16:19:59 +0000</pubDate>
+      <itunes:title>Discounts as Data, Not Just a Lower Price</itunes:title>
+      <itunes:summary>Opportunity Products, part 7. The three ways a discount can hide on a line, how to measure the effective discount with one formula, and where price floors and approvals can be enforced.</itunes:summary>
+      <itunes:duration>0:03:27</itunes:duration>
+      <itunes:episode>59</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-07-discounts-as-data.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>The Opportunity as a Container for Lines</title>
+      <description>Opportunity Products, part 6. What changes on the Opportunity once it has products: the price book lock, the read only amount, the has line items flag, and roll up summary fields that let rules see inside the lines.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-06-the-opportunity-side.mp3" length="3684672" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-06-the-opportunity-side</guid>
+      <pubDate>Wed, 11 Nov 2026 16:18:55 +0000</pubDate>
+      <itunes:title>The Opportunity as a Container for Lines</itunes:title>
+      <itunes:summary>Opportunity Products, part 6. What changes on the Opportunity once it has products: the price book lock, the read only amount, the has line items flag, and roll up summary fields that let rules see inside the lines.</itunes:summary>
+      <itunes:duration>0:03:50</itunes:duration>
+      <itunes:episode>58</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-06-the-opportunity-side.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Anatomy of an Opportunity Product</title>
+      <description>Opportunity Products, part 5. Every number on an Opportunity Line Item (quantity, list price, sales price, subtotal, discount, total price) and how they roll up into the opportunity amount.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-05-anatomy-of-a-line.mp3" length="3533624" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-05-anatomy-of-a-line</guid>
+      <pubDate>Wed, 11 Nov 2026 16:17:43 +0000</pubDate>
+      <itunes:title>Anatomy of an Opportunity Product</itunes:title>
+      <itunes:summary>Opportunity Products, part 5. Every number on an Opportunity Line Item (quantity, list price, sales price, subtotal, discount, total price) and how they roll up into the opportunity amount.</itunes:summary>
+      <itunes:duration>0:03:40</itunes:duration>
+      <itunes:episode>57</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-05-anatomy-of-a-line.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Price Book Entries: Where a Price Actually Lives</title>
+      <description>Opportunity Products, part 4. The Price Book Entry junction: one product, one book, one currency, one list price, plus the use standard price flag and the confusing unit price field name.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-04-price-book-entries.mp3" length="3523195" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-04-price-book-entries</guid>
+      <pubDate>Wed, 11 Nov 2026 16:16:39 +0000</pubDate>
+      <itunes:title>Price Book Entries: Where a Price Actually Lives</itunes:title>
+      <itunes:summary>Opportunity Products, part 4. The Price Book Entry junction: one product, one book, one currency, one list price, plus the use standard price flag and the confusing unit price field name.</itunes:summary>
+      <itunes:duration>0:03:40</itunes:duration>
+      <itunes:episode>56</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-04-price-book-entries.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Price Books and the Standard Price Rule</title>
+      <description>Opportunity Products, part 3. How the standard price book and custom price books work, why every product needs a standard price first, and how price book sharing controls who can sell from which list.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-03-price-books.mp3" length="3447869" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-03-price-books</guid>
+      <pubDate>Wed, 11 Nov 2026 16:15:40 +0000</pubDate>
+      <itunes:title>Price Books and the Standard Price Rule</itunes:title>
+      <itunes:summary>Opportunity Products, part 3. How the standard price book and custom price books work, why every product needs a standard price first, and how price book sharing controls who can sell from which list.</itunes:summary>
+      <itunes:duration>0:03:35</itunes:duration>
+      <itunes:episode>55</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-03-price-books.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>The Product Object: A Catalog, Not a Price Tag</title>
+      <description>Opportunity Products, part 2. What the Product object really holds (code, family, active flag, schedules) and why product codes are the keys every integration ends up depending on.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-02-product-catalog.mp3" length="3513150" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-02-product-catalog</guid>
+      <pubDate>Wed, 11 Nov 2026 16:14:36 +0000</pubDate>
+      <itunes:title>The Product Object: A Catalog, Not a Price Tag</itunes:title>
+      <itunes:summary>Opportunity Products, part 2. What the Product object really holds (code, family, active flag, schedules) and why product codes are the keys every integration ends up depending on.</itunes:summary>
+      <itunes:duration>0:03:39</itunes:duration>
+      <itunes:episode>54</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-02-product-catalog.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Five Objects Behind Every Deal</title>
+      <description>Opportunity Products, part 1. The five objects behind a priced deal in Salesforce (Product, Price Book, Price Book Entry, Opportunity, and Opportunity Product) and why the price lives in the middle, not on the product.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/opf-01-the-five-objects.mp3" length="3405176" type="audio/mpeg"/>
+      <guid isPermaLink="false">opf-01-the-five-objects</guid>
+      <pubDate>Wed, 11 Nov 2026 16:13:34 +0000</pubDate>
+      <itunes:title>Five Objects Behind Every Deal</itunes:title>
+      <itunes:summary>Opportunity Products, part 1. The five objects behind a priced deal in Salesforce (Product, Price Book, Price Book Entry, Opportunity, and Opportunity Product) and why the price lives in the middle, not on the product.</itunes:summary>
+      <itunes:duration>0:03:32</itunes:duration>
+      <itunes:episode>53</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/opf-01-the-five-objects.txt" type="text/plain"/>
+    </item>
     <item>
       <title>Deployment Tools: Change Sets to Packages</title>
       <description>PD1 exam topic 50. How change sets, the Metadata API, packages, and the Ant Migration Tool compare, and what every production deployment has to pass to land.</description>

@@ -1,0 +1,23 @@
+Quotes and Quote Sync
+
+A rep sends a customer three options. Twelve months at one price, six months at another, and month to month. The customer picks the six month option. Which of those three is the deal? If your only record is the opportunity, you either overwrite it three times or you lose the options you didn't win.
+
+Salesforce's answer is the quote. One opportunity can have many quotes, and each quote has its own line items, called quote line items, which mirror opportunity products field for field: quantity, list price, sales price, discount, total.
+
+Picture an architect working on a house. They draw three versions of the plans. The client picks one, and that set gets pinned to the wall at the building site. The builder works only from the pinned set. The other versions stay in the drawer, still readable, but nobody builds from them. Quotes are the versions. The opportunity is the building site. And syncing is pinning one set to the wall.
+
+Here's how the mechanism works. Creating a quote copies the opportunity's current lines onto it. The quote uses the opportunity's price book, so it can only offer products from that same book. From then on the quote is independent. The rep can change quantities and prices on each quote without touching the deal.
+
+Then the rep starts sync on the chosen quote. The opportunity stores which quote is syncing, and only one quote can sync at a time. While sync is on, the quote's lines replace the opportunity's lines, and changes flow both ways. Edit a quote line and the matching opportunity product changes. Add a product on the opportunity and it appears on the quote. Stop syncing, or start syncing a different quote, and the opportunity takes on the newly pinned version.
+
+There's a catch every developer meets. Standard fields sync. Custom fields on quote lines and opportunity products don't sync by themselves. If you add a custom field like a billing interval, you need your own automation to carry it across, in both directions, without creating a loop.
+
+The quote also adds what a proposal needs and a deal doesn't. An expiration date. A status. Tax, and shipping and handling. A grand total. And a template, configured in setup, that renders the quote as a PDF. Each generated PDF is saved as a quote document, so you keep the exact paper the customer saw, and you can email it from the quote.
+
+Here's the number. One. One synced quote per opportunity, at any moment. That's what keeps the deal's amount honest while still letting reps explore options.
+
+So when do you skip quotes? When there's only ever one option and the contract is generated somewhere else. Quotes add a layer of records, page layouts, permissions, and a sync behavior to test. Plenty of teams start by generating paper straight from the opportunity's lines and add quotes later, when reps genuinely need to present alternatives.
+
+The craft beat is the separation. Proposals can be messy and plural. The deal stays singular and clean, because only the pinned version reaches it.
+
+So remember the building site. Draw as many plans as you like, but build from the one on the wall.

@@ -1,0 +1,27 @@
+Revenue and Quantity Schedules
+
+A customer signs for a monthly subscription at three hundred dollars for a twelve month term. What should the line on the deal say? Three hundred? Thirty six hundred? And when does that money actually land? A single line item has one total and one date. Recurring revenue has twelve of each.
+
+That gap is what schedules are for. The object is called opportunity line item schedule, and each record is one installment of one line: a date, an amount of revenue, a quantity, or both.
+
+Picture a magazine subscription. You pay once for a year, but twelve issues arrive, one a month. Your bank statement shows one charge. The publisher's books show twelve deliveries spread across the year. A schedule is the publisher's view. One sale, spread over time, so you can see when value is delivered.
+
+Schedules are off by default. You turn on revenue schedules, quantity schedules, or both, in the product settings. Then each product gets checkboxes that allow them, and can carry a default schedule that's built automatically when the product is added to a deal.
+
+Now the mechanism that matters most. There are two schedule types, divide and repeat. Same inputs, very different results.
+
+Divide takes the line's total and splits it across the installments. A thirty six hundred dollar line divided into twelve monthly installments gives three hundred per month, and the line total stays thirty six hundred.
+
+Repeat takes the amount and repeats it for every installment. A three hundred dollar line repeated monthly for twelve months gives twelve installments of three hundred, and the line total becomes the sum, thirty six hundred. Your opportunity amount just went up twelve times. Teams that pick repeat by accident see their pipeline jump overnight and don't know why.
+
+The schedule starts from the line's service date, which is one reason that field matters. Each installment is its own record, so you can edit any of them, like a free first month or a price step up in month seven.
+
+So what are schedules good for? Forecasting and reporting. A finance lead can ask how much revenue lands in each quarter of next year, and the answer comes from installment dates, not from close dates. A quantity schedule can show when units ship.
+
+But here's the limit. Schedules are not billing. Nothing in Salesforce sends an invoice because an installment date arrived. They also multiply records fast. One line with a thirty six month schedule is thirty six child records, and every edit to the line can rebuild them. Integrations that read lines usually ignore schedules entirely, so the two can drift.
+
+There's a sensible middle path most subscription businesses land on. Keep the line as the monthly price and quantity, store the term as months on the deal or the line, and let the billing system own the timeline. Add schedules only if someone actually forecasts from them.
+
+Here's the craft beat. Divide and repeat are a small choice that encodes a big question. Is this number the whole contract, or one period of it? Decide that once, write it down, and every report agrees.
+
+So before turning schedules on, ask one thing. Will anyone forecast from these dates, or will billing own the calendar anyway?

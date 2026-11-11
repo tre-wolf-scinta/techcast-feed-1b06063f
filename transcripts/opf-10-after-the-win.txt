@@ -1,0 +1,25 @@
+After the Win: Contracts, Orders, and Assets
+
+A customer bought a core subscription two years ago, added a website last spring, and cancelled the website last month. Which record tells you what they have right now? Not the opportunities. Those tell you what was sold, and sold is a past tense word.
+
+Picture your own receipts versus your own garage. Your receipts tell you every tool you ever bought, including the drill you returned. Your garage tells you what you actually have today. Opportunities and their lines are receipts. You need a garage. In Salesforce, the garage is the asset.
+
+Let's walk the records that can come after a won deal.
+
+The contract is the agreement. It belongs to an account, and it has a start date, a term in months, a status, and an end date Salesforce calculates for you. It answers the question, under what terms? It does not list products by default.
+
+The order is the instruction to deliver. It has its own lines, called order products, which come from price book entries just like opportunity products do. An order starts as a draft and is activated when it's ready. Some companies use orders as the bridge to fulfillment or billing. Many skip them and go straight from the deal to the next step.
+
+The asset is the record of something a customer owns. It points at an account, usually a product, and carries a quantity, a price, a status, and dates like purchase date, install date, and usage end date. Assets can form a hierarchy with a parent asset, so a main subscription can sit above its add ons. And assets live on after the deal that created them is long forgotten.
+
+Now the important part. Core Salesforce doesn't turn won lines into assets for you. You build that step, usually a flow or trigger that runs when the deal closes. And how you build it decides whether your garage stays accurate.
+
+Here's the trap. If the asset doesn't remember which line created it, the trail goes cold. So the strongest pattern is a shared key. Each asset stores the id of the opportunity product that produced it, in a custom field. Every later system, like billing or fulfillment, stores the same key or the asset's id. Now you can walk from a charge in billing to the asset, to the line, to the deal, and back, with no guessing.
+
+That key is what makes cancelling one product possible. The customer drops the website. You end that one asset, set its usage end date and status, and leave the core subscription asset untouched. Churn becomes a fact about a product, not a fact about a whole account.
+
+Here's the number. Count the places your org records what a customer owns. Asset records, checkboxes on the account, fields on the opportunity, rows in the billing system. If the answer is more than one, they will eventually disagree, and you need to decide which one wins.
+
+The craft beat is in the tenses. Lines are past tense, what was agreed. Assets are present tense, what exists now. Contracts are the terms that connect them. Keep each in its own tense and none of them has to pretend to be the others.
+
+So remember the garage. Receipts tell you what you bought. The garage tells you what you have.
