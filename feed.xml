@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Thu, 12 Nov 2026 17:34:56 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 21:44:08 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -20,6 +20,20 @@
     <itunes:type>episodic</itunes:type>
     <itunes:block>Yes</itunes:block>
     <podcast:locked>yes</podcast:locked>
+    <item>
+      <title>The Comms Hub, Explained</title>
+      <description>A briefing on the customer communications hub: the problem it solves, its three foundations of contact roles, consent, and the engine, what it records, and what is still open. Liam and Bella alternate sections.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/commshub-briefing.mp3" length="9009745" type="audio/mpeg"/>
+      <guid isPermaLink="false">commshub-briefing</guid>
+      <pubDate>Thu, 12 Nov 2026 21:25:24 +0000</pubDate>
+      <itunes:title>The Comms Hub, Explained</itunes:title>
+      <itunes:summary>A briefing on the customer communications hub: the problem it solves, its three foundations of contact roles, consent, and the engine, what it records, and what is still open. Liam and Bella alternate sections.</itunes:summary>
+      <itunes:duration>0:09:22</itunes:duration>
+      <itunes:episode>85</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>false</itunes:explicit>
+      <podcast:transcript url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/transcripts/commshub-briefing.txt" type="text/plain"/>
+    </item>
     <item>
       <title>Comms Hub 12: Adapters, Safeguards, and One Builder</title>
       <description>Part 3, architecture. Stripe adapters, texting through records, safeguards, and the series verdict: build the second builder before the second program.</description>

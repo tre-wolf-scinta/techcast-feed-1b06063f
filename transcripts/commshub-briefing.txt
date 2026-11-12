@@ -1,0 +1,63 @@
+The Comms Hub, Explained
+
+Liam: This briefing explains the customer communications hub, which we will call the hub. It has been approved, and no decision is needed from you. It covers what the hub is, how it works, what it records, and what is still open.
+
+Here is the short version. The hub is one shared sending service inside Salesforce. Each outreach campaign is a set of rules: who gets what, when, from which address or number, and what stops it. One engine follows those rules, logs every message on the customer's account from every connected tool, and honours one shared opt out list. And anything beyond a message, like a phone call or removing access, goes to a person as a task.
+
+Bella: First, the problem it solves. Today, at least eight different sources contact customers. They include an AI voice agent, a power dialer, a contact center phone system, a texting package inside Salesforce, the product itself, automations in Zapier, scheduled Salesforce emails, and people sending by hand.
+
+Four of those sources send texts. Each one honours a STOP reply only for itself. So a customer who says STOP to one sender can still get a text from another the next morning. There is no shared opt out list to check.
+
+There is also no single history. Understanding one customer's contact means opening several systems. One operations lead keeps teams from contacting the same customer on the same day, by hand. And who to contact is mostly a guess. The contract never asks who should receive invoices, and the billing email is usually just the signer's email. Customer contact data is scattered, inconsistent, and not reportable as a whole.
+
+Liam: The hub rests on three foundations: contact roles, consent, and the engine. I will take the first one, contact roles.
+
+Each contact at a customer can hold one or more roles: Decision Maker, Payer, Invoice Recipient, Office Admin, Technician, and Website Contact. The first three have one holder each.
+
+Here is the part that matters most for data quality. Every role also records how we know it, called its standing. From strongest to weakest: verified by the customer, asserted by the customer, observed in a system, inferred as a best guess, and claimed, meaning suggested but not accepted.
+
+Roles are their own record, with history. They are copied into Salesforce's standard contact roles so outside tools see the same thing, and direct edits to those copies are blocked so they cannot drift.
+
+Existing customers start with roles filled from what is already known, marked as best guesses. New contracts will ask two questions at signing: where invoices go, and who handles payment problems. And a Confirm roles step lets a rep check roles with the customer, making them verified.
+
+One service, called the recipient resolver, answers a single question for every campaign: who holds this role at this account, and how do we know. It prefers the strongest evidence, and when it cannot answer, it returns unresolved with the reason, instead of guessing.
+
+Bella: The second foundation is consent. Every email address and phone number becomes a standard Salesforce contact point.
+
+Each contact point carries opt ins and opt outs by purpose, with a reason and a source. A purpose is the reason for a message, such as collections, billing, or privacy policy.
+
+Consent is deliberately kept separate from roles. Being the payer does not mean someone agreed to receive texts. And a STOP reply to any text blocks automated texts and automated calls to that number everywhere, no matter which tool it came through. A person can still call by hand.
+
+Whether a purpose requires an opt in before the first message, or sends and then honours STOP, is a switch per purpose, so it can change without a rebuild.
+
+Liam: The third foundation is the engine. It has six parts.
+
+In the hub, a campaign is called a program. The rulebook holds each program's steps, timing, recipients by role, limits, and what pauses or stops it. It is stored as configuration records and changed only through a reviewed release.
+
+The mailroom is a scheduled job that runs several times an hour, applies the rulebook, and sends or waits. A conversation record tracks one customer in one program: the current step, the next due time, and any pause. Tasks are actions a person must perform and confirm, stored as standard Salesforce Tasks. And a switch sets each program to live, practice, or stopped. Practice means the engine logs what it would have sent, and sends nothing.
+
+The sixth part is the logbook: one append only row for every message in or out, sent by the hub, a connected tool, or a person. Each row holds the result and the reason. This is the single communication history, and the natural source for reporting.
+
+Before every message, the mailroom runs five checks. One, is it still needed? Two, which step is due? Three, who exactly should receive it? Four, is it allowed, given opt outs, quiet hours, and the daily limit? Five, what is the message, and does a person need a task?
+
+Bella: A few behaviours shape what the data will show. Programs share one daily limit per address. If a second program wants to email the same address on the same day, that email moves to the next business day. A customer reply holds the next automated email for one business day. And if a closed case reopens, nothing restarts automatically. A person decides.
+
+People and automations never edit a conversation record directly. They send a signal, such as pause or stop, and the engine applies it, so every change is traceable. The engine also never charges, refunds, or changes an account.
+
+Last, the hub is vendor neutral. Programs name channels, not vendors, and each outside system sits behind one adapter, the single piece of code that talks to it. Adding a vendor was estimated at about two days for a simple one, and up to a week for a complex one. That claim has had one real test. The billing system changed after the design was written, and only one adapter changed.
+
+Liam: Now, what leadership decided on October twenty first. The billing migration to Stripe comes first, and the hub is built as it wraps up. Stripe now retries failed cards and emails customers itself for about three weeks. So the hub's failed payment email was dropped. Privacy policy outreach for the experience product became program one, because no money is involved. Collections became program two, and now starts only when Stripe's retries stop. Roles, consent, texting, and the other tools follow, one at a time.
+
+A few pieces exist in the development sandbox: read only Stripe adapters, the recipient resolver, and a pass that stamps each failed payment case with facts like the decline reason and open balance.
+
+The resolver was run against one month of real cases. It found a payer for almost every case, mostly from the card or the billing customer record. The Decision Maker, though, mostly came from the old calculated guess, because few accounts have stronger evidence. That is the clearest data argument for the two contract questions.
+
+Bella: Now the limits and open questions. Nothing is in production yet, and no build tickets exist. There is no firm date. The architect's personal goal, not a commitment, is program one running by the end of the year. Program one has no step design yet. Today there is one builder, and nobody else has been trained to run or change it. Message wording edits go live without review.
+
+On compliance, the texting posture rests on an internal reading of public rules and a business judgment. No lawyer has reviewed it. The architect also understands that a federal rule taking effect January thirty first, twenty twenty seven, requires one STOP to halt all automated texts and calls from every channel. If that reading is right, the shared opt out list is the most time critical piece.
+
+Three open questions are about data ownership. Who owns the health of the role data, and will reps keep it current? Tasks are archived after a year, so is the logbook enough as the permanent record? And how should one conversation per customer work for multi location or parent and child accounts?
+
+Liam: To recap. The hub is one engine inside Salesforce that runs every outreach program from one rulebook, checks one shared opt out list, and writes every message from every connected tool into one logbook. Contact roles record who does what at a customer, and how we know it.
+
+The main uncertainties are timing, the first program's design, and a compliance reading no lawyer has reviewed. No decision is needed. Questions, especially about data ownership or reporting, go to the hub's architect. Both voices in this briefing are synthetic.
