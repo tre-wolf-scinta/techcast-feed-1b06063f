@@ -1,0 +1,41 @@
+Comms Hub 1: Eight Senders, No Switchboard
+
+Liam: A customer replies STOP to a text. Every text from the company should stop, right? So why does that same customer get another text the next morning?
+
+Bella: Because they said STOP to one sender, and there are at least four. And since I'm the skeptic for this whole series, Liam, let me be fair from the start. Each of those senders did exactly what it promised. It just only promised it for itself.
+
+Liam: That's the problem in one line. An opt out today is a label, not a guarantee. So let's count who actually talks to customers.
+
+There's an AI voice agent that places scheduling calls. A power dialer for manual call lists. A contact center phone system. A texting package inside Salesforce. The company's own product, which sends its own emails and texts. Glue automations in Zapier. Scheduled email jobs in Salesforce. And people, sending by hand. That's eight sources.
+
+Bella: Eight sources, four of them text senders, and each one honours a STOP reply only for itself. Nobody captures a text opt in at all. Everything runs on opt out. There is an account level do not call flag, but not every tool reads it.
+
+Liam: Picture a busy restaurant with eight cooks and no expediter. The expediter is the person at the pass who checks every plate before it leaves the kitchen. Without one, each cook makes a good plate and sends it out. Table twelve gets three desserts and no main course. And if the guest complains, the manager has to walk to every station and ask, "did you send something to table twelve?" That's this company. The cooks are the sending tools, the table is the customer, and nobody is standing at the pass.
+
+Bella: Okay, but plenty of small restaurants run without an expediter. Is this actually costing anything, or is it just untidy?
+
+Liam: Three costs, all from the interviews. First, history. A Customer Success manager auditing one case had to look in several systems to work out who contacted the customer about what. Second, coordination. Making sure two teams don't contact the same customer on the same day is done by hand, by one operations lead.
+
+Bella: One person as the human expediter. That's fragile, but it's also cheap.
+
+Liam: Third, workarounds. The AI voice agent ran on its own, so a separate automation had to be built just to line up the dates on a customer's open touchpoints, so the agent wouldn't call the same person several times in one day.
+
+Bella: And that workaround works. Why isn't the answer just "write the next one when you need it"?
+
+Liam: Because a workaround fixes one pair of tools. Here's the number to carry through this series: twenty eight. Eight senders make twenty eight possible pairs that can collide. The date-lining automation covers one of them.
+
+Bella: Twenty eight pairs, sure, in theory. Most pairs never touch the same customer.
+
+Liam: True, and nobody is proposing twenty eight workarounds. The point is that each one is a private rule inside one tool. You can't read them in one place, and every new tool adds a row of new pairs.
+
+Bella: Then let me push on the scariest claim. The architect says a federal rule takes effect on the thirty first of January, 2027, and that one STOP to an automated message must halt automated texts and calls on every channel. He's not a lawyer. It's his reading.
+
+Liam: He said that plainly in the leadership review, twice over. But even on his own reading, the honest finding was that the company could not honour that rule today. Four text senders with four separate STOP lists can't produce one answer to "has this number opted out?"
+
+Bella: So what's worth keeping? I don't want us pretending every tool is broken.
+
+Liam: Most of it. Each tool is good at its job. The dialer isn't going away, and the AI voice agent is taking over the first round of calls. That's the craft point here. The fix isn't fewer cooks. It's a pass that every plate goes through, and a ticket rail anyone can read.
+
+Bella: Then here's my standing question for the next episodes. Is a pass worth building, or would one shared spreadsheet of opt outs get most of the value for a fraction of the work?
+
+Liam: Hold onto that, because it's a fair test. For now, remember this. Eight senders that each behave well can still add up to one company that behaves badly.

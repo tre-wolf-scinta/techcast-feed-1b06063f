@@ -1,0 +1,43 @@
+Comms Hub 2: Who Do We Even Call?
+
+Bella: A customer's card fails. Somebody has to be told. So who is it: the owner who signed the contract, the office manager who pays the bills, or the bookkeeper who files the invoices?
+
+Liam: Today the honest answer is: whoever the data happens to point at. And the data mostly points at the signer.
+
+Bella: Prove it. Every account has a billing email. Isn't that the person who handles billing?
+
+Liam: It's labelled billing email. In practice, it's the signer's email. The contract never asks who should receive invoices, or who can fix a payment problem. So when an account has a billing email at all, it's usually just a copy of the signer's address.
+
+Think of an apartment where one roommate signed the lease. Every letter about the place goes to that person: the water bill, the noise complaint, the parcel notice. Meanwhile the roommate who actually pays the water bill never sees it. That's our contact data. The lease signer is the contract signer, and every kind of message gets addressed to them by default.
+
+Bella: But there's a calculated point of contact field. Somebody worked hard on that.
+
+Liam: There is, and it's written by something outside Salesforce. It's treated as truth, but nobody inside the system can say how it reached its answer. Then on the deal itself, almost no contact carries a role at all.
+
+Bella: Okay, so the data is thin. I'd still argue that's a cleanup project, not a design problem. Hire a temp, fix the fields, done.
+
+Liam: Two things break that plan. First, the data starts decaying the day after cleanup, because nothing captures who does what when it changes. Second, there's a finding from the build that shows how hard it is to even read the existing data. A checkbox on the contact, which the spec treated as evidence that someone is a technician, turned out to be ticked by default on nearly everyone. It looked like evidence. It was evidence of nothing.
+
+Bella: That's a good one. A field that's true for everyone tells you nothing about anyone.
+
+Liam: Here's the number for this episode. Zero. That's how many questions the contract asks about who pays and who receives invoices. Signing is the one moment the customer is guaranteed to be paying attention, and right now it asks nothing.
+
+Bella: So add the questions to the contract. Problem solved. Why do we need anything fancier?
+
+Liam: The chief executive agreed to exactly that, in writing: "Great idea. Let's do this." Two fields: where invoices go, and who to contact about a payment problem, each with a "same as signer" box. But those answers only exist on contracts signed after the change. Every existing customer still has the old guesses.
+
+Bella: And then there's the human disagreement, which I think is the real problem. The person who does collections and the chief executive disagreed about who should be contacted at each step. No field fixes an argument.
+
+Liam: Right, and the design doesn't pretend to. That disagreement is one reason recipients are data in the rulebook, not code. A step says "send to the holder of this role", and that choice can be changed without a rebuild.
+
+Bella: That's my hole, though. Making it configurable doesn't settle the argument. It just makes the argument cheaper to have, over and over. Who decides?
+
+Liam: That's open, and the handoff lists it as open. What the design does give you is that the argument happens in one readable place instead of inside somebody's code.
+
+Bella: Fine. Last check. Is there any evidence the guessing is actually bad?
+
+Liam: There's a dry run. The resolver rules ran over a month of real cases. A payer was found for almost every case, mostly from the card or the billing system's customer record. But the decision maker was mostly the old calculated guess, because very few accounts carry anything stronger.
+
+Bella: So money tells you who pays, and nothing tells you who decides.
+
+Liam: That's the cleanest summary of the gap. A billing email is a field name, not a person.

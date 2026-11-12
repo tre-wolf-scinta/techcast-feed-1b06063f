@@ -1,0 +1,45 @@
+Comms Hub 5: Roles, and How We Know
+
+Liam: Two contacts at the same customer are both marked as the payer. One was named by the customer on the contract. The other was guessed by a script two years ago. Which one should an automated message go to?
+
+Bella: The one the customer named, obviously. But today the system can't even tell those two apart. They're both just "payer".
+
+Liam: That's exactly what the roles design fixes. A role is a label, not a fact. What matters is the evidence behind it.
+
+Think about how a careful newsroom treats a source. A quote can be confirmed on the record by the person. It can be stated by them in a document. It can be seen in public filings. It can be an inference by the reporter. Or it can be a tip nobody has checked yet. Same sentence, five very different levels of trust. Roles work the same way. Every role records how the company knows it.
+
+Bella: Name the levels.
+
+Liam: Verified by the customer. Asserted, meaning the customer stated it, for example on the contract. Observed in a system. Inferred, which is a best guess. And claimed, meaning someone suggested it and nobody has accepted it yet. Five levels, and that's the number for this episode.
+
+Bella: And the roles themselves?
+
+Liam: Six of them. Decision Maker, Payer, and Invoice Recipient have exactly one holder each. Office Admin, Technician, and Website Contact can have several. Each role is its own record, linked to both the contact and the account, with history. And roles are copied automatically into Salesforce's standard contact role features, so outside tools like marketing, call recording, and dialers see the same thing. Direct edits to those standard copies are rejected, so they can't drift.
+
+Bella: Here's where I start poking. Five levels of evidence is lovely on a whiteboard. Will busy reps actually maintain it?
+
+Liam: The design tries hard not to need them to. Existing customers get filled once from what's already known: old point of contact fields, the contract signer, the name on the card. All of it marked as best guesses. No cleanup project. New customers answer the two contract questions at signing, which fill Payer and Invoice Recipient as asserted, and the signer becomes the starting Decision Maker.
+
+Bella: Which leaves verified. That's the top of the ladder, and it depends on a human.
+
+Liam: It does. On the welcome call, if Customer Success agrees, there's a Confirm roles step. The rep runs down the roles with the business owner, and whatever the customer confirms becomes verified. The same Confirm roles button sits on cases, touchpoints, and accounts, for any time after.
+
+Bella: "If Customer Success agrees" is doing a lot of work there. Their sign off on the role names and on the welcome call step is still pending. A welcome call is already full. Every added question costs goodwill.
+
+Liam: That's a real open question, and it's listed as one. Is the welcome call the right moment, and who owns the health of this data afterwards? The design doesn't answer the ownership part.
+
+Bella: Then what stops this from becoming a beautiful ladder that's ninety percent "inferred" forever?
+
+Liam: The resolver, and its honesty. Any program can ask the recipient resolver: who holds this role at this account, and how do we know? It prefers the strongest evidence. And when there's nothing good enough, it returns an explicit "unresolved, and why", instead of guessing silently.
+
+Bella: So bad data becomes visible instead of quietly sending to the wrong person.
+
+Liam: Right. And the dry run showed where the gaps are. The payer was almost always found, from the card or the billing system. The decision maker was mostly the old guess. That's the clearest argument for both the contract questions and the Confirm roles step.
+
+Bella: And the old point of contact fields?
+
+Liam: They become read only when roles go live, and they're retired after a clean period in production. No two sources of truth fighting each other.
+
+Bella: I'll give you this. A system that says "I don't know" is safer than one that guesses with confidence.
+
+Liam: That's the whole idea. Knowing who holds a role is half the answer. Knowing how you know is the other half.

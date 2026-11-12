@@ -1,0 +1,47 @@
+Comms Hub 12: Adapters, Safeguards, and One Builder
+
+Bella: Everything we've described in this series, the rulebook, the mailroom, the logbook, the resolver, is understood in depth by exactly one person. Liam, before we talk about anything else, what happens if that person is out for a month?
+
+Liam: Today, things stop moving. That's listed plainly as a known limit. One builder. The design documents and tested code exist, but no second person has been trained to run or change it.
+
+Bella: Then that's my case for this whole episode. One is the number that matters most. Let's see if the rest of the architecture earns back the risk.
+
+Liam: Start with how the hub talks to the outside world. Programs name channels, not vendors. Each outside system sits behind one adapter.
+
+Think of a travel plug adapter. Your laptop doesn't change when you fly to a different country. The wall socket changes, and you swap a small plug in between. The laptop is a program, the wall socket is a vendor, and the plug is the adapter.
+
+Bella: Which adapters actually exist?
+
+Liam: As of early November, in the development sandbox only, not production: read only adapters for Stripe, as the billing system and as the payment processor. The hub reads billing data through its own read only credential, separate from the write credential used for billing.
+
+Bella: Good separation. What else is built?
+
+Liam: A stamping pass that fills each charge failure case with the decline reason in plain words, whether Stripe will retry and when, the open balance, the unpaid invoices, a paid stamp that never changes the case status, and who to contact. The recipient resolver. A button that reads a fresh pay link on demand and never stores it. And the dry run of the resolver over a month of real cases.
+
+Bella: Texting. How does the hub send a text without holding texting credentials?
+
+Liam: It creates a record in the texting package that already lives in Salesforce, the same way a few existing automations do. Replies and STOP messages arrive as records the engine reads. No texting credentials in custom code.
+
+Bella: And before texting goes live?
+
+Liam: Four things. Knowing which numbers are mobiles, a one time lookup with a small cost. The shared opt out list. Moving incoming replies off one person's login onto the system account, with an alert if replies stop. And carrier registration for payment reminders, if it isn't done already.
+
+Bella: Notice that third one. Replies currently flow through one person's login. The one person problem shows up even inside the plumbing.
+
+Liam: Fair catch. Now the safeguards. Practice mode before any step goes live. A stop switch per program. Daily limits per person and quiet hours. A step waits if something it needs, like a pay link, is missing. A daily heartbeat, alerts on failures, and the nightly drift check on the rulebook.
+
+Bella: Good list. Here's what isn't on it. The detailed specs still describe the old build order and the old billing platform. The reference page marks what's superseded, but the specs haven't been rewritten. So a second builder would be learning from documents that are partly wrong.
+
+Liam: That's true, and it's the strongest version of your argument. Should training a second person be a gate before the second program? I think yes. A second program doubles the surface. A second builder halves the risk.
+
+Bella: And scope. The chief executive's one request in the review was that the hub cover everyone's work: the sales voice work, and an account context tool another engineer is building. Shared infrastructure, or scope creep that sinks it?
+
+Liam: Open, and it depends on discipline. If those projects send through adapters and write to the logbook, they make the hub stronger. If they ask the hub to grow features for each of them, that's how it sinks.
+
+Bella: My closing verdict, then. The architecture is sound. The plumbing is careful. The people around it are the weak point: one builder, one reply login, one unsigned off welcome call, one unanswered legal question.
+
+Liam: I won't argue with that list. The hub is approved, on hold behind the billing migration, and no build tickets exist yet. So there's still time to fix the people side before the machine runs.
+
+Bella: Then that's the takeaway.
+
+Liam: A system is only vendor neutral if it's also person neutral. Build the second builder before the second program.

@@ -1,0 +1,55 @@
+Comms Hub 11: The Logbook and the Task List
+
+Liam: The engine decides a customer's access should be removed. Does it remove it?
+
+Bella: I'd hope not. An automated job switching off a paying customer's service is the kind of thing that ends up in a complaint.
+
+Liam: It doesn't. The engine never charges, refunds, voids, or changes an account. Consequences stay with people. The engine schedules them, and a person performs and confirms them.
+
+Bella: So where does that hand off live?
+
+Liam: In the task list. Consequences like removing access are standard Salesforce Tasks, so they show up where people already look. Each action has three states: open, confirmed, or cancelled, and there's one cancellation rule.
+
+Bella: Standard Tasks. I thought there was a custom object for this.
+
+Liam: There was, in the specs. It was removed after a sandbox test. Actions are now plain Tasks identified by a hub key, with their scheduling and resolution written to the logbook as the permanent record.
+
+Bella: Why not at least give them their own Task record type? That's the normal way to fence off a kind of Task.
+
+Liam: The test answered that. The first Task record type you add becomes every user's default, and it leaks into Tasks created by integrations. So a fence for the hub would have quietly relabelled everyone else's Tasks.
+
+Bella: Okay, that's a good catch. Now the logbook.
+
+Liam: The logbook is one append only row for every message in or out. Sent by the hub, by a connected tool, or by a person, with the result and the reason. It's the single communication history.
+
+Think of a ship's logbook. It's written in ink, in order, and pages are never torn out. If the captain makes a mistake, the correction is a new line, not an eraser. When something goes wrong at sea, the log is what the inquiry reads. The ship is the customer account, and every touch, from any tool, is a line in ink.
+
+Bella: This is the part the vice president of Customer Success said he was anchoring on. One clean place to see every text, call, and email.
+
+Liam: And it includes skips. Every send and every skip is logged with a reason. So "why didn't this customer get a reminder?" has an answer: paid, opted out, quiet hours, daily limit.
+
+Bella: Here's my hole. Tasks are easy for people to edit, and Salesforce archives Tasks after a year. Your consequences live in a record that can be changed and then disappears.
+
+Liam: That's exactly why the logbook is the permanent record, not the Task. The Task is the to do note on someone's desk. The logbook holds when it was scheduled and how it was resolved. That's our number: one year. After a year, the Task may be archived, and the log line is still there.
+
+Bella: But if someone edits a Task to say "done" when it wasn't, the logbook records a lie.
+
+Liam: The logbook records what was confirmed, by whom. It can't stop someone confirming falsely. No system can. It makes the confirmation attributable.
+
+Bella: Fair. Second hole: measuring success. For privacy policy, the measure is customers live by day forty five. What's the measure for the hub itself?
+
+Liam: That's open. The candidates are fewer duplicate contacts, hours saved, and opt outs honoured.
+
+Bella: And here's why I think it matters. Without a baseline, you can't claim any of them. Duplicate contacts today are invisible because there's no single history.
+
+Liam: Which is a good reason to switch the logbook on first, ahead of most sends. Once connected tools write to it, the duplicate rate becomes measurable. In practice mode, the hub logs what it would have sent next to what people actually sent. That comparison is a measurement on day one.
+
+Bella: So the logbook is both the product and the yardstick.
+
+Liam: That's well put. And it's the piece every other part leans on. Signals are logged. Skips are logged. Tasks resolve into it.
+
+Bella: Last poke. Append only and a single history, inside the same org as everything else. What happens when the logbook is wrong?
+
+Liam: The same thing as on the ship. You don't tear out the page. You write a correction underneath it, and the history shows both.
+
+Bella: I'll take that. A log you can edit is a story. A log you can only add to is evidence.

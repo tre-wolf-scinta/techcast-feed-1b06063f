@@ -1,0 +1,41 @@
+Comms Hub 6: One STOP Means Stop
+
+Bella: I want to start this one with the riskiest decision in the whole project. Should automated texts need an opt in before the first message is sent? The chief executive answered no, without asking a lawyer. Liam, defend that.
+
+Liam: I'll defend the design, which isn't quite the same thing. Let's walk the consent model first, then come back to that decision.
+
+Every email address and phone number becomes a standard Salesforce contact point, kept in step with the contact record. Each contact point carries opt ins and opt outs by purpose: collections, billing, onboarding, privacy policy, and so on, with a reason and a source for each.
+
+Bella: By purpose, not by tool. That part I like.
+
+Liam: And consent is deliberately separate from role. Being the payer doesn't mean you've agreed to texts. Then the big rule: a STOP to any text blocks automated texts and automated calls to that number everywhere, whichever tool or contact it came through. A person can still call.
+
+Think of the water in a house. Today, every faucet has its own tap, and turning off the kitchen tap doesn't stop the shower. The hub adds a main valve. A STOP from any faucet closes the main for automated water, while a person can still carry a bucket. The faucets are the sending tools, and the main valve is the shared opt out on the contact point.
+
+Bella: Good. Now the hole. The architect sent the chief executive two questions. One, should automated texts require opt in first? Two, should outside counsel review his consent table before it's encoded? His own worry was that a wrong reading built into automation repeats on every message, and penalties are per message.
+
+Liam: And the written answer covered both. The chief executive wasn't worried. These are transactional texts about the customer's business with the company, and language can be added to the terms of service later if more coverage is needed. No counsel review.
+
+Bella: So the design encodes a business risk call that a lawyer never looked at. That's my objection.
+
+Liam: Here's how the design absorbed it. Texts are treated as transactional, no opt in is collected first, and STOP is honoured. But the posture, opt in required first or send and honour STOP, is a switch per purpose in the rulebook. It can be reversed without a rebuild.
+
+Bella: A switch that defaults to the riskier setting. Shouldn't the default for automated texts and AI voice calls be the stricter reading, with the business choosing to loosen it?
+
+Liam: That's a fair design argument, and it's on the list of open questions. My defence is narrower. The design records the decision and makes it cheap to change. It doesn't pretend to make the decision. The owner of that risk is the chief executive, and he took it in writing.
+
+Bella: Then my second hole is about timing. The number for this episode is a date: the thirty first of January, 2027. If the architect's reading is right, a federal rule then says one STOP must halt automated texts and calls on every channel. He was clear he's not a lawyer. But on his reading, the shared opt out list is the most time critical piece in the project, and it sits fourth in the build order.
+
+Liam: The order does carry a clause for that. The shared opt out list can jump the queue if the regulatory date gets close.
+
+Bella: "If it gets close" is less than three months away. Shouldn't it be pulled out and built first, on its own?
+
+Liam: That's a strong case, and I won't wave it off. What the design gives you is that the opt out list doesn't depend on the engine. It lives on contact points, so it can be built standalone. And there's a bridge already: teams whose tools aren't connected get a daily list of new opt outs to apply.
+
+Bella: A daily list applied by hand isn't a main valve. It's a sticky note on each faucet.
+
+Liam: Agreed, it's a bridge, not the destination. One more piece: sending identities. Every address, number, and tool the company sends from goes in a registry, and a purpose picks its identity. So a collections text always comes from the collections identity, and a STOP to it is traceable.
+
+Bella: I'll land here. The model is good. The order and the default are the risks.
+
+Liam: That's fair. A STOP should mean stop, everywhere, and the design gets that part right.

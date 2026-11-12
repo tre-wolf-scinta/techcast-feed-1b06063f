@@ -1,0 +1,35 @@
+Comms Hub 3: From One Chore to a Hub
+
+Liam: It started with one person and one painful morning routine. A collections specialist toggling between screens for hours, copying pay links into email templates, one failed payment at a time. The ask from the chief executive was simple: automate that.
+
+Bella: And what came back was a communications hub with contact roles, a consent model, and an engine. Liam, that's the textbook definition of scope creep. Somebody asked for an outlet and got a rewired house.
+
+Liam: That's actually the right picture, so let's use it. A homeowner asks an electrician for one new outlet in the kitchen. The electrician opens the wall and finds a panel with no labels, five circuits feeding the same room, and two of them doubled up on one breaker. You can add the outlet. It works. But you've added one more unlabelled circuit to a panel nobody understands. Here, the outlet is the collections email, and the panel is the eight senders from episode one.
+
+Bella: Except the homeowner gets to say "just the outlet, please." Why didn't that happen?
+
+Liam: Because the architect's argument was specific. A standalone collections automation would be yet another independent sending ladder, on top of several that already exist. It would have its own schedule, its own idea of who to contact, and its own STOP handling. So instead of a collections tool, the design became a shared sending service, with collections as its first program.
+
+Bella: That's one step of growth. Then it grew again.
+
+Liam: Through discovery. Interviews with collections, the product team, and operations kept surfacing the same three problems. Nobody reliably knows who to contact at a customer. Consent and opt outs aren't shared across tools. And there's no single communication history. By the time it reached leadership, it was three things: contact roles, consent, and the engine.
+
+Bella: Here's my sharpest point. The original request is gone. Leadership dropped the hub's failed payment emails, because billing is moving back to Stripe and Stripe sends them. So the thing that justified the project no longer needs the project.
+
+Liam: I'd read that the other way. The original request disappeared, and the architecture didn't change. Collections became program two instead of program one, and one adapter changed. If the design had been a collections tool, losing collections would have killed it.
+
+Bella: Convenient. Let me try the cheaper alternative, then. One shared opt out list that every tool checks. A scheduled job for collections. Maybe a report that pulls messages from each tool into one view. What does that fail to deliver?
+
+Liam: Good, let's grade it against the three things. The shared opt out list: you'd get it, but only for tools that check it, and each tool checks it its own way. A single history: a report that stitches eight sources together is a copy, so it lags and it breaks whenever a source changes. And a shared daily limit, the "don't contact this customer twice today" rule, needs something that sees every send before it happens. A report sees them afterwards.
+
+Bella: So the cheap version gets you one of three, mostly.
+
+Liam: One and a bit. Which is why the number for this episode is three. Three foundations, and the claim is they only work together. Roles tell you who. Consent tells you whether. The engine decides when and logs what happened.
+
+Bella: I'll accept that for now, but I want it noted. The architect himself said, twice, that this is not a silver bullet.
+
+Liam: He did, and it's worth repeating his list. The hub orchestrates and automates sends. It doesn't automate every human step. It doesn't route cases. It doesn't replace touchpoints overnight, and it doesn't bring sales onto Salesforce by itself. It lays a foundation.
+
+Bella: Which is exactly what scope creep always says about itself.
+
+Liam: Fair. The test is whether each piece earns its place by solving a problem someone named in an interview, and so far each one has. The ask was an outlet. The finding was the panel.

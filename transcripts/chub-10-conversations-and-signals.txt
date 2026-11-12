@@ -1,0 +1,49 @@
+Comms Hub 10: Conversations and Signals
+
+Bella: A customer misses a payment in March, and a collections conversation starts. Then they miss April too. Is that two conversations, two sets of emails, two sets of calls?
+
+Liam: One. A later failed month joins the open conversation instead of starting a second one. And how that works says a lot about the engine.
+
+The core record is the conversation. One per customer per program. It holds the current step, the next due time, and any pauses. And it follows one subject record, which can be a case, a deal, an account, or a touchpoint, depending on the program.
+
+Bella: Follows a subject how? A lookup field for each type?
+
+Liam: No, and that's a deliberate choice. It follows a general subject: a type plus an id. So a later program that runs on a deal or an account needs code, not new schema. For collections, the conversation follows the open charge failure case and chases the customer's whole past due balance. That's why April joins March.
+
+Bella: Now the part I want to dig into. Who's allowed to change a conversation?
+
+Liam: Nobody, directly. Not people and not automations. They send a signal. Pause, resume, stop, send now, a reply arrived, or a status changed. The engine applies the signal as the system user.
+
+It's like air traffic control. A pilot doesn't just decide to change altitude. They radio a request, and the tower, which sees every plane, grants it and records it. The pilots are people and automations, the radio call is a signal, and the tower is the engine.
+
+Bella: That's a lot of ceremony for "pause this case".
+
+Liam: It's one button on the user's side. The ceremony is on the inside, and it buys you two things. Every change has one path, so it's always logged. And nobody's half finished edit collides with the mailroom halfway through a send.
+
+Bella: Then what about concurrency? Two signals land at once.
+
+Liam: One signal is handled per transaction, retried only on record lock errors. That's another simplification from the reviews. One at a time is slower, and far easier to prove correct.
+
+Bella: And how does the collections specialist steer all this day to day?
+
+Liam: With the case statuses she already uses. Some statuses hold the program. Some stop it. And a "promised to pay" status deliberately lets it continue, so a promise doesn't silently pause reminders.
+
+Bella: Okay, my holes. One per customer per program. What's "a customer"? Multi location businesses. Parent and child accounts. Is a franchise with six locations one conversation or six?
+
+Liam: That's listed as open. The general subject means a program could follow the parent account or each location, but which one, and whether the owner hears once or six times, isn't designed yet.
+
+Bella: And a customer in two programs at once? Privacy policy and collections, same week.
+
+Liam: Two conversations, one per program, and they share the daily limit per address from the last episode. So they can't both email on the same day. What they don't do is know about each other's content. Collections won't mention that privacy policy is outstanding.
+
+Bella: Last one. The case closes and reopens with money still owed.
+
+Liam: One task to a person, who decides whether to restart. No automatic re entry.
+
+Bella: So here's my real objection, in one line. Every simplification you've described pushes a decision onto a person. Skip a busy job. Hand off a reopened case. Leave parent accounts undesigned.
+
+Liam: That's accurate, and it's the bet. Here's the number: six. The specs went through six revisions of adversarial review. Each time a clever mechanism kept producing new must fix problems, it was replaced by something simpler and a person's judgement. The engine is boring on purpose.
+
+Bella: Boring engines are easy to trust. They're also easy to outgrow.
+
+Liam: True, and the general subject is the escape hatch for that. The engine never edits a conversation on a whim. It only ever answers a signal.

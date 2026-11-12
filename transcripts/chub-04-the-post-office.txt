@@ -1,0 +1,47 @@
+Comms Hub 4: A Post Office Inside Salesforce
+
+Bella: The company already owns a marketing automation product and a contact center product. Both can schedule outreach. So why build a sending engine from scratch inside Salesforce?
+
+Liam: Because neither of them is in the job description. Let me describe the job first, then we can argue about who should do it.
+
+In the leadership review, the business operations lead called it a post office. That's the right picture. A post office doesn't write your letters. It takes letters from anyone, checks the address, holds anything marked "do not deliver", sorts by route, and keeps a record of what went out. Map that across: the letters are messages from any tool, the "do not deliver" list is the shared opt out, the routes are channels, and the record is a log on the customer's account.
+
+Bella: So what's actually in the building?
+
+Liam: Each outreach program is a set of rules. Who gets what, when, from which address or number, and what stops it. One engine follows those rules. It logs every message, from every tool, on the customer's account. It honours one shared opt out list. And anything that goes beyond a message, like removing a customer's access, gets handed to a person as a task.
+
+Bella: That still sounds like what a purchased journey tool does. They have steps, timing, exits, the lot.
+
+Liam: They do, for their own sends. That's the catch. A journey tool you buy becomes cook number nine from episode one. It respects its own opt outs, logs its own messages, and knows nothing about the dialer call that happened an hour ago. The hub's value isn't scheduling. It's being the one place every channel reports to.
+
+Bella: Okay, but then you've signed up to talk to every vendor yourselves. That's the hidden bill.
+
+Liam: That's the vendor neutrality piece, and you're right that it has a cost. Programs name channels, not vendors. A program says "send a text", not "send through this texting company". Each outside system sits behind one adapter, a single piece of code that knows how to talk to it.
+
+Bella: And what does an adapter cost?
+
+Liam: The estimate in the review was about two days for a simple, well documented vendor, and up to a week for a complex one.
+
+Bella: An estimate from a meeting. Not a measurement.
+
+Liam: Agreed, and here's the closest thing to a measurement. The billing system changed underneath the design after it was written. The company moved billing back to Stripe. The programs didn't change. The engine didn't change. One adapter did. That's being treated as the first real test of the claim.
+
+Bella: One test is an anecdote. But I'll grant it's the right kind of anecdote.
+
+Liam: Here's the number for this episode: one. One adapter per outside system, and one place where every message lands. If either of those numbers drifts above one, the design is failing.
+
+Bella: Let me find the edge, then. The review asked whether this gets in the way of one off calls and emails. A rep wants to just phone someone.
+
+Liam: It doesn't. One off calls and emails are unaffected and simply get logged. The vice president of Customer Success said the single place to see every text, call, and email for a customer was the part he was anchoring on.
+
+Bella: And new outreach, like a future cross sell campaign? Does a central engine make that slower to launch?
+
+Liam: The answer in the room was: easier. A new program is a short request form. Which customers, which channels, how many contacts over how many days, which role. Operations turns that into rulebook records. After that, the owner can tune the numbers. The only real friction is a new vendor, which means one new adapter.
+
+Bella: Then my remaining worry is the word "headless". The business operations lead called this a step toward a headless setup, with data that's readable by an AI assistant as well as people. That's a big promise.
+
+Liam: It is, and the design only makes the small part of it. Rules are records, not code, and every message is a row with a reason. That's legible to a person or a model. Whatever gets built on top is a later decision.
+
+Bella: So the short version is: don't buy another sender, build the post office they all deliver through.
+
+Liam: Exactly. A journey tool sends mail. The hub is where the mail gets sorted.

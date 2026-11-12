@@ -1,0 +1,43 @@
+Comms Hub 7: The Reorder
+
+Liam: The project was built to automate collections. Then, in a half hour leadership review, collections dropped to second place, and the first program became privacy policy outreach. How does that happen?
+
+Bella: Through three yes or no questions. And I think the third one might be a mistake, so let's go through them.
+
+Liam: Question one. Drop the hub's payment failure emails, since billing is moving back to Stripe and Stripe sends them? Yes, from the chief executive and the vice president of Customer Success. That removed the original request.
+
+Question two. Do the billing migration first, and build the hub as it wraps up? Agreed. Question three. Make the experience product's privacy policy outreach the first program, as a soft launch? Agreed, after discussion.
+
+Bella: And the discussion is the interesting part. The vice president asked a sharp question: if the hub is meant to cover everything, why is prioritising one kind of outreach a first step at all?
+
+Liam: The architect's answer was that the hub is the machinery. It isn't being built to solve privacy policy or collections. Programs plug in one at a time, and the only question is which goes first. The business operations lead put it best. We're building gas pumps, and something has to be the first thing run through them.
+
+That's the picture for this episode. You build a gas station, and before you open it to everyone, you fill the manager's own car. Low stakes, real fuel, real pumps. Here, the pumps are the engine, and privacy policy outreach is the manager's car.
+
+Bella: Why privacy policy?
+
+Liam: Two reasons. No money is involved. And it's the biggest single blocker to getting experience product customers live by their target. That's our number: day forty five. Customers on that product can't go live until their privacy policy is in place.
+
+Bella: Here's my hole. Collections was fully specified, a sixty day ladder, every step designed. Privacy policy has no step list, no timing, no decision on which record the conversation follows, and no decision on which role gets contacted. You picked the program with zero design over the one with complete design.
+
+Liam: The engine doesn't depend on those choices, which is the point of a general engine. But you're right that it isn't free.
+
+Bella: It's worse than not free. Privacy policy outreach is calls, through the AI voice agent and then the power dialer. So it needs voice and dialer adapters, which the collections plan didn't need until much later. Which order actually proves the engine sooner?
+
+Liam: That's a genuine open question. The case for privacy policy is risk. A bug in a privacy policy reminder costs an awkward call. A bug in a collections message costs money and trust. The case for collections is readiness. I'd say the gas pumps line wins on risk and loses on speed.
+
+Bella: Then collections itself. Stripe now retries failed cards and emails the customer on its own for roughly three weeks. How much is left for the hub to do?
+
+Liam: Less, and the design admits it. The collections program no longer starts at day zero. It starts where Stripe's retries stop, or immediately on a decline that no retry will fix. The sixty day ladder is now an old design. Its mechanics carry over: one conversation per customer, a payment check before every message, consequences as tasks. Its steps need re planning once Stripe shows what it recovers on its own.
+
+Bella: So what should trigger human outreach: a hard decline, retries exhausted, or a day count?
+
+Liam: Open, and it should be decided from data, not opinion. One related principle was reaffirmed, though. Early help for collections puts facts on the case and sends nothing on a schedule. A timed email now would be one more scattered sender the hub would later have to tear out.
+
+Bella: And the timeline? The vice president asked, end of December or February?
+
+Liam: No firm migration date. The architect's personal goal is a proof of concept with privacy policy running through the hub by the end of the year. A goal, not a commitment, because billing migrations are mission critical work where surprises are normal.
+
+Bella: My verdict: safe first program, slow first program.
+
+Liam: And that's a trade made on purpose. The first car through new pumps should be the one nobody minds waiting for.

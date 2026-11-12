@@ -1,0 +1,47 @@
+Comms Hub 8: Rulebook, Mailroom, and the Switch
+
+Bella: Department heads have been promised they can tune their own outreach. Timing and rules change only through a reviewed release. Liam, both of those can't be true at once. Where exactly is the line?
+
+Liam: Let's build the machine first, and then find the line inside it. There are three parts here: the rulebook, the mailroom, and the switch.
+
+Picture a theatre production. There's the script, which is approved before opening night and doesn't get rewritten mid show. There's the stage manager, who sits in the booth and calls every cue at the right moment. And there's the dress rehearsal, where everything runs for real except the audience. The rulebook is the script, the mailroom is the stage manager, and practice mode is the dress rehearsal.
+
+Bella: Start with the script.
+
+Liam: The rulebook holds each program's steps, timing, recipients by role, sending identity, limits, and what pauses or stops it. It's stored as configuration records, not code. And it's changed through a reviewed release, never edited live. A nightly check confirms the rulebook in production hasn't drifted from what was released.
+
+Bella: Now the stage manager.
+
+Liam: The mailroom is a scheduled job that runs several times an hour. Each run applies the rules, and either sends or waits. And here's a design choice that came out of the adversarial reviews. There's no run lock and no job chain. One job per tick, and if another hub job is still running, the new one is simply skipped.
+
+Bella: That sounds like a shortcut. What happens on a slow day when jobs keep skipping?
+
+Liam: The next tick picks up the work. Nothing is lost, because the state lives in the records, not in the job. The specs went through six revisions of adversarial review, and the lesson was this: when each round found new must fix problems in the newest mechanism, the answer that worked was replacing it with something simpler, not patching it. A lock that can get stuck is a mechanism. "Skip if busy" isn't.
+
+Bella: Fine. And the dress rehearsal?
+
+Liam: Each program has a switch with three positions. Live. Practice, which logs what it would have sent and sends nothing. And stopped. Three positions, that's the number here. Before any step goes live, it runs in practice, and the would-have-sent log is checked against what people actually send today.
+
+Bella: Now back to my line. Who changes what?
+
+Liam: Three tiers. Message wording: each department edits its own templates, no release needed. Timing and rules: changed by the Salesforce team through a reviewed release. New programs: requested through a short form, turned into rulebook records by operations. After that, the owner can tune the numbers, the same way an existing touchpoint configuration is tuned today, directly or through an AI assistant.
+
+Bella: There's my hole. "Tune the numbers" is a rule change. If an owner changes a wait from three days to one, that's timing. So either tuning bypasses the reviewed release, or the promise is hollow.
+
+Liam: That's the sharpest open question in this area, and the handoff lists it. The intended line is that a number inside an approved shape can move, while the shape itself, which steps exist, who gets them, and what stops them, needs a release. But that line isn't written down precisely yet.
+
+Bella: And wording edits go live immediately with no review. That's listed as a known limit. A department can put anything in a template, and it ships on the next tick.
+
+Liam: True. The trade is speed for the people who own the words, against the risk of an unreviewed message. Practice mode helps for new steps, but not for a template edit on a live program.
+
+Bella: Then the AI assistant. Is it safe to let a model edit outreach rules for a manager?
+
+Liam: Only inside the same line. If the assistant can only change numbers within the approved shape, and every change is a record with history, it's no riskier than the manager editing the field. If it can add steps, that's a release by another name.
+
+Bella: And one more. The executive and the collections specialist disagreed about who to contact. Recipients are data now. Who wins?
+
+Liam: Not decided. The design makes the disagreement a one record change, which makes it easy to settle and easy to reopen.
+
+Bella: So the machine is solid, and the governance is the soft part.
+
+Liam: That's fair. The script is approved, the stage manager is simple, and the open question is who's allowed to edit the script between shows.

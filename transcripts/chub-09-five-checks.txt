@@ -1,0 +1,53 @@
+Comms Hub 9: Five Checks Before Every Message
+
+Liam: A customer pays their overdue balance at nine in the morning. At nine fifteen, the mailroom wakes up with a reminder email due for that customer. What stops it from going out?
+
+Bella: Hopefully something better than luck. A meaningful share of failed payment cases were historically paid with no contact at all. So sending to people who already paid isn't an edge case. It's common.
+
+Liam: Which is why every single message goes through five checks, in order, every time.
+
+Think of a pilot's pre flight checklist. It's the same short list on every flight, even the thousandth one, because the one time you skip it is the one that matters. And the order matters too. You don't check the fuel before you've confirmed you're flying today. The mailroom runs a checklist like that before every message.
+
+Bella: Go.
+
+Liam: Check one: still needed? If the customer paid, the case closed, or the program is paused, stop right there. That's our nine fifteen email, stopped at the first line. Check two: what is due? Which step, and is it inside its time window. Check three: who exactly? The person holding the step's role, and which address or number. Check four: allowed? A working address, no opt out, not in quiet hours, under the daily limit, and not already contacted today by any team. Check five: what and how? The message, links, the sending identity, and any task for a person.
+
+Bella: Five checks, that's your number. Now let me poke at check two, because "time window" hides a lot.
+
+Liam: It does. Each step has one of three timing types. Fixed goes on its day. Elastic may slide within a window. Droppable is skipped if it's late.
+
+Bella: Give me an example of droppable.
+
+Liam: A friendly "your payment is due tomorrow" note. If it can't go today, sending it the day after the due date is worse than not sending it. A final notice, on the other hand, should be fixed.
+
+Bella: Okay. Now the behaviours. What happens when the customer replies?
+
+Liam: A reply holds the next automated email for one business day, so a person has time to read it. Call tasks still go ahead.
+
+Bella: And pauses?
+
+Liam: A step that falls due during a pause waits. When the pause lifts, only the latest missed step goes. So a customer paused for two weeks doesn't get three emails the morning it lifts.
+
+Bella: Here's my first real hole. Check four says "not already contacted today by any team". But most tools aren't connected yet. The dialer, the contact center, the product. So "any team" really means "any team the hub can see".
+
+Liam: That's true, and it's honest to say so. Until each tool is connected, the check only covers what's in the logbook. That's why connecting the other tools, one at a time, is in the build order. The check gets stronger with every adapter.
+
+Bella: Second hole. Two programs, one customer, same day. Who wins?
+
+Liam: Programs share one daily limit per address. The second program's email moves to the next business day. So the customer hears from the company once, not twice.
+
+Bella: That's first come, first served. A privacy policy reminder could push back a collections notice.
+
+Liam: It could, and priority between programs isn't designed beyond that rule. It's simple on purpose. A priority system is exactly the kind of mechanism the reviews kept replacing with something plainer.
+
+Bella: Last one. A case closes, then reopens with money still owed. Does the program pick back up?
+
+Liam: No. Nothing restarts automatically. A person gets one task and decides whether to restart. Automatic re entry was one of the mechanisms cut during review, in favour of a person's judgement.
+
+Bella: And the shared email ceiling? Salesforce has a daily limit on automated email across the whole org.
+
+Liam: Shared across all programs, yes. Current use is a small fraction of it. It's a known limit to watch, not a problem today.
+
+Bella: I'll admit, the order is the clever part. The cheapest, most common reason not to send is checked first.
+
+Liam: That's the habit to keep. Before you ask how to send a message, ask whether it still needs sending.
