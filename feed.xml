@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Thu, 12 Nov 2026 21:44:08 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 22:14:53 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -22,13 +22,13 @@
     <podcast:locked>yes</podcast:locked>
     <item>
       <title>The Comms Hub, Explained</title>
-      <description>A briefing on the customer communications hub: the problem it solves, its three foundations of contact roles, consent, and the engine, what it records, and what is still open. Liam and Bella alternate sections.</description>
-      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/commshub-briefing.mp3" length="9009745" type="audio/mpeg"/>
+      <description>A guided tour of the Comms Hub: follow one example customer from contract signing through the welcome call, an opt out, privacy policy outreach, and a failed payment, and see how one engine, one opt out list, and one logbook tie customer communication together.</description>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/commshub-briefing.mp3" length="8900966" type="audio/mpeg"/>
       <guid isPermaLink="false">commshub-briefing</guid>
-      <pubDate>Thu, 12 Nov 2026 21:25:24 +0000</pubDate>
+      <pubDate>Thu, 12 Nov 2026 22:11:00 +0000</pubDate>
       <itunes:title>The Comms Hub, Explained</itunes:title>
-      <itunes:summary>A briefing on the customer communications hub: the problem it solves, its three foundations of contact roles, consent, and the engine, what it records, and what is still open. Liam and Bella alternate sections.</itunes:summary>
-      <itunes:duration>0:09:22</itunes:duration>
+      <itunes:summary>A guided tour of the Comms Hub: follow one example customer from contract signing through the welcome call, an opt out, privacy policy outreach, and a failed payment, and see how one engine, one opt out list, and one logbook tie customer communication together.</itunes:summary>
+      <itunes:duration>0:09:16</itunes:duration>
       <itunes:episode>85</itunes:episode>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:explicit>false</itunes:explicit>
