@@ -6,7 +6,7 @@
     <atom:link href="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <description>BlindBytes: short audio explainers of technical concepts, written for the ear.</description>
-    <lastBuildDate>Thu, 12 Nov 2026 22:14:53 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 22:36:41 +0000</lastBuildDate>
     <image>
       <url>https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/cover.png</url>
       <title>BlindBytes</title>
@@ -23,8 +23,8 @@
     <item>
       <title>The Comms Hub, Explained</title>
       <description>A guided tour of the Comms Hub: follow one example customer from contract signing through the welcome call, an opt out, privacy policy outreach, and a failed payment, and see how one engine, one opt out list, and one logbook tie customer communication together.</description>
-      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/commshub-briefing.mp3" length="8900966" type="audio/mpeg"/>
-      <guid isPermaLink="false">commshub-briefing</guid>
+      <enclosure url="https://tre-wolf-scinta.github.io/techcast-feed-1b06063f/episodes/commshub-briefing-v2.mp3" length="8900966" type="audio/mpeg"/>
+      <guid isPermaLink="false">commshub-briefing-v2</guid>
       <pubDate>Thu, 12 Nov 2026 22:11:00 +0000</pubDate>
       <itunes:title>The Comms Hub, Explained</itunes:title>
       <itunes:summary>A guided tour of the Comms Hub: follow one example customer from contract signing through the welcome call, an opt out, privacy policy outreach, and a failed payment, and see how one engine, one opt out list, and one logbook tie customer communication together.</itunes:summary>
